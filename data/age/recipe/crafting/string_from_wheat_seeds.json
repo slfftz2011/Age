@@ -1,0 +1,18 @@
+{
+    "type": "crafting_shapeless",
+    "category": "misc",
+    "ingredients": ["minecraft:wheat_seeds","minecraft:wheat_seeds","minecraft:wheat_seeds"],
+    "result": {
+        "id": "minecraft:string",
+        "components":{
+            "minecraft:custom_name": {
+                "text": "草绳",
+                "italic": false
+            },
+            "minecraft:custom_data": {
+                "from": "old_stone_age",
+                "special": 0
+            }
+        }
+    }
+}

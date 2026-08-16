@@ -1,0 +1,33 @@
+{
+  "display": {
+    "title": [
+      "",
+      {
+        "text": "阶段2b:",
+        "color": "green",
+        "bold": true
+      },
+      " 开天"
+    ],
+    "description": {
+      "text": "打制一柄燧石手斧",
+      "strikethrough": true
+    },
+    "icon": {
+      "id": "minecraft:stone_axe"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": true
+  },
+  "parent": "age:old_stone_age/phase_2b_unlocker",
+  "criteria": {
+    "complete": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "function": "age:task/old_stone_age/main/2b_complete"
+  }
+}

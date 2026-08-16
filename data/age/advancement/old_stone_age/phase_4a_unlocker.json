@@ -1,0 +1,29 @@
+{
+  "display": {
+    "title": [
+      "",
+      {
+        "text": "阶段4a:",
+        "color": "green",
+        "bold": true
+      },
+      " 白骨之殇 - 任务已发布"
+    ],
+    "description": "击杀 5 只骷髅",
+    "icon": {
+      "id": "minecraft:bone"
+    },
+    "hidden": false,
+    "show_toast": true,
+    "announce_to_chat": false
+  },
+  "parent": "age:old_stone_age/phase_3a",
+  "criteria": {
+    "unlock": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "function": "age:task/old_stone_age/main/4a_unlock"
+  }
+}

@@ -1,0 +1,18 @@
+{
+    "type": "crafting_shapeless",
+    "category": "equipment",
+    "ingredients": ["minecraft:flint"],
+    "result": {
+        "id": "minecraft:flint",
+        "components":{
+            "minecraft:custom_name": {
+                "text": "打制石器件",
+                "italic": false
+            },
+            "minecraft:custom_data": {
+                "from": "old_stone_age",
+                "special": 1
+            }
+        }
+    }
+}

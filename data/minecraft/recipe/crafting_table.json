@@ -1,0 +1,33 @@
+{
+    "type": "crafting_shaped",
+    "category": "equipment",
+    "key": {
+        "-":"minecraft:flint",
+        "/":"minecraft:stick",
+        "=":"minecraft:leather",
+        "#":"#minecraft:logs"
+    },
+    "pattern": [
+        "-=",
+        "/#"
+    ],
+    "result": {
+        "id": "minecraft:crafting_table",
+        "components":{
+            "minecraft:custom_name": {
+                "text": "燧石工作台",
+                "color": "#424529",
+                "italic": false
+            },
+            "minecraft:custom_data": {
+                "from": "old_stone_age",
+                "special": 0
+            },
+            "minecraft:lore": [
+                {"text":"最最原始的工作台 人类一切发明的开端","color":"green"},
+                ["「通过",{"text":"旧石器时代","color":"#424529"},"途径获取」"]
+            ],
+            "minecraft:damage": 375
+        }
+    }
+}

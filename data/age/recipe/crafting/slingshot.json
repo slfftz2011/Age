@@ -1,0 +1,31 @@
+{
+    "type": "crafting_shaped",
+    "category": "equipment",
+    "key": {
+        "~":"minecraft:string",
+        "/":"minecraft:stick"
+    },
+    "pattern": [
+        "/~/",
+        " / "
+    ],
+    "result": {
+        "id": "minecraft:bow",
+        "components":{
+            "minecraft:custom_name": {
+                "text": "弹弓",
+                "color": "#424529",
+                "italic": false
+            },
+            "minecraft:custom_data": {
+                "from": "old_stone_age",
+                "special": 0
+            },
+            "minecraft:lore": [
+                {"text":"一把原始的弹弓","color":"green"},
+                ["「通过",{"text":"旧石器时代","color":"#424529"},"途径获取」"]
+            ],
+            "minecraft:damage": 375
+        }
+    }
+}

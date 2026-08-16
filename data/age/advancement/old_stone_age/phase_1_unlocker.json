@@ -1,0 +1,29 @@
+{
+  "display": {
+    "title": [
+      "",
+      {
+        "text": "阶段1:",
+        "color": "green",
+        "bold": true
+      },
+      " 石语者 - 任务已发布"
+    ],
+    "description": "打制 8 件石器",
+    "icon": {
+      "id": "minecraft:flint"
+    },
+    "hidden": false,
+    "show_toast": true,
+    "announce_to_chat": false
+  },
+  "parent": "age:old_stone_age/root",
+  "criteria": {
+    "unlock": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "function": "age:task/old_stone_age/main/1_unlock"
+  }
+}

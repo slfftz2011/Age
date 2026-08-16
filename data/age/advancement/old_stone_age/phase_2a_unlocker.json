@@ -1,0 +1,29 @@
+{
+  "display": {
+    "title": [
+      "",
+      {
+        "text": "阶段2a:",
+        "color": "green",
+        "bold": true
+      },
+      " 刺破黎明 - 任务已发布"
+    ],
+    "description": "打造一把伤害 ≥5.5 的燧石小刀",
+    "icon": {
+      "id": "minecraft:stone_sword"
+    },
+    "hidden": false,
+    "show_toast": true,
+    "announce_to_chat": false
+  },
+  "parent": "age:old_stone_age/phase_1",
+  "criteria": {
+    "unlock": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "function": "age:task/old_stone_age/main/2a_unlock"
+  }
+}

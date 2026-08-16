@@ -1,0 +1,29 @@
+{
+  "display": {
+    "title": [
+      "",
+      {
+        "text": "阶段5b:",
+        "color": "green",
+        "bold": true
+      },
+      " 弓鸣·敌殁 - 任务已发布"
+    ],
+    "description": "远程射杀任意怪物",
+    "icon": {
+      "id": "minecraft:arrow"
+    },
+    "hidden": false,
+    "show_toast": true,
+    "announce_to_chat": false
+  },
+  "parent": "age:old_stone_age/phase_4b",
+  "criteria": {
+    "unlock": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "function": "age:task/old_stone_age/main/5b_unlock"
+  }
+}

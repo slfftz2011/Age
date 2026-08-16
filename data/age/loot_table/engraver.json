@@ -1,0 +1,66 @@
+{
+    "pools": [
+        {
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "item",
+                    "functions": [
+                        {
+                            "function": "set_attributes",
+                            "modifiers":[
+                                {
+                                    "amount": {
+                                        "max": 3,
+                                        "min": 2.5
+                                    },
+                                    "attribute": "attack_damage",
+                                    "id":"age",
+                                    "operation": "add_value",
+                                    "slot":"mainhand"
+                                },
+                                {
+                                    "amount": -3,
+                                    "attribute": "attack_speed",
+                                    "id":"age",
+                                    "operation": "add_value",
+                                    "slot":"mainhand"
+                                }
+                            ]
+                        },
+                        {
+                            "function": "set_custom_data",
+                            "tag": {
+                                "from": "old_stone_age",
+                                "special": 0
+                            }
+                        },
+                        {
+                            "function": "set_damage",
+                            "damage": {
+                                "max": 0.3,
+                                "min": 0.002
+                            }
+                        },
+                        {
+                            "function": "set_lore",
+                            "entity": "this",
+                            "lore": [
+                                {"text":"一块由两枚雕刻器合并而成的大型雕刻器","color":"green"},
+                                ["「通过",{"text":"旧石器时代","color":"#424529"},"途径获取」"],
+                                ["制作者: ",{"type":"selector","selector":"@s"}]
+                            ],
+                            "mode": "replace_all"
+                        },
+                        {
+                            "function": "set_name",
+                            "name": {"text":"燧石凿子","color":"#505339"},
+                            "target":"item_name"
+                        }
+                    ],
+                    "name": "minecraft:stone_shovel"
+                }
+            ]
+        }
+    ]
+}

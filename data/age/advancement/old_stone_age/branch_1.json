@@ -1,0 +1,38 @@
+{
+  "display": {
+    "title": [
+      "",
+      {
+        "text": "挑战1:",
+        "color": "aqua",
+        "bold": true
+      },
+      " 饥不择食"
+    ],
+    "description": "在饥肠辘辘下食用皮带",
+    "icon": {
+      "id": "minecraft:leather"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "parent": "age:old_stone_age/branch_root",
+  "criteria": {
+    "eat_leather": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": "minecraft:leather"
+        },
+        "player": {
+          "nbt": "{foodLevel:0}"
+        }
+      }
+    }
+  },
+  "rewards": {
+    "function": "age:task/old_stone_age/branch/1"
+  }
+}

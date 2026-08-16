@@ -1,0 +1,50 @@
+{
+  "display": {
+    "title": [
+      "",
+      {
+        "text": "阶段3b:",
+        "color": "green",
+        "bold": true
+      },
+      " 方寸之间"
+    ],
+    "description": {
+      "text": "制作燧石工作台",
+      "strikethrough": true
+    },
+    "icon": {
+      "id": "minecraft:crafting_table"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": true
+  },
+  "parent": "age:old_stone_age/phase_3b_unlocker",
+  "criteria": {
+    "crafting_table": {
+      "trigger": "minecraft:recipe_crafted",
+      "conditions": {
+        "recipe_id": "minecraft:crafting_table",
+        "ingredients": [
+          {
+            "items": "minecraft:leather"
+          },
+          {
+            "items": "#minecraft:logs"
+          },
+          {
+            "items": "minecraft:flint"
+          },
+          {
+            "items": "minecraft:stick"
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "function": "age:task/old_stone_age/main/3b_complete"
+  }
+}

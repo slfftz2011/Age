@@ -1,0 +1,29 @@
+{
+  "display": {
+    "title": [
+      "",
+      {
+        "text": "阶段3a:",
+        "color": "green",
+        "bold": true
+      },
+      " 茹毛饮血 - 任务已发布"
+    ],
+    "description": "食用任意生肉（除鱼类）",
+    "icon": {
+      "id": "minecraft:porkchop"
+    },
+    "hidden": false,
+    "show_toast": true,
+    "announce_to_chat": false
+  },
+  "parent": "age:old_stone_age/phase_2a",
+  "criteria": {
+    "unlock": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "function": "age:task/old_stone_age/main/3a_unlock"
+  }
+}

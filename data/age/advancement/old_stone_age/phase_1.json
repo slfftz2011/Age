@@ -1,0 +1,33 @@
+{
+  "display": {
+    "title": [
+      "",
+      {
+        "text": "阶段1:",
+        "color": "green",
+        "bold": true
+      },
+      " 石语者"
+    ],
+    "description": {
+      "text": "打制 8 件石器",
+      "strikethrough": true
+    },
+    "icon": {
+      "id": "minecraft:flint"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": true
+  },
+  "parent": "age:old_stone_age/phase_1_unlocker",
+  "criteria": {
+    "complete": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "function": "age:task/old_stone_age/main/1_complete"
+  }
+}

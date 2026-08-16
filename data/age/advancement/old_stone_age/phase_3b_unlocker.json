@@ -1,0 +1,29 @@
+{
+  "display": {
+    "title": [
+      "",
+      {
+        "text": "阶段3b:",
+        "color": "green",
+        "bold": true
+      },
+      " 方寸之间 - 任务已发布"
+    ],
+    "description": "制作燧石工作台",
+    "icon": {
+      "id": "minecraft:crafting_table"
+    },
+    "hidden": false,
+    "show_toast": true,
+    "announce_to_chat": false
+  },
+  "parent": "age:old_stone_age/phase_2b",
+  "criteria": {
+    "unlock": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "function": "age:task/old_stone_age/main/3b_unlock"
+  }
+}

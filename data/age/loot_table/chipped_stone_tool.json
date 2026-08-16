@@ -1,0 +1,342 @@
+{
+    "pools": [
+        {
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "item",
+                    "functions": [
+                        {
+                            "function": "set_attributes",
+                            "modifiers":[
+                                {
+                                    "amount": {
+                                        "max": 5,
+                                        "min": 3
+                                    },
+                                    "attribute": "attack_damage",
+                                    "id":"age",
+                                    "operation": "add_value",
+                                    "slot":"mainhand"
+                                },
+                                {
+                                    "amount": -3.1,
+                                    "attribute": "attack_speed",
+                                    "id":"age",
+                                    "operation": "add_value",
+                                    "slot":"mainhand"
+                                }
+                            ]
+                        },
+                        {
+                            "function": "set_custom_data",
+                            "tag": {
+                                "from": "old_stone_age",
+                                "special": 0
+                            }
+                        },
+                        {
+                            "function": "set_damage",
+                            "damage": {
+                                "max": 0.1,
+                                "min": 0.0005
+                            }
+                        },
+                        {
+                            "function": "set_lore",
+                            "entity": "this",
+                            "lore": [
+                                {"text":"一块由燧石敲成的砍砸器","color":"green"},
+                                ["「通过",{"text":"旧石器时代","color":"#424529"},"途径获取」"],
+                                ["制作者: ",{"type":"selector","selector":"@s"}]
+                            ],
+                            "mode": "replace_all"
+                        },
+                        {
+                            "function": "set_name",
+                            "name": {"text":"燧石手斧","color":"#505339"},
+                            "target":"item_name"
+                        }
+                    ],
+                    "name": "minecraft:stone_axe",
+                    "weight": 32
+                },
+                {
+                    "type": "item",
+                    "functions": [
+                        {
+                            "function": "set_attributes",
+                            "modifiers":[
+                                {
+                                    "amount": {
+                                        "max": 4,
+                                        "min": 3
+                                    },
+                                    "attribute": "attack_damage",
+                                    "id":"age",
+                                    "operation": "add_value",
+                                    "slot":"mainhand"
+                                },
+                                {
+                                    "amount": -2.9,
+                                    "attribute": "attack_speed",
+                                    "id":"age",
+                                    "operation": "add_value",
+                                    "slot":"mainhand"
+                                }
+                            ]
+                        },
+                        {
+                            "function": "set_custom_data",
+                            "tag": {
+                                "from": "old_stone_age",
+                                "special": 0
+                            }
+                        },
+                        {
+                            "function": "set_damage",
+                            "damage": {
+                                "max": 0.1,
+                                "min": 0.0005
+                            }
+                        },
+                        {
+                            "function": "set_lore",
+                            "entity": "this",
+                            "lore": [
+                                {"text":"一块由燧石敲成的刮削器","color":"green"},
+                                ["「通过",{"text":"旧石器时代","color":"#424529"},"途径获取」"],
+                                ["制作者: ",{"type":"selector","selector":"@s"}]
+                            ],
+                            "mode": "replace_all"
+                        },
+                        {
+                            "function": "set_name",
+                            "name": {"text":"燧石小刀","color":"#505339"},
+                            "target":"item_name"
+                        }
+                    ],
+                    "name": "minecraft:stone_sword",
+                    "weight": 24
+                },
+                {
+                    "type": "item",
+                    "functions": [
+                        {
+                            "function": "set_attributes",
+                            "modifiers":[
+                                {
+                                    "amount": {
+                                        "max": 5,
+                                        "min": 4
+                                    },
+                                    "attribute": "attack_damage",
+                                    "id":"age",
+                                    "operation": "add_value",
+                                    "slot":"mainhand"
+                                },
+                                {
+                                    "amount": -2.8,
+                                    "attribute": "attack_speed",
+                                    "id":"age",
+                                    "operation": "add_value",
+                                    "slot":"mainhand"
+                                },
+                                {
+                                    "amount": -0.25,
+                                    "attribute": "sweeping_damage_ratio",
+                                    "id":"age",
+                                    "operation": "add_value",
+                                    "slot":"mainhand"
+                                }
+                            ]
+                        },
+                        {
+                            "function": "set_custom_data",
+                            "tag": {
+                                "from": "old_stone_age",
+                                "special": 0
+                            }
+                        },
+                        {
+                            "function": "set_damage",
+                            "damage": {
+                                "max": 0.1,
+                                "min": 0.0005
+                            }
+                        },
+                        {
+                            "function": "set_lore",
+                            "entity": "this",
+                            "lore": [
+                                {"text":"一块由燧石敲成的尖状器","color":"green"},
+                                ["「通过",{"text":"旧石器时代","color":"#424529"},"途径获取」"],
+                                ["制作者: ",{"type":"selector","selector":"@s"}]
+                            ],
+                            "mode": "replace_all"
+                        },
+                        {
+                            "function": "set_name",
+                            "name": {"text":"燧石锥","color":"#505339"},
+                            "target":"item_name"
+                        }
+                    ],
+                    "name": "minecraft:stone_sword",
+                    "weight": 16
+                },
+                {
+                    "type": "item",
+                    "functions": [
+                        {
+                            "function": "set_attributes",
+                            "modifiers":[
+                                {
+                                    "amount": {
+                                        "max": 2,
+                                        "min": 1
+                                    },
+                                    "attribute": "attack_damage",
+                                    "id":"age",
+                                    "operation": "add_value",
+                                    "slot":"mainhand"
+                                },
+                                {
+                                    "amount": -3.1,
+                                    "attribute": "attack_speed",
+                                    "id":"age",
+                                    "operation": "add_value",
+                                    "slot":"mainhand"
+                                }
+                            ]
+                        },
+                        {
+                            "function": "set_custom_data",
+                            "tag": {
+                                "from": "old_stone_age",
+                                "special": 0
+                            }
+                        },
+                        {
+                            "function": "set_damage",
+                            "damage": {
+                                "max": 0.1,
+                                "min": 0.0005
+                            }
+                        },
+                        {
+                            "function": "set_lore",
+                            "entity": "this",
+                            "lore": [
+                                {"text":"一块由燧石敲成的雕刻器","color":"green"},
+                                ["「通过",{"text":"旧石器时代","color":"#424529"},"途径获取」"],
+                                ["制作者: ",{"type":"selector","selector":"@s"}]
+                            ],
+                            "mode": "replace_all"
+                        },
+                        {
+                            "function": "set_name",
+                            "name": {"text":"燧石凿子","color":"#505339"},
+                            "target":"item_name"
+                        }
+                    ],
+                    "name": "minecraft:stone_shovel",
+                    "weight": 18
+                },
+                {
+                    "type": "item",
+                    "functions": [
+                        {
+                            "function": "set_custom_data",
+                            "tag": {
+                                "from": "old_stone_age",
+                                "special": 0
+                            }
+                        },
+                        {
+                            "function": "set_lore",
+                            "entity": "this",
+                            "lore": [
+                                {"text":"一块由燧石敲成的球状器","color":"green"},
+                                ["「通过",{"text":"旧石器时代","color":"#424529"},"途径获取」"],
+                                ["制作者: ",{"type":"selector","selector":"@s"}]
+                            ],
+                            "mode": "replace_all"
+                        },
+                        {
+                            "function": "set_name",
+                            "name": {"text":"燧石核","color":"#505339"},
+                            "target":"item_name"
+                        }
+                    ],
+                    "name": "minecraft:arrow",
+                    "weight": 20
+                },
+                {
+                    "type": "item",
+                    "functions": [
+                        {
+                            "function": "set_custom_data",
+                            "tag": {
+                                "from": "old_stone_age",
+                                "special": 0
+                            }
+                        },
+                        {
+                            "function": "set_lore",
+                            "entity": "this",
+                            "lore": [
+                                {"text":"一块失败的打制石器","color":"green"},
+                                ["「通过",{"text":"旧石器时代","color":"#424529"},"途径获取」"],
+                                ["制作者: ",{"type":"selector","selector":"@s"}]
+                            ],
+                            "mode": "replace_all"
+                        },
+                        {
+                            "function": "set_name",
+                            "name": {"text":"燧石废料","color":"#505339"},
+                            "target":"item_name"
+                        }
+                    ],
+                    "name": "minecraft:flint",
+                    "weight": 84
+                },
+                {
+                    "type": "item",
+                    "functions": [
+                        {
+                            "function": "set_custom_data",
+                            "tag": {
+                                "from": "old_stone_age",
+                                "special": 2
+                            }
+                        },
+                        {
+                            "function": "set_lore",
+                            "entity": "this",
+                            "lore": [
+                                {"text":"狩猎，人类野性的本能。","color":"green"},
+                                {"text":"这块承载挣扎与生存的图腾，蕴含着神秘的力量。","color":"green"},
+                                ["「通过",{"text":"旧石器时代","color":"#424529"},"途径获取」"],
+                                ["使用方法: ",{"text":"携吾献祭肉身，飞升更远的境界...","color":"#774343"}]
+                            ],
+                            "mode": "replace_all"
+                        },
+                        {
+                            "function": "set_enchantments",
+                            "enchantments": {
+                                "vanishing_curse": 10
+                            }
+                        },
+                        {
+                            "function": "set_name",
+                            "name": {"text":"狩猎图腾","color":"#816380"},
+                            "target":"item_name"
+                        }
+                    ],
+                    "name": "minecraft:totem_of_undying",
+                    "weight": 1
+                }
+            ]
+        }
+    ]
+}

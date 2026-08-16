@@ -1,0 +1,30 @@
+{
+  "display": {
+    "title": [
+      {
+        "text": "旧石器时代",
+        "color": "#424529"
+      },
+      {
+        "text": "·文明萌芽",
+        "color": "green",
+        "bold": true
+      }
+    ],
+    "description": "完成所有主线任务，推动时代前进",
+    "icon": {
+      "id": "minecraft:flint"
+    },
+    "background": "minecraft:block/stone",
+    "frame": "challenge",
+    "show_toast": false,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "granted": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {}
+}

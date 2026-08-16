@@ -1,0 +1,45 @@
+{
+  "display": {
+    "title": [
+      "",
+      {
+        "text": "阶段3a:",
+        "color": "green",
+        "bold": true
+      },
+      " 茹毛饮血"
+    ],
+    "description": {
+      "text": "食用任意生肉（除鱼类）",
+      "strikethrough": true
+    },
+    "icon": {
+      "id": "minecraft:porkchop"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": true
+  },
+  "parent": "age:old_stone_age/phase_3a_unlocker",
+  "criteria": {
+    "eat_raw_food": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "minecraft:porkchop",
+            "minecraft:beef",
+            "minecraft:mutton",
+            "minecraft:chicken",
+            "minecraft:rabbit",
+            "minecraft:rotten_flesh"
+          ]
+        }
+      }
+    }
+  },
+  "rewards": {
+    "function": "age:task/old_stone_age/main/3a_complete"
+  }
+}

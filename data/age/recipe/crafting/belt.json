@@ -1,0 +1,36 @@
+{
+    "type": "crafting_shaped",
+    "category": "equipment",
+    "key": {
+        "~":"minecraft:leather"
+    },
+    "pattern": [
+        "~~~"
+    ],
+    "result": {
+        "id": "minecraft:leather",
+        "components":{
+            "minecraft:custom_name": {
+                "text": "皮带",
+                "color": "#424529",
+                "italic": false
+            },
+            "minecraft:custom_data": {
+                "from": "old_stone_age",
+                "special": 0
+            },
+            "minecraft:lore": [
+                {"text":"饥饿的时候可以啃上很久","color":"green"},
+                ["「通过",{"text":"旧石器时代","color":"#424529"},"途径获取」"]
+            ],
+            "minecraft:food": {
+              "nutrition": 4,
+              "saturation": 2
+            },
+            "minecraft:consumable": {
+                "animation":"eat",
+                "consume_seconds": 16
+            }
+        }
+    }
+}

@@ -1,0 +1,262 @@
+{
+    "old_stone_age": {
+        "root": {
+            "title.suffix": "文明萌芽",
+            "icon": { "id": "minecraft:flint" },
+            "background": "stone"
+        },
+        "branch_root": {
+            "title.suffix": "挑战",
+            "icon": { "id": "minecraft:emerald" },
+            "description": "挑战人类极限"
+        },
+        "branch": [
+            {
+                "title.name": "饥不择食",
+                "description": "在饥肠辘辘下食用皮带",
+                "icon": { "id": "minecraft:leather" },
+                "criteria": {
+                    "eat_leather": {
+                        "trigger": "minecraft:consume_item",
+                        "conditions": {
+                          "item": {
+                            "items": "minecraft:leather"
+                          },
+                          "player": {
+                            "nbt": "{foodLevel:0}"
+                          }
+                        }
+                      }
+                }
+            },
+            {
+                "title.name": "蔽体之始",
+                "description": "编制并穿上草裙",
+                "icon": { "id": "minecraft:leather_leggings" },
+                "criteria": {
+                    "wear_leather": {
+                        "trigger": "minecraft:inventory_changed",
+                        "conditions": {
+                            "items": [
+                                {
+                                    "items": "minecraft:leather_leggings"
+                                }
+                            ],
+                            "player": {
+                                "equipment": {
+                                    "legs": {
+                                        "items": "minecraft:leather_leggings"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            {
+                "title.name": "缚鸡之力",
+                "description": "双手空空击败一只鸡",
+                "icon": { "id": "minecraft:chicken" },
+                "criteria": {
+                    "kill_chicken": {
+                        "trigger": "minecraft:player_killed_entity",
+                        "conditions": {
+                            "entity": {
+                                "type": "minecraft:chicken"
+                            },
+                            "player": {
+                                "equipment": {
+                                    "mainhand": {
+                                        "items": "minecraft:air"
+                                    },
+                                    "offhand": {
+                                        "items": "minecraft:air"
+                                    }
+                                }
+                            },
+                            "killing_blow": {
+                                "is_lightning": true,
+                                "is_explosion": true,
+                                "is_fire": true,
+                                "is_magic": true,
+                                "is_projectile": true
+                            }
+                        }
+                    }
+                }
+            }
+        ],
+        "main": {
+            "value": {
+                "title.name": "石语者",
+                "description": "打制 8 件石器",
+                "icon": { "id": "minecraft:flint" },
+                "hidden": false
+            },
+            "child": [
+                {
+                    "value": {
+                        "title.name": "刺破黎明",
+                        "description": "打造一把伤害 ≥5.5 的燧石小刀",
+                        "icon": { "id": "minecraft:stone_sword" },
+                        "hidden": false
+                    },
+                    "child": [
+                        {
+                            "value": {
+                                "title.name": "茹毛饮血",
+                                "description": "食用任意生肉（除鱼类）",
+                                "icon": { "id": "minecraft:porkchop" },
+                                "hidden": false,
+                                "criteria": {
+                                    "eat_raw_food": {
+                                        "trigger": "minecraft:consume_item",
+                                        "conditions": {
+                                          "item": {
+                                            "items": ["minecraft:porkchop","minecraft:beef","minecraft:mutton","minecraft:chicken","minecraft:rabbit","minecraft:rotten_flesh"]
+                                          }
+                                        }
+                                    }
+                                }
+                            },
+                            "child": [
+                                {
+                                    "value": {
+                                        "title.name": "白骨之殇",
+                                        "description": "击杀 5 只骷髅",
+                                        "icon": { "id": "minecraft:bone" },
+                                        "hidden": false
+                                    },
+                                    "child": []
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "value": {
+                        "title.name": "开天",
+                        "description": "打制一柄燧石手斧",
+                        "icon": { "id": "minecraft:stone_axe" },
+                        "hidden": false
+                    },
+                    "child": [
+                        {
+                            "value": {
+                                "title.name": "方寸之间",
+                                "description": "制作燧石工作台",
+                                "icon": { "id": "minecraft:crafting_table" },
+                                "hidden": false,
+                                "criteria": {
+                                    "crafting_table": {
+                                      "trigger": "minecraft:recipe_crafted",
+                                      "conditions": {
+                                            "recipe_id": "minecraft:crafting_table",
+                                            "ingredients": [
+                                                {
+                                                    "items": "minecraft:leather"
+                                                },
+                                                {
+                                                    "items": "#minecraft:logs"
+                                                },
+                                                {
+                                                    "items": "minecraft:flint"
+                                                },
+                                                {
+                                                    "items": "minecraft:stick"
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            },
+                            "child": [
+                                {
+                                    "value": {
+                                        "title.name": "一矢之遥",
+                                        "description": "制作一张弹弓",
+                                        "icon": { "id": "minecraft:bow" },
+                                        "hidden": false,
+                                        "criteria": {
+                                            "slingshot": {
+                                                "trigger": "minecraft:recipe_crafted",
+                                                "conditions": {
+                                                    "recipe_id": "age:crafting/slingshot",
+                                                    "ingredients": [
+                                                        {
+                                                            "items": "minecraft:string"
+                                                        },
+                                                        {
+                                                            "items": "minecraft:stick"
+                                                        }
+                                                    ]
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "child": [
+                                        {
+                                            "value": {
+                                                "title.name": "弓鸣·敌殁",
+                                                "description": "远程射杀任意怪物",
+                                                "icon": { "id": "minecraft:arrow" },
+                                                "hidden": false,
+                                                "criteria": {
+                                                    "kill_monster_ranged": {
+                                                      "trigger": "minecraft:player_killed_entity",
+                                                      "conditions": {
+                                                        "entity": {
+                                                          "type": "#age:monster"
+                                                        },
+                                                        "killing_blow": {
+                                                          "is_projectile": true
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                            },
+                                            "child": []
+                                        }
+                                    ]
+                                }
+                            ]
+                        }                        
+                    ]
+                },
+                {
+                    "value": {
+                        "title.name": "飞升",
+                        "description": ["借助 ",{"text":"狩猎图腾","color":"#816380"}, " 的力量飞升时代"],
+                        "icon": { "id": "minecraft:totem_of_undying" },
+                        "hidden": true,
+                        "criteria": {
+                            "complete": {
+                              "trigger": "minecraft:used_totem",
+                              "conditions": {
+                                "item": {
+                                  "items": "minecraft:totem_of_undying",
+                                  "components":{
+                                    "minecraft:custom_data": {
+                                      "from": "old_stone_age",
+                                      "special": 2
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                        }
+                    },
+                    "child": []
+                }
+            ]
+        }
+    },
+    "mappings": {
+        "ages": {
+            "old_stone_age": {"text":"旧石器时代","color":"#424529"}
+        },
+        "custom_color": {
+            "old_stone_age": "#424529"
+        }
+    }
+}

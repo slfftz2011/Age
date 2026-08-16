@@ -1,0 +1,7 @@
+execute if score old_stone_age task matches 0 run bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - 无"]
+execute if score old_stone_age task matches 1 run bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ",{text:"[狩猎] 击杀 猪 x5",color:"red"}]
+execute if score old_stone_age task matches 2 run bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ",{text:"[狩猎] 击杀 羊 x5",color:"red"}]
+execute if score old_stone_age task matches 3 run bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ",{text:"[狩猎] 击杀 牛 x5",color:"red"}]
+execute if score old_stone_age task matches 4 run bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ",{text:"[狩猎] 击杀 兔 x3",color:"red"}]
+execute if score old_stone_age task matches 5 run bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ",{text:"[狩猎] 击杀 马 x3",color:"red"}]
+execute if score old_stone_age task matches 6 run bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ",{text:"[狩猎] 击杀 鸡 x5",color:"red"}]

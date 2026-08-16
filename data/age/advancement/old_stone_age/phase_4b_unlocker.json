@@ -1,0 +1,29 @@
+{
+  "display": {
+    "title": [
+      "",
+      {
+        "text": "阶段4b:",
+        "color": "green",
+        "bold": true
+      },
+      " 一矢之遥 - 任务已发布"
+    ],
+    "description": "制作一张弹弓",
+    "icon": {
+      "id": "minecraft:bow"
+    },
+    "hidden": false,
+    "show_toast": true,
+    "announce_to_chat": false
+  },
+  "parent": "age:old_stone_age/phase_3b",
+  "criteria": {
+    "unlock": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "function": "age:task/old_stone_age/main/4b_unlock"
+  }
+}

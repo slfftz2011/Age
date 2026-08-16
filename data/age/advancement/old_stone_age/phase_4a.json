@@ -1,0 +1,33 @@
+{
+  "display": {
+    "title": [
+      "",
+      {
+        "text": "阶段4a:",
+        "color": "green",
+        "bold": true
+      },
+      " 白骨之殇"
+    ],
+    "description": {
+      "text": "击杀 5 只骷髅",
+      "strikethrough": true
+    },
+    "icon": {
+      "id": "minecraft:bone"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": true
+  },
+  "parent": "age:old_stone_age/phase_4a_unlocker",
+  "criteria": {
+    "complete": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "function": "age:task/old_stone_age/main/4a_complete"
+  }
+}

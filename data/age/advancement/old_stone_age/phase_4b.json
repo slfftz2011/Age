@@ -1,0 +1,44 @@
+{
+  "display": {
+    "title": [
+      "",
+      {
+        "text": "阶段4b:",
+        "color": "green",
+        "bold": true
+      },
+      " 一矢之遥"
+    ],
+    "description": {
+      "text": "制作一张弹弓",
+      "strikethrough": true
+    },
+    "icon": {
+      "id": "minecraft:bow"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": true
+  },
+  "parent": "age:old_stone_age/phase_4b_unlocker",
+  "criteria": {
+    "slingshot": {
+      "trigger": "minecraft:recipe_crafted",
+      "conditions": {
+        "recipe_id": "age:crafting/slingshot",
+        "ingredients": [
+          {
+            "items": "minecraft:string"
+          },
+          {
+            "items": "minecraft:stick"
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "function": "age:task/old_stone_age/main/4b_complete"
+  }
+}

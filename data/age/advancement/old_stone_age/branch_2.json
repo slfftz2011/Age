@@ -1,0 +1,44 @@
+{
+  "display": {
+    "title": [
+      "",
+      {
+        "text": "挑战2:",
+        "color": "aqua",
+        "bold": true
+      },
+      " 蔽体之始"
+    ],
+    "description": "编制并穿上草裙",
+    "icon": {
+      "id": "minecraft:leather_leggings"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "parent": "age:old_stone_age/branch_root",
+  "criteria": {
+    "wear_leather": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:leather_leggings"
+          }
+        ],
+        "player": {
+          "equipment": {
+            "legs": {
+              "items": "minecraft:leather_leggings"
+            }
+          }
+        }
+      }
+    }
+  },
+  "rewards": {
+    "function": "age:task/old_stone_age/branch/2"
+  }
+}

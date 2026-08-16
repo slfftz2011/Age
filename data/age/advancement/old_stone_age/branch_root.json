@@ -1,0 +1,30 @@
+{
+  "display": {
+    "title": [
+      {
+        "text": "旧石器时代",
+        "color": "#424529"
+      },
+      {
+        "text": "·挑战",
+        "color": "gold",
+        "bold": true
+      }
+    ],
+    "description": "挑战人类极限",
+    "icon": {
+      "id": "minecraft:emerald"
+    },
+    "background": "minecraft:block/stone",
+    "frame": "task",
+    "show_toast": false,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "granted": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {}
+}

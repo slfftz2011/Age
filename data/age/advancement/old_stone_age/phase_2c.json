@@ -1,0 +1,48 @@
+{
+  "display": {
+    "title": [
+      "",
+      {
+        "text": "阶段2c:",
+        "color": "dark_purple",
+        "bold": true
+      },
+      " 飞升"
+    ],
+    "description": [
+      "借助 ",
+      {
+        "text": "狩猎图腾",
+        "color": "#816380"
+      },
+      " 的力量飞升时代"
+    ],
+    "icon": {
+      "id": "minecraft:totem_of_undying"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": true
+  },
+  "parent": "age:old_stone_age/phase_1",
+  "criteria": {
+    "complete": {
+      "trigger": "minecraft:used_totem",
+      "conditions": {
+        "item": {
+          "items": "minecraft:totem_of_undying",
+          "components": {
+            "minecraft:custom_data": {
+              "from": "old_stone_age",
+              "special": 2
+            }
+          }
+        }
+      }
+    }
+  },
+  "rewards": {
+    "function": "age:task/old_stone_age/main/2c_complete"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "display": {
+    "title": [
+      "",
+      {
+        "text": "阶段5b:",
+        "color": "green",
+        "bold": true
+      },
+      " 弓鸣·敌殁"
+    ],
+    "description": {
+      "text": "远程射杀任意怪物",
+      "strikethrough": true
+    },
+    "icon": {
+      "id": "minecraft:arrow"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": true
+  },
+  "parent": "age:old_stone_age/phase_5b_unlocker",
+  "criteria": {
+    "kill_monster_ranged": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "#age:monster"
+        },
+        "killing_blow": {
+          "is_projectile": true
+        }
+      }
+    }
+  },
+  "rewards": {
+    "function": "age:task/old_stone_age/main/5b_complete"
+  }
+}
