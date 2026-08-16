@@ -2,7 +2,8 @@
     "values": [
         "#minecraft:undead",
         "minecraft:creeper",
-        "spider",
-        "cave_spider"
+        "minecraft:spider",
+        "minecraft:cave_spider",
+        "minecraft:enderman"
     ]
 }

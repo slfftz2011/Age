@@ -20,4 +20,7 @@ execute if entity @a[team=steam_age_5] run scoreboard players add steam_age_5 st
 
 effect give @a[team=old_stone_age] bad_omen 45 9
 
+execute if score time task matches 20.. run gamerule doImmediateRespawn false
 execute if score time task matches 20.. run function age:task/roll
+execute if score old_stone_age task matches 14 run gamerule doImmediateRespawn true
+execute as @a unless entity @s[team=old_stone_age] run gamerule doImmediateRespawn true
