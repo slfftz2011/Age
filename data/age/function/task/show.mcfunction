@@ -25,3 +25,11 @@ execute if score old_stone_age task matches 15 run bossbar set old_stone_age nam
 execute if score old_stone_age task matches 16 run bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ", {text:"[围剿] 共同击杀 蜘蛛 0/5",color:"red"}]
 execute if score old_stone_age task matches 17 run bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ", {text:"[围剿] 共同击杀 洞穴蜘蛛 0/3",color:"red"}]
 execute if score old_stone_age task matches 18 run bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ", {text:"[围剿] 共同击杀 末影人 0/1",color:"red"}]
+
+# ----- 捕获任务（个人） -----
+execute if score old_stone_age task matches 19 run bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ", {text:"[捕获] 击杀 鳕鱼 x5",color:"#55AAFF"}]
+execute if score old_stone_age task matches 20 run bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ", {text:"[捕获] 击杀 鲑鱼 x5",color:"#55AAFF"}]
+execute if score old_stone_age task matches 21 run bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ", {text:"[捕获] 击杀 热带鱼 x3",color:"#55AAFF"}]
+execute if score old_stone_age task matches 22 run bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ", {text:"[捕获] 击杀 鱿鱼 x3",color:"#55AAFF"}]
+execute if score old_stone_age task matches 23 run bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ", {text:"[捕获] 击杀 发光鱿鱼 x3",color:"#55AAFF"}]
+execute if score old_stone_age task matches 24 run bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ", {text:"[捕获] 击杀 河豚 x2",color:"#55AAFF"}]
