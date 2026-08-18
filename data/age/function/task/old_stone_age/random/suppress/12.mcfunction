@@ -1,0 +1,4 @@
+execute unless score old_stone_age enderman_all matches 1.. run scoreboard players set old_stone_age enderman_all 0
+execute unless score old_stone_age enderman_all matches 1.. as @a[team=old_stone_age] run scoreboard players operation old_stone_age enderman_all += @s enderman_suppress
+bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ", {text:"[围剿] 共同击杀 末影人 ",color:"red"}, {score:{name:"old_stone_age",objective:"enderman_all"}}, {text:"/1",color:"gray"}]
+execute unless score old_stone_age enderman_all matches 1.. if score old_stone_age enderman_all matches 1.. run function age:task/old_stone_age/random/suppress/12_c
