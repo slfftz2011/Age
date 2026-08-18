@@ -1,0 +1,4 @@
+execute unless score old_stone_age zombie_villager_all matches 3.. run scoreboard players set old_stone_age zombie_villager_all 0
+execute unless score old_stone_age zombie_villager_all matches 3.. as @a[team=old_stone_age] run scoreboard players operation old_stone_age zombie_villager_all += @s zombie_villager_suppress
+bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ", {text:"[围剿] 共同击杀 僵尸村民 ",color:"red"}, {score:{name:"old_stone_age",objective:"zombie_villager_all"}}, {text:"/3",color:"gray"}]
+execute unless score old_stone_age zombie_villager_all matches 3.. if score old_stone_age zombie_villager_all matches 3.. run function age:task/old_stone_age/random/suppress/7_c
