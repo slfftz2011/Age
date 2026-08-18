@@ -22,6 +22,14 @@ execute if score old_stone_age task matches 16 run scoreboard objectives remove 
 execute if score old_stone_age task matches 17 run scoreboard objectives remove cave_spider_suppress
 execute if score old_stone_age task matches 18 run scoreboard objectives remove enderman_suppress
 
+execute if score old_stone_age task matches 19 run scoreboard objectives remove cod_fish
+execute if score old_stone_age task matches 20 run scoreboard objectives remove salmon_fish
+execute if score old_stone_age task matches 21 run scoreboard objectives remove tropical_fish
+execute if score old_stone_age task matches 22 run scoreboard objectives remove squid_fish
+execute if score old_stone_age task matches 23 run scoreboard objectives remove glow_squid_fish
+execute if score old_stone_age task matches 24 run scoreboard objectives remove puffer_fish
+
+
 
 
 
@@ -46,8 +54,16 @@ execute if score old_stone_age task matches 17 run scoreboard objectives remove 
 execute if score old_stone_age task matches 18 run scoreboard objectives remove enderman_all
 
 
+execute if score old_stone_age task matches 19 run scoreboard objectives remove cod_updata
+execute if score old_stone_age task matches 20 run scoreboard objectives remove salmon_updata
+execute if score old_stone_age task matches 21 run scoreboard objectives remove tropical_updata
+execute if score old_stone_age task matches 22 run scoreboard objectives remove squid_updata
+execute if score old_stone_age task matches 23 run scoreboard objectives remove glow_squid_updata
+execute if score old_stone_age task matches 24 run scoreboard objectives remove puffer_updata
 
-execute store result score old_stone_age task run random value 0..6
+
+execute store result score old_stone_age task run random value 0..18
+
 
 execute if score old_stone_age task matches 1 run scoreboard objectives add pig_hunt minecraft.killed:minecraft.pig "狩猎猪"
 execute if score old_stone_age task matches 2 run scoreboard objectives add sheep_hunt minecraft.killed:minecraft.sheep "狩猎羊"
@@ -69,7 +85,12 @@ execute if score old_stone_age task matches 16 run scoreboard objectives add spi
 execute if score old_stone_age task matches 17 run scoreboard objectives add cave_spider_suppress minecraft.killed:minecraft.cave_spider "围剿洞穴蜘蛛"
 execute if score old_stone_age task matches 18 run scoreboard objectives add enderman_suppress minecraft.killed:minecraft.enderman "围剿末影人"
 
-
+execute if score old_stone_age task matches 19 run scoreboard objectives add cod_fish minecraft.killed:minecraft.cod "捕获鳕鱼"
+execute if score old_stone_age task matches 20 run scoreboard objectives add salmon_fish minecraft.killed:minecraft.salmon "捕获鲑鱼"
+execute if score old_stone_age task matches 21 run scoreboard objectives add tropical_fish minecraft.killed:minecraft.tropical_fish "捕获热带鱼"
+execute if score old_stone_age task matches 22 run scoreboard objectives add squid_fish minecraft.killed:minecraft.squid "捕获鱿鱼"
+execute if score old_stone_age task matches 23 run scoreboard objectives add glow_squid_fish minecraft.killed:minecraft.glow_squid "捕获发光鱿鱼"
+execute if score old_stone_age task matches 24 run scoreboard objectives add puffer_fish minecraft.killed:minecraft.pufferfish "捕获河豚"
 
 
 
@@ -93,7 +114,12 @@ execute if score old_stone_age task matches 16 run scoreboard objectives add spi
 execute if score old_stone_age task matches 17 run scoreboard objectives add cave_spider_all dummy
 execute if score old_stone_age task matches 18 run scoreboard objectives add enderman_all dummy
 
-
+execute if score old_stone_age task matches 19 run scoreboard objectives add cod_updata dummy
+execute if score old_stone_age task matches 20 run scoreboard objectives add salmon_updata dummy
+execute if score old_stone_age task matches 21 run scoreboard objectives add tropical_updata dummy
+execute if score old_stone_age task matches 22 run scoreboard objectives add squid_updata dummy
+execute if score old_stone_age task matches 23 run scoreboard objectives add glow_squid_updata dummy
+execute if score old_stone_age task matches 24 run scoreboard objectives add puffer_updata dummy
 
 
 
