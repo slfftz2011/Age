@@ -1,4 +1,4 @@
-execute unless entity @s[tag=task_done] unless score @s rabbit_hunt = @s rabbit_updata run title @s actionbar ["",{"text":"📋 狩猎: 兔 ","color":"red"},{"score":{"name":"@s","objective":"rabbit_hunt"},"color":"gray"},{"text":"/3","color":"gray"}]
+execute unless entity @s[tag=task_done] unless score @s rabbit_hunt = @s rabbit_updata run title @s actionbar ["",{"text":"🏹 狩猎: 兔 ","color":"red"},{"score":{"name":"@s","objective":"rabbit_hunt"},"color":"gray"},{"text":"/3","color":"gray"}]
 
 scoreboard players operation @s rabbit_updata = @s rabbit_hunt
 
