@@ -1,0 +1,4 @@
+execute unless score old_stone_age stray_all matches 5.. run scoreboard players set old_stone_age stray_all 0
+execute unless score old_stone_age stray_all matches 5.. as @a[team=old_stone_age] run scoreboard players operation old_stone_age stray_all += @s stray_suppress
+bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ", {text:"[围剿] 共同击杀 流浪者 ",color:"red"}, {score:{name:"old_stone_age",objective:"stray_all"}}, {text:"/5",color:"gray"}]
+execute unless score old_stone_age stray_all matches 5.. if score old_stone_age stray_all matches 5.. run function age:task/old_stone_age/random/suppress/5_c
