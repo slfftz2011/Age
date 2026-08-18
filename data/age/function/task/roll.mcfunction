@@ -62,7 +62,7 @@ execute if score old_stone_age task matches 23 run scoreboard objectives remove 
 execute if score old_stone_age task matches 24 run scoreboard objectives remove puffer_updata
 
 
-execute store result score old_stone_age task run random value 0..18
+execute store result score old_stone_age task run random value 0..24
 
 
 execute if score old_stone_age task matches 1 run scoreboard objectives add pig_hunt minecraft.killed:minecraft.pig "狩猎猪"
