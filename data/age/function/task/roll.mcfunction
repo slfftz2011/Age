@@ -98,6 +98,21 @@ execute if score old_stone_age task matches 41 run scoreboard objectives remove 
 
 
 
+# ----- 清理食用任务的子记分板 -----
+# 蔬菜（胡萝卜、马铃薯、甜菜根）
+execute if score old_stone_age task matches 25 run scoreboard objectives remove veg_carrot
+execute if score old_stone_age task matches 25 run scoreboard objectives remove veg_potato
+execute if score old_stone_age task matches 25 run scoreboard objectives remove veg_beetroot
+
+# 种子（小麦种子、甜菜种子）
+execute if score old_stone_age task matches 26 run scoreboard objectives remove seed_wheat
+execute if score old_stone_age task matches 26 run scoreboard objectives remove seed_beetroot
+
+# 浆果（甜浆果、发光浆果）
+execute if score old_stone_age task matches 27 run scoreboard objectives remove berry_sweet
+execute if score old_stone_age task matches 27 run scoreboard objectives remove berry_glow
+
+
 execute store result score old_stone_age task run random value 0..41
 
 
@@ -128,9 +143,25 @@ execute if score old_stone_age task matches 22 run scoreboard objectives add squ
 execute if score old_stone_age task matches 23 run scoreboard objectives add glow_squid_fish minecraft.killed:minecraft.glow_squid "捕获发光鱿鱼"
 execute if score old_stone_age task matches 24 run scoreboard objectives add puffer_fish minecraft.killed:minecraft.pufferfish "捕获河豚"
 
-execute if score old_stone_age task matches 25 run scoreboard objectives add veg_eat minecraft.used:minecraft.carrot "食用蔬菜"
-execute if score old_stone_age task matches 26 run scoreboard objectives add seed_eat minecraft.used:minecraft.wheat_seeds "食用种子"
-execute if score old_stone_age task matches 27 run scoreboard objectives add berry_eat minecraft.used:minecraft.sweet_berries "食用浆果"
+# ----- 食用任务记分板（组合类用 dummy，单一物品仍用 used） -----
+
+# 25. 蔬菜（主记分板 dummy）
+execute if score old_stone_age task matches 25 run scoreboard objectives add veg_eat dummy "食用蔬菜"
+execute if score old_stone_age task matches 25 run scoreboard objectives add veg_carrot minecraft.used:minecraft.carrot
+execute if score old_stone_age task matches 25 run scoreboard objectives add veg_potato minecraft.used:minecraft.potato
+execute if score old_stone_age task matches 25 run scoreboard objectives add veg_beetroot minecraft.used:minecraft.beetroot
+
+# 26. 种子（主记分板 dummy）
+execute if score old_stone_age task matches 26 run scoreboard objectives add seed_eat dummy "食用种子"
+execute if score old_stone_age task matches 26 run scoreboard objectives add seed_wheat minecraft.used:minecraft.wheat_seeds
+execute if score old_stone_age task matches 26 run scoreboard objectives add seed_beetroot minecraft.used:minecraft.beetroot_seeds
+
+# 27. 浆果（主记分板 dummy）
+execute if score old_stone_age task matches 27 run scoreboard objectives add berry_eat dummy "食用浆果"
+execute if score old_stone_age task matches 27 run scoreboard objectives add berry_sweet minecraft.used:minecraft.sweet_berries
+execute if score old_stone_age task matches 27 run scoreboard objectives add berry_glow minecraft.used:minecraft.glow_berries
+
+# 28-41 单一物品，直接使用 minecraft.used
 execute if score old_stone_age task matches 28 run scoreboard objectives add apple_eat minecraft.used:minecraft.apple "食用苹果"
 execute if score old_stone_age task matches 29 run scoreboard objectives add melon_eat minecraft.used:minecraft.melon_slice "食用西瓜片"
 execute if score old_stone_age task matches 30 run scoreboard objectives add pumpkin_eat minecraft.used:minecraft.pumpkin_pie "食用南瓜派"
