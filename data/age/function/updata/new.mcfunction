@@ -2,7 +2,7 @@ tag @a[team=] add new
 tellraw @a[tag=new] ["欢迎来到 ",{text:"文",color:"yellow",bold:true},{text:"明",color:"gold",bold:true},{text:"游",color:"yellow",bold:true},{text:"戏",color:"gold",bold:true}," !"]
 tellraw @a[tag=new] ["人类起初是",{text:"脆弱",color:"dark_red"},"的，只有不断的发展自己才能依靠",{text:"科技",color:"aqua"},"抵御威胁."]
 tellraw @a[tag=new] ["你将与同时代人类",{text:"协作",color:"green"},"或",{text:"对抗",color:"red"},"，完成",{text:"时代任务 ",color:"aqua"},{text:"晋升时代！",bold:true}]
-tellraw @a[tag=new] [" "," ",{text:" 迎接新世代！",color:"#781931"},{text:"—— Age v1.0.0-snapshot-1  作者:  ",color:"gray",italic:true},{type:"object",object:"player",player:"slfftz520"},{text:" 小小俞5203",color:"aqua",italic:true}]
+tellraw @a[tag=new] [" "," ",{text:" 迎接新世代！",color:"#781931"},{text:"—— Age @VERSION@  作者:  ",color:"gray",italic:true},{type:"object",object:"player",player:"@AUTHOR@"},{text:" 小小俞5203",color:"aqua",italic:true}]
 tellraw @a[tag=new] [" "," [",{text:"游戏规则",color:"gold",click_event:{action:"run_command",command:"/function age:gamerule"}},"]  [",{text:"更新日志",color:"aqua",click_event:{action:"run_command",command:"/function age:change_log"}},"]  [",{text:"关于作者",color:"green",click_event:{action:"open_url",url:"https://github.com/slfftz2011"}},"]"]
 tellraw @a[tag=new] ""
 
