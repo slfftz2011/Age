@@ -1,4 +1,4 @@
-name: Daily Prerelease (if new commits)
+8name: Daily Prerelease (if new commits)
 
 on:
   schedule:
@@ -68,7 +68,7 @@ jobs:
         with:
           artifacts: "output/Age-${{ steps.get_version.outputs.version }}.zip"
           tag: "prerelease"
-          name: "Pre-release v${{ steps.get_version.outputs.version }}"
+          name: "Pre-release ${{ steps.get_version.outputs.version }}"
           body: |
             ## 每日预发布版本（自动构建）
             - 版本: ${{ steps.get_version.outputs.version }}
