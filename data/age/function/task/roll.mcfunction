@@ -29,6 +29,23 @@ execute if score old_stone_age task matches 22 run scoreboard objectives remove 
 execute if score old_stone_age task matches 23 run scoreboard objectives remove glow_squid_fish
 execute if score old_stone_age task matches 24 run scoreboard objectives remove puffer_fish
 
+execute if score old_stone_age task matches 25 run scoreboard objectives remove veg_eat
+execute if score old_stone_age task matches 26 run scoreboard objectives remove seed_eat
+execute if score old_stone_age task matches 27 run scoreboard objectives remove berry_eat
+execute if score old_stone_age task matches 28 run scoreboard objectives remove apple_eat
+execute if score old_stone_age task matches 29 run scoreboard objectives remove melon_eat
+execute if score old_stone_age task matches 30 run scoreboard objectives remove pumpkin_eat
+execute if score old_stone_age task matches 31 run scoreboard objectives remove pork_eat
+execute if score old_stone_age task matches 32 run scoreboard objectives remove mutton_eat
+execute if score old_stone_age task matches 33 run scoreboard objectives remove beef_eat
+execute if score old_stone_age task matches 34 run scoreboard objectives remove rabbit_eat
+execute if score old_stone_age task matches 35 run scoreboard objectives remove chicken_eat
+execute if score old_stone_age task matches 36 run scoreboard objectives remove cod_eat
+execute if score old_stone_age task matches 37 run scoreboard objectives remove salmon_eat
+execute if score old_stone_age task matches 38 run scoreboard objectives remove tropical_eat
+execute if score old_stone_age task matches 39 run scoreboard objectives remove puffer_eat
+execute if score old_stone_age task matches 40 run scoreboard objectives remove rotten_eat
+execute if score old_stone_age task matches 41 run scoreboard objectives remove spider_eye_eat
 
 
 
@@ -61,8 +78,27 @@ execute if score old_stone_age task matches 22 run scoreboard objectives remove 
 execute if score old_stone_age task matches 23 run scoreboard objectives remove glow_squid_updata
 execute if score old_stone_age task matches 24 run scoreboard objectives remove puffer_updata
 
+execute if score old_stone_age task matches 25 run scoreboard objectives remove veg_updata
+execute if score old_stone_age task matches 26 run scoreboard objectives remove seed_updata
+execute if score old_stone_age task matches 27 run scoreboard objectives remove berry_updata
+execute if score old_stone_age task matches 28 run scoreboard objectives remove apple_updata
+execute if score old_stone_age task matches 29 run scoreboard objectives remove melon_updata
+execute if score old_stone_age task matches 30 run scoreboard objectives remove pumpkin_updata
+execute if score old_stone_age task matches 31 run scoreboard objectives remove pork_updata
+execute if score old_stone_age task matches 32 run scoreboard objectives remove mutton_updata
+execute if score old_stone_age task matches 33 run scoreboard objectives remove beef_updata
+execute if score old_stone_age task matches 34 run scoreboard objectives remove rabbit_updata
+execute if score old_stone_age task matches 35 run scoreboard objectives remove chicken_updata
+execute if score old_stone_age task matches 36 run scoreboard objectives remove cod_updata
+execute if score old_stone_age task matches 37 run scoreboard objectives remove salmon_updata
+execute if score old_stone_age task matches 38 run scoreboard objectives remove tropical_updata
+execute if score old_stone_age task matches 39 run scoreboard objectives remove puffer_updata
+execute if score old_stone_age task matches 40 run scoreboard objectives remove rotten_updata
+execute if score old_stone_age task matches 41 run scoreboard objectives remove spider_eye_updata
 
-execute store result score old_stone_age task run random value 0..24
+
+
+execute store result score old_stone_age task run random value 0..41
 
 
 execute if score old_stone_age task matches 1 run scoreboard objectives add pig_hunt minecraft.killed:minecraft.pig "狩猎猪"
@@ -92,6 +128,24 @@ execute if score old_stone_age task matches 22 run scoreboard objectives add squ
 execute if score old_stone_age task matches 23 run scoreboard objectives add glow_squid_fish minecraft.killed:minecraft.glow_squid "捕获发光鱿鱼"
 execute if score old_stone_age task matches 24 run scoreboard objectives add puffer_fish minecraft.killed:minecraft.pufferfish "捕获河豚"
 
+execute if score old_stone_age task matches 25 run scoreboard objectives add veg_eat minecraft.used:minecraft.carrot "食用蔬菜"
+execute if score old_stone_age task matches 26 run scoreboard objectives add seed_eat minecraft.used:minecraft.wheat_seeds "食用种子"
+execute if score old_stone_age task matches 27 run scoreboard objectives add berry_eat minecraft.used:minecraft.sweet_berries "食用浆果"
+execute if score old_stone_age task matches 28 run scoreboard objectives add apple_eat minecraft.used:minecraft.apple "食用苹果"
+execute if score old_stone_age task matches 29 run scoreboard objectives add melon_eat minecraft.used:minecraft.melon_slice "食用西瓜片"
+execute if score old_stone_age task matches 30 run scoreboard objectives add pumpkin_eat minecraft.used:minecraft.pumpkin_pie "食用南瓜派"
+execute if score old_stone_age task matches 31 run scoreboard objectives add pork_eat minecraft.used:minecraft.porkchop "食用生猪肉"
+execute if score old_stone_age task matches 32 run scoreboard objectives add mutton_eat minecraft.used:minecraft.mutton "食用生羊肉"
+execute if score old_stone_age task matches 33 run scoreboard objectives add beef_eat minecraft.used:minecraft.beef "食用生牛肉"
+execute if score old_stone_age task matches 34 run scoreboard objectives add rabbit_eat minecraft.used:minecraft.rabbit "食用生兔肉"
+execute if score old_stone_age task matches 35 run scoreboard objectives add chicken_eat minecraft.used:minecraft.chicken "食用生鸡肉"
+execute if score old_stone_age task matches 36 run scoreboard objectives add cod_eat minecraft.used:minecraft.cod "食用生鳕鱼"
+execute if score old_stone_age task matches 37 run scoreboard objectives add salmon_eat minecraft.used:minecraft.salmon "食用生鲑鱼"
+execute if score old_stone_age task matches 38 run scoreboard objectives add tropical_eat minecraft.used:minecraft.tropical_fish "食用热带鱼"
+execute if score old_stone_age task matches 39 run scoreboard objectives add puffer_eat minecraft.used:minecraft.pufferfish "食用河豚"
+execute if score old_stone_age task matches 40 run scoreboard objectives add rotten_eat minecraft.used:minecraft.rotten_flesh "食用腐肉"
+execute if score old_stone_age task matches 41 run scoreboard objectives add spider_eye_eat minecraft.used:minecraft.spider_eye "食用蜘蛛眼"
+
 
 
 execute if score old_stone_age task matches 1 run scoreboard objectives add pig_updata dummy
@@ -120,6 +174,24 @@ execute if score old_stone_age task matches 21 run scoreboard objectives add tro
 execute if score old_stone_age task matches 22 run scoreboard objectives add squid_updata dummy
 execute if score old_stone_age task matches 23 run scoreboard objectives add glow_squid_updata dummy
 execute if score old_stone_age task matches 24 run scoreboard objectives add puffer_updata dummy
+
+execute if score old_stone_age task matches 25 run scoreboard objectives add veg_updata dummy
+execute if score old_stone_age task matches 26 run scoreboard objectives add seed_updata dummy
+execute if score old_stone_age task matches 27 run scoreboard objectives add berry_updata dummy
+execute if score old_stone_age task matches 28 run scoreboard objectives add apple_updata dummy
+execute if score old_stone_age task matches 29 run scoreboard objectives add melon_updata dummy
+execute if score old_stone_age task matches 30 run scoreboard objectives add pumpkin_updata dummy
+execute if score old_stone_age task matches 31 run scoreboard objectives add pork_updata dummy
+execute if score old_stone_age task matches 32 run scoreboard objectives add mutton_updata dummy
+execute if score old_stone_age task matches 33 run scoreboard objectives add beef_updata dummy
+execute if score old_stone_age task matches 34 run scoreboard objectives add rabbit_updata dummy
+execute if score old_stone_age task matches 35 run scoreboard objectives add chicken_updata dummy
+execute if score old_stone_age task matches 36 run scoreboard objectives add cod_updata dummy
+execute if score old_stone_age task matches 37 run scoreboard objectives add salmon_updata dummy
+execute if score old_stone_age task matches 38 run scoreboard objectives add tropical_updata dummy
+execute if score old_stone_age task matches 39 run scoreboard objectives add puffer_updata dummy
+execute if score old_stone_age task matches 40 run scoreboard objectives add rotten_updata dummy
+execute if score old_stone_age task matches 41 run scoreboard objectives add spider_eye_updata dummy
 
 
 
