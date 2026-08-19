@@ -47,6 +47,12 @@ execute if score old_stone_age task matches 39 run scoreboard objectives remove 
 execute if score old_stone_age task matches 40 run scoreboard objectives remove rotten_eat
 execute if score old_stone_age task matches 41 run scoreboard objectives remove spider_eye_eat
 
+execute if score old_stone_age task matches 42 run scoreboard objectives remove stick_craft
+execute if score old_stone_age task matches 43 run scoreboard objectives remove melon_craft
+execute if score old_stone_age task matches 44 run scoreboard objectives remove clay_craft
+execute if score old_stone_age task matches 45 run scoreboard objectives remove leather_craft
+execute if score old_stone_age task matches 46 run scoreboard objectives remove sandstone_craft
+execute if score old_stone_age task matches 47 run scoreboard objectives remove red_sandstone_craft
 
 
 
@@ -96,6 +102,12 @@ execute if score old_stone_age task matches 39 run scoreboard objectives remove 
 execute if score old_stone_age task matches 40 run scoreboard objectives remove rotten_updata
 execute if score old_stone_age task matches 41 run scoreboard objectives remove spider_eye_updata
 
+execute if score old_stone_age task matches 42 run scoreboard objectives remove stick_updata
+execute if score old_stone_age task matches 43 run scoreboard objectives remove melon_updata
+execute if score old_stone_age task matches 44 run scoreboard objectives remove clay_updata
+execute if score old_stone_age task matches 45 run scoreboard objectives remove leather_updata
+execute if score old_stone_age task matches 46 run scoreboard objectives remove sandstone_updata
+execute if score old_stone_age task matches 47 run scoreboard objectives remove red_sandstone_updata
 
 
 # ----- 清理食用任务的子记分板 -----
@@ -177,6 +189,13 @@ execute if score old_stone_age task matches 39 run scoreboard objectives add puf
 execute if score old_stone_age task matches 40 run scoreboard objectives add rotten_eat minecraft.used:minecraft.rotten_flesh "食用腐肉"
 execute if score old_stone_age task matches 41 run scoreboard objectives add spider_eye_eat minecraft.used:minecraft.spider_eye "食用蜘蛛眼"
 
+execute if score old_stone_age task matches 42 run scoreboard objectives add stick_updata dummy
+execute if score old_stone_age task matches 43 run scoreboard objectives add melon_updata dummy
+execute if score old_stone_age task matches 44 run scoreboard objectives add clay_updata dummy
+execute if score old_stone_age task matches 45 run scoreboard objectives add leather_updata dummy
+execute if score old_stone_age task matches 46 run scoreboard objectives add sandstone_updata dummy
+execute if score old_stone_age task matches 47 run scoreboard objectives add red_sandstone_updata dummy
+
 
 
 execute if score old_stone_age task matches 1 run scoreboard objectives add pig_updata dummy
@@ -223,6 +242,13 @@ execute if score old_stone_age task matches 38 run scoreboard objectives add tro
 execute if score old_stone_age task matches 39 run scoreboard objectives add puffer_updata dummy
 execute if score old_stone_age task matches 40 run scoreboard objectives add rotten_updata dummy
 execute if score old_stone_age task matches 41 run scoreboard objectives add spider_eye_updata dummy
+
+execute if score old_stone_age task matches 42 run bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ", {text:"[制作] 木棍 x8",color:"#FFAA55"}]
+execute if score old_stone_age task matches 43 run bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ", {text:"[制作] 西瓜 x4",color:"#FFAA55"}]
+execute if score old_stone_age task matches 44 run bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ", {text:"[制作] 黏土 x4",color:"#FFAA55"}]
+execute if score old_stone_age task matches 45 run bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ", {text:"[制作] 皮革 x3",color:"#FFAA55"}]
+execute if score old_stone_age task matches 46 run bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ", {text:"[制作] 砂岩 x16",color:"#FFAA55"}]
+execute if score old_stone_age task matches 47 run bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ", {text:"[制作] 红砂岩 x16",color:"#FFAA55"}]
 
 
 
