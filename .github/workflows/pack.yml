@@ -1,15 +1,21 @@
-8name: Daily Prerelease (if new commits)
+name: "打包并自动发布Release"
 
 on:
   schedule:
-    - cron: '0 16 * * *'
+    - cron: "0 16 * * *"
   workflow_dispatch:
+
+concurrency:
+  group: nightly-release-${{ github.ref }}
+  cancel-in-progress: true   # 新触发取消旧的，避免堆积
+
+permissions:
+  contents: write
 
 jobs:
   build-and-release:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
+    timeout-minutes: 15     # 防止卡死
 
     steps:
       - name: Checkout
@@ -34,10 +40,6 @@ jobs:
             echo "prerelease_sha=" >> $GITHUB_OUTPUT
             echo "skip=false" >> $GITHUB_OUTPUT
           fi
-
-      - name: Skip if no new commits
-        if: steps.check.outputs.skip == 'true'
-        run: echo "没有新提交，跳过打包和发布。"
 
       - name: Setup Python
         if: steps.check.outputs.skip != 'true'
@@ -64,7 +66,7 @@ jobs:
 
       - name: Create/Update Prerelease
         if: steps.check.outputs.skip != 'true'
-        uses: ncipollo/release-action@v1
+        uses: ncipollo/release-action@v1.14.0   # 指定具体版本，更稳定
         with:
           artifacts: "output/Age-${{ steps.get_version.outputs.version }}.zip"
           tag: "prerelease"
