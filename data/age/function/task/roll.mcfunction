@@ -189,7 +189,13 @@ execute if score old_stone_age task matches 39 run scoreboard objectives add puf
 execute if score old_stone_age task matches 40 run scoreboard objectives add rotten_eat minecraft.used:minecraft.rotten_flesh "食用腐肉"
 execute if score old_stone_age task matches 41 run scoreboard objectives add spider_eye_eat minecraft.used:minecraft.spider_eye "食用蜘蛛眼"
 
-
+# ===== 创建制作任务记分板 =====
+execute if score old_stone_age task matches 42 run scoreboard objectives add stick_craft minecraft.crafted:minecraft.stick "制作木棍"
+execute if score old_stone_age task matches 43 run scoreboard objectives add melon_craft minecraft.crafted:minecraft.melon "制作西瓜"
+execute if score old_stone_age task matches 44 run scoreboard objectives add clay_craft minecraft.crafted:minecraft.clay_ball "制作黏土"
+execute if score old_stone_age task matches 45 run scoreboard objectives add leather_craft minecraft.crafted:minecraft.leather "制作皮革"
+execute if score old_stone_age task matches 46 run scoreboard objectives add sandstone_craft minecraft.crafted:minecraft.sandstone "制作砂岩"
+execute if score old_stone_age task matches 47 run scoreboard objectives add red_sandstone_craft minecraft.crafted:minecraft.red_sandstone "制作红砂岩
 
 
 
