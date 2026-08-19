@@ -4,7 +4,7 @@
 # ----- 无任务 -----
 execute if score old_stone_age task matches 0 run bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ", {text:"无",color:"gray"}]
 
-execute if score old_stone_age task matches 56 run bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ", {text:"无",color:"gray"}]
+execute if score old_stone_age task matches 57 run bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ", {text:"无",color:"gray"}]
 
 # ----- 狩猎任务（个人） -----
 execute if score old_stone_age task matches 1 run bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ", {text:"[狩猎] 击杀 猪 x5",color:"gold"}]
@@ -72,3 +72,4 @@ execute if score old_stone_age task matches 52 run bossbar set old_stone_age nam
 execute if score old_stone_age task matches 53 run bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ", {text:"[采掘] 沙子 x16",color:"#AA55FF"}]
 execute if score old_stone_age task matches 54 run bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ", {text:"[采掘] 红沙 x16",color:"#AA55FF"}]
 execute if score old_stone_age task matches 55 run bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ", {text:"[采掘] 蜘蛛网 x4",color:"#AA55FF"}]
+execute if score old_stone_age task matches 56 run bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ", {text:"[采掘] 沙砾 x8",color:"#AA55FF"}]
