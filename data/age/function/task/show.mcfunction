@@ -60,3 +60,13 @@ execute if score old_stone_age task matches 44 run bossbar set old_stone_age nam
 execute if score old_stone_age task matches 45 run bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ", {text:"[制作] 皮革 x3",color:"#FFAA55"}]
 execute if score old_stone_age task matches 46 run bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ", {text:"[制作] 砂岩 x16",color:"#FFAA55"}]
 execute if score old_stone_age task matches 47 run bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ", {text:"[制作] 红砂岩 x16",color:"#FFAA55"}]
+
+# ----- 采掘任务（个人） -----
+execute if score old_stone_age task matches 48 run bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ", {text:"[采掘] 泥土 x32",color:"#AA55FF"}]
+execute if score old_stone_age task matches 49 run bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ", {text:"[采掘] 草方块 x16",color:"#AA55FF"}]
+execute if score old_stone_age task matches 50 run bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ", {text:"[采掘] 树叶 x32",color:"#AA55FF"}]
+execute if score old_stone_age task matches 51 run bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ", {text:"[采掘] 原木 x8",color:"#AA55FF"}]
+execute if score old_stone_age task matches 52 run bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ", {text:"[采掘] 黏土 x8",color:"#AA55FF"}]
+execute if score old_stone_age task matches 53 run bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ", {text:"[采掘] 沙子 x16",color:"#AA55FF"}]
+execute if score old_stone_age task matches 54 run bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ", {text:"[采掘] 红沙 x16",color:"#AA55FF"}]
+execute if score old_stone_age task matches 55 run bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ", {text:"[采掘] 蜘蛛网 x4",color:"#AA55FF"}]
