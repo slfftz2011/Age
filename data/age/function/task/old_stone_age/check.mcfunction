@@ -66,3 +66,4 @@ execute if score old_stone_age task matches 52 as @a[team=old_stone_age] run fun
 execute if score old_stone_age task matches 53 as @a[team=old_stone_age] run function age:task/old_stone_age/random/mine/6
 execute if score old_stone_age task matches 54 as @a[team=old_stone_age] run function age:task/old_stone_age/random/mine/7
 execute if score old_stone_age task matches 55 as @a[team=old_stone_age] run function age:task/old_stone_age/random/mine/8
+execute if score old_stone_age task matches 56 as @a[team=old_stone_age] run function age:task/old_stone_age/random/mine/9
