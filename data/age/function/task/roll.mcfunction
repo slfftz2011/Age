@@ -125,7 +125,7 @@ execute if score old_stone_age task matches 27 run scoreboard objectives remove 
 execute if score old_stone_age task matches 27 run scoreboard objectives remove berry_glow
 
 
-execute store result score old_stone_age task run random value 0..41
+execute store result score old_stone_age task run random value 0..47
 
 
 execute if score old_stone_age task matches 1 run scoreboard objectives add pig_hunt minecraft.killed:minecraft.pig "狩猎猪"
@@ -195,7 +195,7 @@ execute if score old_stone_age task matches 43 run scoreboard objectives add mel
 execute if score old_stone_age task matches 44 run scoreboard objectives add clay_craft minecraft.crafted:minecraft.clay_ball "制作黏土"
 execute if score old_stone_age task matches 45 run scoreboard objectives add leather_craft minecraft.crafted:minecraft.leather "制作皮革"
 execute if score old_stone_age task matches 46 run scoreboard objectives add sandstone_craft minecraft.crafted:minecraft.sandstone "制作砂岩"
-execute if score old_stone_age task matches 47 run scoreboard objectives add red_sandstone_craft minecraft.crafted:minecraft.red_sandstone "制作红砂岩
+execute if score old_stone_age task matches 47 run scoreboard objectives add red_sandstone_craft minecraft.crafted:minecraft.red_sandstone "制作红砂岩"
 
 
 
