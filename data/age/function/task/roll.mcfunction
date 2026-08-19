@@ -54,6 +54,14 @@ execute if score old_stone_age task matches 45 run scoreboard objectives remove 
 execute if score old_stone_age task matches 46 run scoreboard objectives remove sandstone_craft
 execute if score old_stone_age task matches 47 run scoreboard objectives remove red_sandstone_craft
 
+execute if score old_stone_age task matches 48 run scoreboard objectives remove dirt_mine
+execute if score old_stone_age task matches 49 run scoreboard objectives remove grass_mine
+execute if score old_stone_age task matches 50 run scoreboard objectives remove leaves_mine
+execute if score old_stone_age task matches 51 run scoreboard objectives remove log_mine
+execute if score old_stone_age task matches 52 run scoreboard objectives remove clay_mine
+execute if score old_stone_age task matches 53 run scoreboard objectives remove sand_mine
+execute if score old_stone_age task matches 54 run scoreboard objectives remove red_sand_mine
+execute if score old_stone_age task matches 55 run scoreboard objectives remove cobweb_mine
 
 
 execute if score old_stone_age task matches 1 run scoreboard objectives remove pig_updata
@@ -109,6 +117,15 @@ execute if score old_stone_age task matches 45 run scoreboard objectives remove 
 execute if score old_stone_age task matches 46 run scoreboard objectives remove sandstone_updata
 execute if score old_stone_age task matches 47 run scoreboard objectives remove red_sandstone_updata
 
+execute if score old_stone_age task matches 48 run scoreboard objectives remove dirt_updata
+execute if score old_stone_age task matches 49 run scoreboard objectives remove grass_updata
+execute if score old_stone_age task matches 50 run scoreboard objectives remove leaves_updata
+execute if score old_stone_age task matches 51 run scoreboard objectives remove log_updata
+execute if score old_stone_age task matches 52 run scoreboard objectives remove clay_updata
+execute if score old_stone_age task matches 53 run scoreboard objectives remove sand_updata
+execute if score old_stone_age task matches 54 run scoreboard objectives remove red_sand_updata
+execute if score old_stone_age task matches 55 run scoreboard objectives remove cobweb_updata
+
 
 # ----- 清理食用任务的子记分板 -----
 # 蔬菜（胡萝卜、马铃薯、甜菜根）
@@ -125,7 +142,7 @@ execute if score old_stone_age task matches 27 run scoreboard objectives remove 
 execute if score old_stone_age task matches 27 run scoreboard objectives remove berry_glow
 
 
-execute store result score old_stone_age task run random value 0..47
+execute store result score old_stone_age task run random value 0..55
 
 
 execute if score old_stone_age task matches 1 run scoreboard objectives add pig_hunt minecraft.killed:minecraft.pig "狩猎猪"
@@ -197,6 +214,14 @@ execute if score old_stone_age task matches 45 run scoreboard objectives add lea
 execute if score old_stone_age task matches 46 run scoreboard objectives add sandstone_craft minecraft.crafted:minecraft.sandstone "制作砂岩"
 execute if score old_stone_age task matches 47 run scoreboard objectives add red_sandstone_craft minecraft.crafted:minecraft.red_sandstone "制作红砂岩"
 
+execute if score old_stone_age task matches 48 run scoreboard objectives add dirt_mine minecraft.mined:minecraft.dirt "采掘泥土"
+execute if score old_stone_age task matches 49 run scoreboard objectives add grass_mine minecraft.mined:minecraft.grass_block "采掘草方块"
+execute if score old_stone_age task matches 50 run scoreboard objectives add leaves_mine minecraft.mined:minecraft.oak_leaves "采掘树叶"
+execute if score old_stone_age task matches 51 run scoreboard objectives add log_mine minecraft.mined:minecraft.oak_log "采掘原木"
+execute if score old_stone_age task matches 52 run scoreboard objectives add clay_mine minecraft.mined:minecraft.clay "采掘黏土"
+execute if score old_stone_age task matches 53 run scoreboard objectives add sand_mine minecraft.mined:minecraft.sand "采掘沙子"
+execute if score old_stone_age task matches 54 run scoreboard objectives add red_sand_mine minecraft.mined:minecraft.red_sand "采掘红沙"
+execute if score old_stone_age task matches 55 run scoreboard objectives add cobweb_mine minecraft.mined:minecraft.cobweb "采掘蜘蛛网"
 
 
 execute if score old_stone_age task matches 1 run scoreboard objectives add pig_updata dummy
@@ -251,6 +276,14 @@ execute if score old_stone_age task matches 45 run scoreboard objectives add lea
 execute if score old_stone_age task matches 46 run scoreboard objectives add sandstone_updata dummy
 execute if score old_stone_age task matches 47 run scoreboard objectives add red_sandstone_updata dummy
 
+execute if score old_stone_age task matches 48 run scoreboard objectives add dirt_updata dummy
+execute if score old_stone_age task matches 49 run scoreboard objectives add grass_updata dummy
+execute if score old_stone_age task matches 50 run scoreboard objectives add leaves_updata dummy
+execute if score old_stone_age task matches 51 run scoreboard objectives add log_updata dummy
+execute if score old_stone_age task matches 52 run scoreboard objectives add clay_updata dummy
+execute if score old_stone_age task matches 53 run scoreboard objectives add sand_updata dummy
+execute if score old_stone_age task matches 54 run scoreboard objectives add red_sand_updata dummy
+execute if score old_stone_age task matches 55 run scoreboard objectives add cobweb_updata dummy
 
 
 # 更新 Bossbar 显示
