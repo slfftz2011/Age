@@ -56,3 +56,13 @@ execute if score old_stone_age task matches 44 as @a[team=old_stone_age] run fun
 execute if score old_stone_age task matches 45 as @a[team=old_stone_age] run function age:task/old_stone_age/random/craft/4
 execute if score old_stone_age task matches 46 as @a[team=old_stone_age] run function age:task/old_stone_age/random/craft/5
 execute if score old_stone_age task matches 47 as @a[team=old_stone_age] run function age:task/old_stone_age/random/craft/6
+
+# ----- 采掘任务（个人） -----
+execute if score old_stone_age task matches 48 as @a[team=old_stone_age] run function age:task/old_stone_age/random/mine/1
+execute if score old_stone_age task matches 49 as @a[team=old_stone_age] run function age:task/old_stone_age/random/mine/2
+execute if score old_stone_age task matches 50 as @a[team=old_stone_age] run function age:task/old_stone_age/random/mine/3
+execute if score old_stone_age task matches 51 as @a[team=old_stone_age] run function age:task/old_stone_age/random/mine/4
+execute if score old_stone_age task matches 52 as @a[team=old_stone_age] run function age:task/old_stone_age/random/mine/5
+execute if score old_stone_age task matches 53 as @a[team=old_stone_age] run function age:task/old_stone_age/random/mine/6
+execute if score old_stone_age task matches 54 as @a[team=old_stone_age] run function age:task/old_stone_age/random/mine/7
+execute if score old_stone_age task matches 55 as @a[team=old_stone_age] run function age:task/old_stone_age/random/mine/8
