@@ -7,7 +7,7 @@ on:
 
 concurrency:
   group: nightly-release-${{ github.ref }}
-  cancel-in-progress: true   # 新触发取消旧的，避免堆积
+  cancel-in-progress: true
 
 permissions:
   contents: write
@@ -15,7 +15,7 @@ permissions:
 jobs:
   build-and-release:
     runs-on: ubuntu-latest
-    timeout-minutes: 15     # 防止卡死
+    timeout-minutes: 15
 
     steps:
       - name: Checkout
@@ -64,13 +64,29 @@ jobs:
           VERSION=$(python -c "import yaml; print(yaml.safe_load(open('defines.yml'))['VERSION'])")
           echo "version=$VERSION" >> $GITHUB_OUTPUT
 
+      # ----- 新增：判断版本是否已发布 -----
+      - name: Check if version already released
+        if: steps.check.outputs.skip != 'true'
+        id: check_version
+        run: |
+          VERSION="${{ steps.get_version.outputs.version }}"
+          TAG="pre-release-${VERSION}"
+          # 检查该 tag 是否已经存在
+          if git rev-parse "$TAG" >/dev/null 2>&1; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+
+      # ----- 创建/更新 Pre-release -----
       - name: Create/Update Prerelease
         if: steps.check.outputs.skip != 'true'
-        uses: ncipollo/release-action@v1.14.0   # 指定具体版本，更稳定
+        uses: ncipollo/release-action@v1.14.0
         with:
           artifacts: "output/Age-${{ steps.get_version.outputs.version }}.zip"
-          tag: "prerelease"
-          name: "Pre-release ${{ steps.get_version.outputs.version }}"
+          # 如果该版本已存在，则使用带版本号的 tag；否则使用固定的 prerelease tag
+          tag: ${{ steps.check_version.outputs.exists == 'true' && format('pre-release-{0}', steps.get_version.outputs.version) || 'prerelease' }}
+          name: ${{ steps.check_version.outputs.exists == 'true' && format('Pre-release v{0}', steps.get_version.outputs.version) || 'Pre-release (latest)' }}
           body: |
             ## 每日预发布版本（自动构建）
             - 版本: ${{ steps.get_version.outputs.version }}
@@ -79,5 +95,5 @@ jobs:
           prerelease: true
           allowUpdates: true
           updateOnlyUnreleased: false
-          makeLatest: false
+          makeLatest: ${{ steps.check_version.outputs.exists == 'true' && 'true' || 'false' }}   # 如果版本已存在，设为最新
           token: ${{ secrets.GITHUB_TOKEN }}
