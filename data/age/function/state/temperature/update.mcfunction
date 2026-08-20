@@ -1,5 +1,7 @@
 # ===== 每10 tick 执行温度平滑更新 =====
 
+function age:state/temperature/env
+
 # 1. 计算差值 diff = env_temp - temperature
 scoreboard players operation @s diff = @s env_temp
 scoreboard players operation @s diff -= @s temperature
