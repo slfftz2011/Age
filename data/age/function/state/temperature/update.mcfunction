@@ -1,6 +1,5 @@
 # ===== 体感温度平滑更新（每10 tick） =====
 
-scoreboard objectives add temp_diff dummy
 execute as @s run function age:state/temperature/env
 
 # 1. 计算差值
