@@ -1,5 +1,8 @@
 # ===== State Bar 系统 =====
 
+scoreboard objectives add temperature.tmp dummy
+function age:state/const
+
 # ===== 温度系统 =====
 scoreboard objectives add temperature dummy "体感温度"
 scoreboard objectives add env_temp dummy "环境温度"
