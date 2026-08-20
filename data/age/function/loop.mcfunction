@@ -112,6 +112,13 @@ execute as @a if score @s task_old_stone_a_done matches 1 if score @s task_old_s
 execute as @a[team=old_stone_age] run function age:bplock/old_stone_age
 kill @e[type=item,nbt={Item:{id:"minecraft:barrier"}}]
 
+# 状态更新
+execute as @a run function age:state/update
+
+scoreboard players add #state time 1
+execute if score #state time matches 40.. run function age:state/show
+
+
 # 其他
 # 检测旧石器玩家是否看向容器，如果是则锁定
 execute as @a[team=old_stone_age] at @s run function age:container/unlock_radius
