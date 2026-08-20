@@ -10,6 +10,8 @@ execute if predicate age:biome/cold run scoreboard players remove @s env_temp 15
 execute if predicate age:biome/warm run scoreboard players add @s env_temp 15         # 温暖 +7.5°C → +15
 execute if predicate age:biome/hot run scoreboard players add @s env_temp 30          # 炎热 +15°C → +30
 execute if predicate age:biome/nether run scoreboard players add @s env_temp 20       # 下界 +10°C → +20
+execute if predicate age:biome/end run scoreboard players remove @s env_temp 30
+# 末地 -15°C → -30
 
 # 3. 湿度修正（根据当前温度方向）
 # 热的地方湿度高更热，冷的地方湿度高更冷
