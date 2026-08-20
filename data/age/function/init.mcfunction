@@ -125,3 +125,6 @@ scoreboard players set -------------------- age 2147483643
 scoreboard objectives setdisplay sidebar age
 
 scoreboard objectives add stage dummy "时代进度"
+
+
+function age:state/init
