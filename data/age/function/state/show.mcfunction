@@ -62,3 +62,5 @@ execute as @a if score @s temperature matches ..9 run title @s actionbar [
   [{score:{name:"@s",objective:"energy"},color:"gold"},{text:"/",color:"gold"},{score:{name:"@s",objective:"energy_max"},color:"gold"},{text:"⚡   ",color:"gold"}],
   [{score:{name:"@s",objective:"sanity"},color:"light_purple"},{text:"/",color:"light_purple"},{score:{name:"@s",objective:"sanity_max"},color:"light_purple"},{text:"🧠",color:"light_purple"}]
 ]
+
+scoreboard players set #state time 0
