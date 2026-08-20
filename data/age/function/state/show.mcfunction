@@ -54,11 +54,11 @@ execute as @a if score @s temperature matches 10..23 run title @s actionbar [
   [{score:{name:"@s",objective:"sanity"},color:"light_purple"},{text:"/",color:"light_purple"},{score:{name:"@s",objective:"sanity_max"},color:"light_purple"},{text:"🧠",color:"light_purple"}]
 ]
 
-# 7. 冻僵（❄ 淡蓝）
+# 7. 冻僵（❄ 亮蓝）
 execute as @a if score @s temperature matches ..9 run title @s actionbar [
   [{score:{name:"@s",objective:"thirst"},color:"aqua"},{text:"/",color:"aqua"},{score:{name:"@s",objective:"thirst_max"},color:"aqua"},{text:"💧   ",color:"aqua"}],
   [{score:{name:"@s",objective:"mana"},color:"red"},{text:"/",color:"red"},{score:{name:"@s",objective:"mana_max"},color:"red"},{text:"✨   ",color:"red"}],
-  {text:"❄   ",color:"light_blue"},
+  {text:"❄   ",color:"#8CB3FF"},
   [{score:{name:"@s",objective:"energy"},color:"gold"},{text:"/",color:"gold"},{score:{name:"@s",objective:"energy_max"},color:"gold"},{text:"⚡   ",color:"gold"}],
-  [{score:{name:"@s",objective:"sanity"},color:"light_purple"},{text:"/",color:"light_purple"},{score:{name:"@s",objective:"sanity_max"},color:"light_purple"},{text:"🧠",color:" #8CB3FF"}]
+  [{score:{name:"@s",objective:"sanity"},color:"light_purple"},{text:"/",color:"light_purple"},{score:{name:"@s",objective:"sanity_max"},color:"light_purple"},{text:"🧠",color:"light_purple"}]
 ]
