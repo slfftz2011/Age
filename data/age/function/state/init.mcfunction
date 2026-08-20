@@ -13,8 +13,7 @@ scoreboard objectives add sanity_max dummy
 scoreboard objectives add energy_max dummy
 
 # 计时器
-scoreboard objectives add state_timer dummy
-scoreboard objectives add state_display_timer dummy
+scoreboard objectives add global_state_timer dummy
 
 # 状态变化记录
 scoreboard objectives add thirst_prev dummy
