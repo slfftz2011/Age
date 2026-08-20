@@ -7,7 +7,7 @@ scoreboard objectives add temperature_prev dummy
 scoreboard objectives add temperature_delta dummy "温度变化量"
 scoreboard objectives add temperature_trend dummy "温度趋势"
 scoreboard objectives add temperature_timer dummy "更新计时器"
-
+scoreboard objectives add temp_diff dummy
 
 
 # 属性记分板
