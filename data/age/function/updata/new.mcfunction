@@ -51,4 +51,6 @@ advancement grant @a[tag=new] only age:old_stone_age/branch_root
 advancement grant @a[tag=new] only age:old_stone_age/root
 advancement grant @a[tag=new] only age:old_stone_age/phase_1_unlocker
 
+execute as @a[tag=new] run function age:state/init_player
+
 tag @a[tag=new] remove new
