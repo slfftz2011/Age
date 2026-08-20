@@ -21,6 +21,3 @@ scoreboard objectives add thirst_prev dummy
 scoreboard objectives add mana_prev dummy
 scoreboard objectives add sanity_prev dummy
 scoreboard objectives add energy_prev dummy
-
-# 设置初始值（新玩家加入时执行）
-execute as @a run function age:state/init_player
