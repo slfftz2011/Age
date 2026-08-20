@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Minecraft 数据包打包工具（支持宏替换 + 命令折叠）
+Minecraft 数据包打包工具（支持宏替换 + 命令 JSON 压缩）
 """
 
 import os
@@ -33,10 +33,59 @@ def compress_json(content):
     except json.JSONDecodeError:
         return content
 
+def compress_command_json(command):
+    """
+    如果命令包含 JSON 数组或对象（如 tellraw, title 等），
+    提取 JSON 部分并压缩为紧凑格式。
+    """
+    # 匹配命令后的 JSON 部分：从第一个 [ 或 { 开始，到匹配的结束
+    # 使用正则查找括号匹配比较复杂，这里我们尝试找到第一个 [ 或 {，
+    # 然后手动计数括号，找到匹配的结束位置。
+    start = -1
+    for i, ch in enumerate(command):
+        if ch in '[{':
+            start = i
+            break
+    if start == -1:
+        return command  # 没有 JSON 部分
+
+    # 从 start 开始计数括号
+    brackets = {'[': ']', '{': '}'}
+    stack = []
+    end = start
+    for i in range(start, len(command)):
+        ch = command[i]
+        if ch in '[{':
+            stack.append(ch)
+        elif ch in ']}':
+            if not stack:
+                break
+            expected = brackets.get(stack[-1])
+            if ch == expected:
+                stack.pop()
+                if not stack:
+                    end = i
+                    break
+            else:
+                # 不匹配，但继续
+                pass
+    if not stack and end > start:
+        json_part = command[start:end+1]
+        try:
+            # 尝试解析并压缩
+            data = json.loads(json_part)
+            compressed = json.dumps(data, ensure_ascii=False, separators=(',', ':'))
+            # 替换原命令中的 JSON 部分
+            new_command = command[:start] + compressed + command[end+1:]
+            return new_command
+        except json.JSONDecodeError:
+            # 解析失败，保持原样
+            return command
+    return command
+
 def fold_multiline_commands(content):
     """
-    将 .mcfunction 中跨多行的命令折叠为一行。
-    主要针对 tellraw、title、bossbar 等包含 JSON 的命令。
+    将 .mcfunction 中跨多行的命令折叠为一行，并压缩其中的 JSON。
     """
     lines = content.splitlines()
     result = []
@@ -46,36 +95,38 @@ def fold_multiline_commands(content):
         stripped = line.strip()
         
         # 检查是否是需要折叠的命令开头
-        # 匹配 tellraw, title, bossbar set ... name 等
         is_multiline_cmd = False
-        cmd_match = re.match(r'^(tellraw|title|bossbar\s+set\s+\S+\s+name)\s+', stripped)
-        if cmd_match:
-            # 如果该行以 [ 或 { 开头且不是以 ] 或 } 结尾，说明跨行了
-            if stripped.endswith('[') or stripped.endswith('{') or stripped.endswith('('):
-                is_multiline_cmd = True
-            # 或者该行包含 [ 或 { 但还没闭合
+        if re.match(r'^(tellraw|title|bossbar\s+set\s+\S+\s+name|scoreboard\s+players\s+(set|add|remove|operation|reset|enable|get|list|display))\s+', stripped):
+            # 如果该行以 [ 或 { 开头且未闭合，或者包含 [ 或 { 且未闭合
             open_brackets = stripped.count('[') + stripped.count('{') + stripped.count('(')
             close_brackets = stripped.count(']') + stripped.count('}') + stripped.count(')')
             if open_brackets > close_brackets:
                 is_multiline_cmd = True
+            # 也可能命令末尾有 [ 或 { 且还没结束
+            if stripped.endswith('[') or stripped.endswith('{') or stripped.endswith('('):
+                is_multiline_cmd = True
         
         if is_multiline_cmd:
-            # 合并后续行直到括号闭合
             merged = line
             j = i + 1
             open_brackets = merged.count('[') + merged.count('{') + merged.count('(')
             close_brackets = merged.count(']') + merged.count('}') + merged.count(')')
+            # 如果当前行已经闭合，则无需合并
+            if open_brackets == close_brackets and not (stripped.endswith('[') or stripped.endswith('{') or stripped.endswith('(')):
+                # 不需要合并
+                result.append(line)
+                i += 1
+                continue
             while j < len(lines) and open_brackets > close_brackets:
                 next_line = lines[j].strip()
-                # 如果下一行是注释，单独保留
                 if next_line.startswith('#'):
                     break
                 merged += ' ' + next_line
                 open_brackets = merged.count('[') + merged.count('{') + merged.count('(')
                 close_brackets = merged.count(']') + merged.count('}') + merged.count(')')
                 j += 1
-            # 合并后的命令可能包含多余空格，清理一下
-            merged = re.sub(r'\s+', ' ', merged)
+            # 合并后压缩 JSON
+            merged = compress_command_json(merged)
             result.append(merged)
             i = j
         else:
@@ -97,7 +148,7 @@ def clean_mcfunction(content):
             continue
         cleaned.append(line)
     content = '\n'.join(cleaned)
-    # 再折叠多行命令
+    # 折叠多行命令并压缩 JSON
     content = fold_multiline_commands(content)
     return content
 
@@ -143,7 +194,7 @@ def pack(source_dir, output_zip, macros):
                 with open(file_path, 'r', encoding='utf-8') as f:
                     content = f.read()
                 content = replace_macros(content, macros)
-                content = clean_mcfunction(content)   # 删除注释+折叠多行命令
+                content = clean_mcfunction(content)
                 zipf.writestr(str(arcname), content)
             elif file_path.suffix.lower() == '.json':
                 with open(file_path, 'r', encoding='utf-8') as f:
