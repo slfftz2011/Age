@@ -7,6 +7,7 @@ scoreboard players operation @s diff = @s env_temp
 scoreboard players operation @s diff -= @s temperature
 
 # 2. 若差值在 -1~1 之间，直接趋同并停止
+execute if score @s diff matches -1..1 run scoreboard players set @s temperature_timer 0
 execute if score @s diff matches -1..1 run scoreboard players operation @s temperature = @s env_temp
 execute if score @s diff matches -1..1 run scoreboard players operation @s temperature_prev = @s temperature
 execute if score @s diff matches -1..1 run scoreboard players set @s temperature_trend 0
