@@ -1,11 +1,20 @@
 # ===== State Bar 系统 =====
+
+# ===== 温度系统 =====
+scoreboard objectives add temperature dummy "体感温度"
+scoreboard objectives add env_temp dummy "环境温度"
+scoreboard objectives add temperature_prev dummy
+scoreboard objectives add temperature_delta dummy "温度变化量"
+scoreboard objectives add temperature_trend dummy "温度趋势"
+scoreboard objectives add temperature_timer dummy "更新计时器"
+
+
+
 # 属性记分板
 scoreboard objectives add thirst dummy "口渴值"
 scoreboard objectives add mana dummy "魔法值"
 scoreboard objectives add sanity dummy "心情值"
 scoreboard objectives add energy dummy "精力值"
-scoreboard objectives add temperature dummy "体感温度"
-scoreboard objectives add temperature_trend dummy "温度趋势"
 
 # 最大值记分板
 scoreboard objectives add thirst_max dummy
@@ -21,4 +30,3 @@ scoreboard objectives add thirst_prev dummy
 scoreboard objectives add mana_prev dummy
 scoreboard objectives add sanity_prev dummy
 scoreboard objectives add energy_prev dummy
-scoreboard objectives add temperature_prev dummy
