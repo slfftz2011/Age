@@ -6,13 +6,13 @@ scoreboard players set @s sanity 100
 scoreboard players set @s sanity_max 100
 scoreboard players set @s energy 20
 scoreboard players set @s energy_max 20
+
+
 scoreboard players set @s temperature 25
-
-
-scoreboard players operation @s temperature_prev = @s temperature
-
+scoreboard players set @s temperature_prev 25
+scoreboard players set @s temperature_delta 0
 scoreboard players set @s temperature_trend 0
-
+scoreboard players set @s temperature_timer 0
 
 # 记录上一次值（用于检测变化）
 scoreboard players operation @s thirst_prev = @s thirst
