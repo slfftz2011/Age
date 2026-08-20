@@ -32,9 +32,9 @@ execute if predicate age:weather/is_thundering run scoreboard players remove @s 
 # 雪天（下雨 + 寒冷群系）额外降温
 execute if predicate age:weather/is_raining if predicate age:biome/freezing run scoreboard players remove @s env_temp 3
 
-# 雨后效应：晴朗后2400 tick内仍降温，之后6000 tick升温
-execute if predicate age:weather/is_clear if score #global weather_clear_timer matches 1..2400 run scoreboard players remove @s env_temp 2
-execute if predicate age:weather/is_clear if score #global weather_clear_timer matches 2401..8400 run scoreboard players add @s env_temp 1
+# # 雨后效应：晴朗后 120 秒内仍降温，之后 120~420 秒升温
+execute if predicate age:weather/is_clear if score @s weather_clear_timer matches 1..120 run scoreboard players remove @s env_temp 2
+execute if predicate age:weather/is_clear if score @s weather_clear_timer matches 121..420 run scoreboard players add @s env_temp 1
 
 # 5. 时间修正（一天内温度变化）
 execute store result score @s time_of_day run time query daytime
