@@ -8,8 +8,8 @@ scoreboard players set @s energy 20
 scoreboard players set @s energy_max 20
 
 
-scoreboard players set @s temperature 25
-scoreboard players set @s temperature_prev 25
+scoreboard players set @s temperature 50
+scoreboard players set @s temperature_prev 50
 scoreboard players set @s temperature_delta 0
 scoreboard players set @s temperature_trend 0
 scoreboard players set @s temperature_timer 0
