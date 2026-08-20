@@ -3,18 +3,15 @@
 # 1. 基础温度 25°C → 50
 scoreboard players set @s env_temp 50
 
-# 2. 生物群系偏移（直接 add/remove 数字）
-execute if predicate age:biome/freezing run scoreboard players remove @s env_temp 30   # 极寒 -15°C → -30
-execute if predicate age:biome/cold run scoreboard players remove @s env_temp 15      # 寒冷 -7.5°C → -15
-# 温和无偏移
-execute if predicate age:biome/warm run scoreboard players add @s env_temp 15         # 温暖 +7.5°C → +15
-execute if predicate age:biome/hot run scoreboard players add @s env_temp 30          # 炎热 +15°C → +30
-execute if predicate age:biome/nether run scoreboard players add @s env_temp 20       # 下界 +10°C → +20
-execute if predicate age:biome/end run scoreboard players remove @s env_temp 30
-# 末地 -15°C → -30
+# 2. 生物群系偏移
+execute if predicate age:biome/freezing run scoreboard players remove @s env_temp 30
+execute if predicate age:biome/cold run scoreboard players remove @s env_temp 15
+execute if predicate age:biome/warm run scoreboard players add @s env_temp 15
+execute if predicate age:biome/hot run scoreboard players add @s env_temp 30
+execute if predicate age:biome/nether run scoreboard players add @s env_temp 20
+execute if predicate age:biome/end run scoreboard players remove @s env_temp 20
 
-# 3. 湿度修正（根据当前温度方向）
-# 热的地方湿度高更热，冷的地方湿度高更冷
+# 3. 湿度修正
 scoreboard players set @s temp_humid_dir 0
 execute if score @s env_temp matches 51.. run scoreboard players set @s temp_humid_dir 1
 execute if score @s env_temp matches ..49 run scoreboard players set @s temp_humid_dir -1
@@ -25,12 +22,39 @@ execute if predicate age:biome/humid if score @s temp_humid_dir matches -1 run s
 execute if predicate age:biome/very_humid if score @s temp_humid_dir matches 1 run scoreboard players add @s env_temp 8
 execute if predicate age:biome/very_humid if score @s temp_humid_dir matches -1 run scoreboard players remove @s env_temp 8
 
-# 4. 高度修正（Y > 80 每10格降低1缩放值，使用 operation /=）
+# 4. 天气修正（直接 predicate）
+# 下雨降温
+execute if predicate age:weather/is_raining run scoreboard players remove @s env_temp 3
+
+# 雷暴额外降温
+execute if predicate age:weather/is_thundering run scoreboard players remove @s env_temp 2
+
+# 雪天（下雨 + 寒冷群系）额外降温
+execute if predicate age:weather/is_raining if predicate age:biome/freezing run scoreboard players remove @s env_temp 3
+
+# 雨后效应：晴朗后2400 tick内仍降温，之后6000 tick升温
+execute if predicate age:weather/is_clear if score #global weather_clear_timer matches 1..2400 run scoreboard players remove @s env_temp 2
+execute if predicate age:weather/is_clear if score #global weather_clear_timer matches 2401..8400 run scoreboard players add @s env_temp 1
+
+# 5. 时间修正（一天内温度变化）
+execute store result score @s time_of_day run time query daytime
+scoreboard players set @s time_offset 0
+execute if score @s time_of_day matches 0..3000 run scoreboard players set @s time_offset -4
+execute if score @s time_of_day matches 3001..6000 run scoreboard players set @s time_offset -1
+execute if score @s time_of_day matches 6001..9000 run scoreboard players set @s time_offset 0
+execute if score @s time_of_day matches 9001..12000 run scoreboard players set @s time_offset 1
+execute if score @s time_of_day matches 12001..15000 run scoreboard players set @s time_offset 4
+execute if score @s time_of_day matches 15001..18000 run scoreboard players set @s time_offset 1
+execute if score @s time_of_day matches 18001..21000 run scoreboard players set @s time_offset 0
+execute if score @s time_of_day matches 21001..24000 run scoreboard players set @s time_offset -1
+scoreboard players operation @s env_temp += @s time_offset
+
+# 6. 高度修正
 execute store result score @s temp_y run data get entity @s Pos[1] 100
 scoreboard players operation @s temp_height = @s temp_y
-scoreboard players operation @s temp_height /= #height_div temperature.tmp   # 除以10
+scoreboard players operation @s temp_height /= #height_div temperature.tmp
 execute if score @s temp_y matches 81.. run scoreboard players remove @s env_temp @s temp_height
 
-# 5. 限制范围 0~80
+# 7. 限制范围 0~80
 execute if score @s env_temp matches 81.. run scoreboard players set @s env_temp 80
 execute if score @s env_temp matches ..-1 run scoreboard players set @s env_temp 0
