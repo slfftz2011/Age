@@ -82,6 +82,11 @@ jobs:
       - name: 打包数据包
         run: python pack.py
 
+      - name: 重命名产物（热修复时添加后缀）
+        if: steps.set_tag.outputs.is_hotfix == 'true'
+        run: |
+          mv "output/Age-${{ env.VERSION }}.zip" "output/${{ steps.set_asset_name.outputs.asset_name }}"
+
       - name: 构建 Release 正文
         id: build_body
         run: |
