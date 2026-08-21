@@ -51,13 +51,12 @@ jobs:
       - name: 设置标签和后缀
         id: set_tag
         run: |
-          TAG="v${{ env.VERSION }}"
+          TAG="${{ env.VERSION }}"
           echo "tag=$TAG" >> $GITHUB_OUTPUT
           SHORT_HASH=$(git rev-parse --short=7 HEAD)
           echo "short_hash=$SHORT_HASH" >> $GITHUB_OUTPUT
           if git rev-parse "$TAG" >/dev/null 2>&1; then
-            SUFFIX="-hotfix-$SHORT_HASH"
-            echo "hotfix_suffix=$SUFFIX" >> $GITHUB_OUTPUT
+            echo "hotfix_suffix=-hotfix-$SHORT_HASH" >> $GITHUB_OUTPUT
             echo "is_hotfix=true" >> $GITHUB_OUTPUT
           else
             echo "hotfix_suffix=" >> $GITHUB_OUTPUT
@@ -83,8 +82,8 @@ jobs:
       - name: 打包数据包
         run: python pack.py
 
-      - name: 重命名产物（如果存在热修复后缀）
-        if: steps.set_tag.outputs.hotfix_suffix != ''
+      - name: 重命名产物（热修复时添加后缀）
+        if: steps.set_tag.outputs.is_hotfix == 'true'
         run: |
           mv "output/Age-${{ env.VERSION }}.zip" "output/${{ steps.set_asset_name.outputs.asset_name }}"
 
@@ -99,7 +98,7 @@ jobs:
             echo "release_body<<EOF"
             echo "## 🧪 Pre-Release ${{ env.VERSION }}"
             echo ""
-            echo "**触发方式**: ${{ github.event_name == 'schedule' && '⏰ 每日定时构建' || '👤 手动触发' }}"
+            echo "**触发方式**: ${{ github.event_name == 'schedule' && '每日定时构建' || '手动触发' }}"
             echo "**提交**: $COMMIT_LINK"
             echo ""
             echo "> ⚠️ **注意**: 此为每日自动构建的预发布版本，未经充分测试，不保证可用性。请谨慎使用。"
