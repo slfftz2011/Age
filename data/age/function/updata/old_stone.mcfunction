@@ -15,6 +15,4 @@ tellraw @a[tag=old_stone_up] ""
 
 tag @a[tag=old_stone_up] remove old_stone_up
 
-scoreboard players set old_stone_age main_progress 0
-scoreboard players set old_stone_age main_done 0
 scoreboard players set old_stone_age task 0
