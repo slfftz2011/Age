@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-综合数据包检查工具
+综合数据包检查工具（修正正则匹配）
 适配目录名：function / advancement / structure / loot_table（单数）
 tags / predicates（复数）
 """
@@ -51,18 +51,19 @@ def scan_mcfunction(file_path):
         re.compile(r'scoreboard\s+players\s+\w+\s+\S+\s+([^\s]+)'),
     ]
     
-    # 标签引用
-    tag_pattern = re.compile(r'#age:([^\s]+)')
-    # 谓词
-    pred_pattern = re.compile(r'predicate\s+age:([^\s]+)')
-    # 进度
-    adv_pattern = re.compile(r'advancement\s+(grant|revoke)\s+\S+\s+(only\s+)?age:([^\s]+)')
-    # 函数调用
-    func_pattern = re.compile(r'function\s+age:([^\s]+)')
-    # 战利品表
-    loot_pattern = re.compile(r'loot\s+(give|replace|spawn)\s+.*?age:([^\s]+)')
-    # 结构
-    struct_pattern = re.compile(r'structure\s+(load|place)\s+age:([^\s]+)')
+    # 标签引用：只匹配 #age:路径（路径由字母数字下划线斜杠组成）
+    tag_pattern = re.compile(r'#age:([a-zA-Z0-9_/]+)')
+    # 谓词：predicate age:路径
+    pred_pattern = re.compile(r'predicate\s+age:([a-zA-Z0-9_/]+)')
+    # 进度：advancement grant/revoke @s (only) age:路径
+    # 注意：only 是可选参数，我们捕获后面的路径
+    adv_pattern = re.compile(r'advancement\s+(grant|revoke)\s+\S+\s+(?:only\s+)?age:([a-zA-Z0-9_/]+)')
+    # 函数调用：function age:路径（排除宏调用和 tellraw 中的误匹配）
+    func_pattern = re.compile(r'function\s+age:([a-zA-Z0-9_/]+)')
+    # 战利品表：loot (give|replace|spawn) ... age:路径
+    loot_pattern = re.compile(r'loot\s+(give|replace|spawn)\s+.*?age:([a-zA-Z0-9_/]+)')
+    # 结构：structure (load|place) age:路径
+    struct_pattern = re.compile(r'structure\s+(load|place)\s+age:([a-zA-Z0-9_/]+)')
     
     for line in lines:
         # 记分板
@@ -99,12 +100,13 @@ def scan_mcfunction(file_path):
         
         # 进度
         for m in adv_pattern.finditer(line):
-            result['advancement_refs'].add(m.group(2) if m.group(2) else m.group(3))
+            result['advancement_refs'].add(m.group(2))  # 第二个捕获组是路径
         
-        # 函数
+        # 函数调用（排除宏调用）
         for m in func_pattern.finditer(line):
-            if '{' not in m.group(1):
-                result['function_calls'].add(m.group(1))
+            # 检查是否为宏调用（后面跟着 {）
+            # 但我们已经用 [a-zA-Z0-9_/]+ 限制了路径，所以不会匹配到 tellraw 中的多余字符
+            result['function_calls'].add(m.group(1))
         
         # 战利品表
         for m in loot_pattern.finditer(line):
