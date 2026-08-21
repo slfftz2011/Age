@@ -1,27 +1,32 @@
 #!/usr/bin/env python3
 """
-检查数据包中使用的记分板是否已注册（全目录扫描）
+检查数据包中使用的记分板是否已注册（带调试输出）
 """
 
 import re
 import sys
 from pathlib import Path
 
-# 数据包 function 目录
 FUNCTION_DIR = "data/age/function"
 
 def scan_file(file_path):
-    """扫描单个文件，返回 (注册集合, 使用集合)"""
     registered = set()
     used = set()
     with open(file_path, 'r', encoding='utf-8') as f:
         content = f.read()
     
-    # 1. 注册：scoreboard objectives add <name> <criteria>
-    reg_pattern = r'scoreboard\s+objectives\s+add\s+([^\s]+)\s+[^\s]+'
-    registered.update(re.findall(reg_pattern, content))
+    # 打印文件内容的前200字符用于调试
+    print(f"\n📄 扫描文件: {file_path}")
+    print(f"   内容预览: {content[:200].replace(chr(10), ' ')}...")
     
-    # 2. 使用：scoreboard players ... <objective>
+    # 注册
+    reg_pattern = r'scoreboard\s+objectives\s+add\s+([^\s]+)\s+[^\s]+'
+    reg_matches = re.findall(reg_pattern, content)
+    registered.update(reg_matches)
+    if reg_matches:
+        print(f"   找到注册: {reg_matches}")
+    
+    # 使用
     use_patterns = [
         r'scoreboard\s+players\s+add\s+\S+\s+([^\s]+)',
         r'scoreboard\s+players\s+remove\s+\S+\s+([^\s]+)',
@@ -31,7 +36,6 @@ def scan_file(file_path):
         r'scoreboard\s+players\s+reset\s+\S+\s+([^\s]+)',
         r'scoreboard\s+players\s+enable\s+\S+\s+([^\s]+)',
         r'scoreboard\s+players\s+display\s+\S+\s+([^\s]+)',
-        r'scoreboard\s+players\s+operation\s+\S+\s+([^\s]+)\s+[+\-*/%=&><^]+?\s+\S+',
     ]
     for pattern in use_patterns:
         matches = re.findall(pattern, content)
@@ -43,14 +47,19 @@ def scan_file(file_path):
             else:
                 if match and not match.startswith('#'):
                     used.add(match)
+    if used:
+        print(f"   找到使用: {used}")
     
     return registered, used
 
 def main():
     func_dir = Path(FUNCTION_DIR)
     if not func_dir.exists():
-        print(f"❌ 目录不存在: {func_dir}")
+        print(f"❌ 目录不存在: {func_dir.absolute()}")
+        print("当前工作目录:", Path.cwd())
         sys.exit(1)
+    
+    print(f"📁 扫描目录: {func_dir.absolute()}")
     
     all_registered = set()
     all_used = set()
@@ -62,29 +71,19 @@ def main():
         all_registered.update(reg)
         all_used.update(used)
     
-    print(f"📁 扫描了 {file_count} 个 .mcfunction 文件")
-    print(f"📝 注册的记分板: {len(all_registered)} 个")
-    print(f"📝 使用的记分板: {len(all_used)} 个")
+    print(f"\n=== 统计 ===")
+    print(f"扫描文件数: {file_count}")
+    print(f"注册记分板: {len(all_registered)} 个")
+    print(f"使用记分板: {len(all_used)} 个")
     
-    # 找出未注册的（移除白名单，全部检查）
     unregistered = all_used - all_registered
-    
     if unregistered:
-        print("\n⚠️ 警告：以下记分板使用了但未注册：")
+        print("\n⚠️ 未注册的记分板：")
         for obj in sorted(unregistered):
             print(f"  - {obj}")
-        print("\n建议在 init.mcfunction 中添加：")
-        for obj in sorted(unregistered):
-            print(f"  scoreboard objectives add {obj} dummy")
         sys.exit(1)
     else:
         print("\n✅ 所有使用的记分板都已注册！")
-    
-    unused = all_registered - all_used
-    if unused:
-        print(f"\n[未使用] {len(unused)} 个记分板已注册但未使用：")
-        for obj in sorted(unused):
-            print(f"  - {obj}")
 
 if __name__ == "__main__":
     main()
