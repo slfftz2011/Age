@@ -295,4 +295,43 @@ def main():
     missing_loots = check_loot_tables(loot_refs)
     if missing_loots:
         print("⚠️ 缺失的战利品表：")
-        for p in sorted(missing_
+        for p in sorted(missing_loots):
+            print(f"  - {p}")
+        print()
+    
+    # 结构文件检查
+    missing_structs = check_structures(struct_refs)
+    if missing_structs:
+        print("⚠️ 缺失的结构文件：")
+        for p in sorted(missing_structs):
+            print(f"  - {p}")
+        print()
+    
+    # JSON 语法检查
+    json_errors = check_json_syntax()
+    if json_errors:
+        print("⚠️ JSON 语法错误：")
+        for err in json_errors:
+            print(f"  {err}")
+        print()
+    
+    # NBT 检查
+    nbt_errors = check_nbt()
+    if nbt_errors:
+        print("⚠️ NBT 文件错误：")
+        for err in nbt_errors:
+            print(f"  {err}")
+        print()
+    
+    total = (len(unregistered) + sum(len(v) for v in missing_tags.values()) +
+             len(missing_preds) + len(missing_advs) + len(missing_funcs) +
+             len(missing_loots) + len(missing_structs) + len(json_errors) + len(nbt_errors))
+    if total == 0:
+        print("✅ 所有检查通过！")
+        sys.exit(0)
+    else:
+        print(f"❌ 发现 {total} 个问题，请修复。")
+        sys.exit(1)
+
+if __name__ == "__main__":
+    main()
