@@ -3,6 +3,7 @@ name: 每日构建与发布
 on:
   schedule:
     - cron: '0 0 * * *'
+    - timezone: 'Asia/Shanghai'
   workflow_dispatch:        # 保留手动触发
 
 concurrency:
@@ -69,7 +70,7 @@ jobs:
         id: run_check
         continue-on-error: true
         run: |
-          python check_all.py 2>&1 | tee check_output.txt
+          python check.py 2>&1 | tee check_output.txt
           echo "check_output<<EOF" >> $GITHUB_OUTPUT
           cat check_output.txt >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
@@ -89,7 +90,7 @@ jobs:
         with:
           artifacts: "output/${{ steps.set_asset_name.outputs.asset_name }}"
           tag: ${{ steps.set_tag.outputs.tag }}
-          name: "数据包 ${{ env.VERSION }}"
+          name: "Pre-Release ${{ env.VERSION }}"
           body: ${{ steps.build_body.outputs.release_body }}
           prerelease: true
           allowUpdates: true
