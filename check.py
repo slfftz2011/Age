@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 """
-综合数据包检查工具（修正正则匹配）
-适配目录名：function / advancement / structure / loot_table（单数）
-tags / predicates（复数）
+综合数据包检查工具
 """
 
 import re
@@ -51,18 +49,17 @@ def scan_mcfunction(file_path):
         re.compile(r'scoreboard\s+players\s+\w+\s+\S+\s+([^\s]+)'),
     ]
     
-    # 标签引用：只匹配 #age:路径（路径由字母数字下划线斜杠组成）
+    # 标签引用
     tag_pattern = re.compile(r'#age:([a-zA-Z0-9_/]+)')
-    # 谓词：predicate age:路径
+    # 谓词
     pred_pattern = re.compile(r'predicate\s+age:([a-zA-Z0-9_/]+)')
-    # 进度：advancement grant/revoke @s (only) age:路径
-    # 注意：only 是可选参数，我们捕获后面的路径
+    # 进度
     adv_pattern = re.compile(r'advancement\s+(grant|revoke)\s+\S+\s+(?:only\s+)?age:([a-zA-Z0-9_/]+)')
-    # 函数调用：function age:路径（排除宏调用和 tellraw 中的误匹配）
+    # 函数调用
     func_pattern = re.compile(r'function\s+age:([a-zA-Z0-9_/]+)')
-    # 战利品表：loot (give|replace|spawn) ... age:路径
+    # 战利品表
     loot_pattern = re.compile(r'loot\s+(give|replace|spawn)\s+.*?age:([a-zA-Z0-9_/]+)')
-    # 结构：structure (load|place) age:路径
+    # 结构
     struct_pattern = re.compile(r'structure\s+(load|place)\s+age:([a-zA-Z0-9_/]+)')
     
     for line in lines:
@@ -81,17 +78,21 @@ def scan_mcfunction(file_path):
                     if match and not match.startswith('#'):
                         result['scoreboard_used'].add(match)
         
-        # 标签
+        # 标签分类
         for m in tag_pattern.finditer(line):
             tag_path = m.group(1)
             context = line.lower()
-            if 'block' in context:
+            # 物品标签关键词
+            if ('block' in context or 'setblock' in context or 'fill' in context):
                 result['tag_refs']['block'].add(tag_path)
-            elif 'items' in context:
+            elif ('items' in context or 'item' in context or 'clear' in context or 
+                  'container' in context or 'inventory' in context or 
+                  'give' in context or 'replaceitem' in context or 'loot' in context):
                 result['tag_refs']['item'].add(tag_path)
-            elif 'entity' in context or 'tag' in context:
+            elif ('entity' in context or 'tag' in context or 'type' in context or 'summon' in context):
                 result['tag_refs']['entity'].add(tag_path)
             else:
+                # 默认函数标签（但可能是误判，用户需检查）
                 result['tag_refs']['function'].add(tag_path)
         
         # 谓词
@@ -100,12 +101,10 @@ def scan_mcfunction(file_path):
         
         # 进度
         for m in adv_pattern.finditer(line):
-            result['advancement_refs'].add(m.group(2))  # 第二个捕获组是路径
+            result['advancement_refs'].add(m.group(2))
         
-        # 函数调用（排除宏调用）
+        # 函数
         for m in func_pattern.finditer(line):
-            # 检查是否为宏调用（后面跟着 {）
-            # 但我们已经用 [a-zA-Z0-9_/]+ 限制了路径，所以不会匹配到 tellraw 中的多余字符
             result['function_calls'].add(m.group(1))
         
         # 战利品表
@@ -337,3 +336,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+     
