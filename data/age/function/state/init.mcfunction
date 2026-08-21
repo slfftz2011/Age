@@ -1,4 +1,5 @@
 # ===== State Bar 系统初始化 =====
+scoreboard objectives add global_state_timer dummy
 
 # 辅助记分板（用于温度计算）
 scoreboard objectives add temp_aux dummy
@@ -9,6 +10,7 @@ scoreboard objectives add temperature_prev dummy
 scoreboard objectives add env_temp dummy
 scoreboard objectives add temperature_trend dummy
 scoreboard objectives add temperature_timer dummy
+scoreboard objectives add temperature.tmp dummy
 
 # 环境温度计算临时记分板
 scoreboard objectives add temp_y dummy
