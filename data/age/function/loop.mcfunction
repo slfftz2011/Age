@@ -113,7 +113,7 @@ execute as @a[team=old_stone_age] run function age:bplock/old_stone_age
 kill @e[type=item,nbt={Item:{id:"minecraft:barrier"}}]
 
 # 状态更新
-execute as @a run function age:state/update
+execute as @a run function age:state/updata
 
 scoreboard players add #state time 1
 execute if score #state time matches 100.. run function age:state/show
