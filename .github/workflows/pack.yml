@@ -2,9 +2,9 @@ name: 每日构建与发布
 
 on:
   schedule:
-    - cron: '0 0 * * *'          # UTC 0:00
-      timezone: 'Asia/Shanghai'   # 可选，使用北京时间
-  workflow_dispatch:              # 手动触发
+    - cron: '0 0 * * *'
+      timezone: 'Asia/Shanghai'
+  workflow_dispatch:
 
 concurrency:
   group: release-${{ github.ref }}
@@ -81,16 +81,28 @@ jobs:
       - name: 构建 Release 正文
         id: build_body
         run: |
-          BODY="## 数据包版本 ${{ env.VERSION }}"
-          BODY+="\n\n### 检查结果\n\`\`\`\n${{ steps.run_check.outputs.check_output }}\n\`\`\`"
-          echo "release_body=$BODY" >> $GITHUB_OUTPUT
+          {
+            echo "release_body<<EOF"
+            echo "## 🧪 Pre-Release ${{ env.VERSION }}"
+            echo ""
+            echo "**触发方式**: ${{ github.event_name == 'schedule' && '⏰ 每日定时构建' || '👤 手动触发' }}"
+            echo "**提交哈希**: \`${{ github.sha }}\`"
+            echo ""
+            echo "> ⚠️ **注意**: 此为每日自动构建的预发布版本，未经充分测试，不保证可用性。请谨慎使用。"
+            echo ""
+            echo "### 检查结果"
+            echo '```'
+            cat check_output.txt
+            echo '```'
+            echo "EOF"
+          } >> $GITHUB_OUTPUT
 
       - name: 创建/更新 Release
         uses: ncipollo/release-action@v1.14.0
         with:
           artifacts: "output/${{ steps.set_asset_name.outputs.asset_name }}"
           tag: ${{ steps.set_tag.outputs.tag }}
-          name: "数据包 ${{ env.VERSION }}"
+          name: "Pre-Release ${{ env.VERSION }}"
           body: ${{ steps.build_body.outputs.release_body }}
           prerelease: true
           allowUpdates: true
