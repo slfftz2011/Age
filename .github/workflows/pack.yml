@@ -1,12 +1,12 @@
-name: "打包并自动发布Release"
+name: 每日构建与发布
 
 on:
   schedule:
-    - cron: "0 16 * * *"
-  workflow_dispatch:
+    - cron: '0 0 * * *'
+  workflow_dispatch:        # 保留手动触发
 
 concurrency:
-  group: nightly-release-${{ github.ref }}
+  group: release-${{ github.ref }}
   cancel-in-progress: true
 
 permissions:
@@ -16,84 +16,83 @@ jobs:
   build-and-release:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    outputs:
+      version: ${{ steps.get_version.outputs.version }}
+      tag: ${{ steps.set_tag.outputs.tag }}
+      hotfix_suffix: ${{ steps.set_tag.outputs.hotfix_suffix }}
+      asset_name: ${{ steps.set_asset_name.outputs.asset_name }}
+      release_body: ${{ steps.build_body.outputs.release_body }}
+      check_output: ${{ steps.run_check.outputs.check_output }}
 
     steps:
-      - name: Checkout
+      - name: 检出代码
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Check for new commits
-        id: check
-        run: |
-          current_sha=$(git rev-parse HEAD)
-          echo "current_sha=$current_sha" >> $GITHUB_OUTPUT
-          if git rev-parse prerelease >/dev/null 2>&1; then
-            prerelease_sha=$(git rev-parse prerelease)
-            echo "prerelease_sha=$prerelease_sha" >> $GITHUB_OUTPUT
-            if [ "$current_sha" = "$prerelease_sha" ]; then
-              echo "skip=true" >> $GITHUB_OUTPUT
-            else
-              echo "skip=false" >> $GITHUB_OUTPUT
-            fi
-          else
-            echo "prerelease_sha=" >> $GITHUB_OUTPUT
-            echo "skip=false" >> $GITHUB_OUTPUT
-          fi
-
-      - name: Setup Python
-        if: steps.check.outputs.skip != 'true'
+      - name: 设置 Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
-      - name: Install dependencies
-        if: steps.check.outputs.skip != 'true'
+      - name: 安装依赖
         run: |
           python -m pip install --upgrade pip
-          pip install PyYAML
+          pip install PyYAML nbtlib
 
-      - name: Run pack script
-        if: steps.check.outputs.skip != 'true'
-        run: python pack.py
-
-      - name: Get version
-        if: steps.check.outputs.skip != 'true'
+      - name: 获取版本号
         id: get_version
         run: |
           VERSION=$(python -c "import yaml; print(yaml.safe_load(open('defines.yml'))['VERSION'])")
           echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
 
-      # ----- 新增：判断版本是否已发布 -----
-      - name: Check if version already released
-        if: steps.check.outputs.skip != 'true'
-        id: check_version
+      - name: 设置标签和后缀
+        id: set_tag
         run: |
-          VERSION="${{ steps.get_version.outputs.version }}"
-          TAG="pre-release-${VERSION}"
-          # 检查该 tag 是否已经存在
+          TAG="v${{ env.VERSION }}"
+          echo "tag=$TAG" >> $GITHUB_OUTPUT
           if git rev-parse "$TAG" >/dev/null 2>&1; then
-            echo "exists=true" >> $GITHUB_OUTPUT
+            echo "hotfix_suffix=-hotfix-$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
           else
-            echo "exists=false" >> $GITHUB_OUTPUT
+            echo "hotfix_suffix=" >> $GITHUB_OUTPUT
           fi
 
-      # ----- 创建/更新 Pre-release -----
-      - name: Create/Update Prerelease
-        if: steps.check.outputs.skip != 'true'
+      - name: 设置资产名称
+        id: set_asset_name
+        run: |
+          SUFFIX="${{ steps.set_tag.outputs.hotfix_suffix }}"
+          ASSET="Age-${{ env.VERSION }}${SUFFIX}.zip"
+          echo "asset_name=$ASSET" >> $GITHUB_OUTPUT
+
+      - name: 运行综合检查（不中断构建）
+        id: run_check
+        continue-on-error: true
+        run: |
+          python check_all.py 2>&1 | tee check_output.txt
+          echo "check_output<<EOF" >> $GITHUB_OUTPUT
+          cat check_output.txt >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: 打包数据包
+        run: python pack.py
+
+      - name: 构建 Release 正文
+        id: build_body
+        run: |
+          BODY="## 数据包版本 ${{ env.VERSION }}"
+          BODY+="\n\n### 检查结果\n\`\`\`\n${{ steps.run_check.outputs.check_output }}\n\`\`\`"
+          echo "release_body=$BODY" >> $GITHUB_OUTPUT
+
+      - name: 创建/更新 Release
         uses: ncipollo/release-action@v1.14.0
         with:
-          artifacts: "output/Age-${{ steps.get_version.outputs.version }}.zip"
-          # 如果该版本已存在，则使用带版本号的 tag；否则使用固定的 prerelease tag
-          tag: ${{ steps.check_version.outputs.exists == 'true' && format('pre-release-{0}', steps.get_version.outputs.version) || 'prerelease' }}
-          name: ${{ steps.check_version.outputs.exists == 'true' && format('Pre-release v{0}', steps.get_version.outputs.version) || 'Pre-release (latest)' }}
-          body: |
-            ## 每日预发布版本（自动构建）
-            - 版本: ${{ steps.get_version.outputs.version }}
-            - 提交: ${{ github.sha }}
-            - 触发: ${{ github.event_name == 'schedule' && '定时构建' || '手动触发' }}
+          artifacts: "output/${{ steps.set_asset_name.outputs.asset_name }}"
+          tag: ${{ steps.set_tag.outputs.tag }}
+          name: "数据包 ${{ env.VERSION }}"
+          body: ${{ steps.build_body.outputs.release_body }}
           prerelease: true
           allowUpdates: true
           updateOnlyUnreleased: false
-          makeLatest: ${{ steps.check_version.outputs.exists == 'true' && 'true' || 'false' }}   # 如果版本已存在，设为最新
+          makeLatest: ${{ steps.set_tag.outputs.hotfix_suffix == '' }}
           token: ${{ secrets.GITHUB_TOKEN }}
