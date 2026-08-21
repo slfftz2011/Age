@@ -18,6 +18,15 @@ scoreboard objectives add temp_humid_dir dummy
 # 温度主记分板
 scoreboard objectives add temperature dummy "体感温度"
 
+# 护甲修正
+scoreboard objectives add metal_count dummy
+
+# 天气与时间
+scoreboard objectives add weather_clear_timer dummy
+scoreboard objectives add time_of_day dummy
+scoreboard objectives add time_offset dummy
+
+
 # 属性记分板
 scoreboard objectives add thirst dummy "口渴值"
 scoreboard objectives add mana dummy "魔法值"
