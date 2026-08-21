@@ -1,4 +1,4 @@
-name: Check Scoreboards
+name: 检测数据包语法与常规问题
 
 on:
   push:
