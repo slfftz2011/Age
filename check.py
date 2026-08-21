@@ -1,51 +1,39 @@
 #!/usr/bin/env python3
 """
-检查数据包中使用的记分板是否已在 init.mcfunction 中注册
-用法: python check_scoreboards.py [--strict]
+检查数据包中使用的记分板是否已注册（全目录扫描）
 """
 
 import re
 import sys
-import argparse
 from pathlib import Path
 
-# 入口文件路径
-INIT_FILE = "data/age/functions/init.mcfunction"
-LOOP_FILE = "data/age/functions/loop.mcfunction"
+# 数据包 function 目录
+FUNCTION_DIR = "data/age/function"
 
-# 白名单：无需注册的记分板
-WHITELIST = {
-    "temperature.tmp",
-    "time",
-}
-
-def extract_objectives(file_path):
-    objectives = set()
-    if not Path(file_path).exists():
-        return objectives
-    with open(file_path, 'r', encoding='utf-8') as f:
-        content = f.read()
-    pattern = r'scoreboard\s+objectives\s+add\s+(\S+)\s+\S+'
-    objectives.update(re.findall(pattern, content))
-    return objectives
-
-def extract_usage(file_path):
+def scan_file(file_path):
+    """扫描单个文件，返回 (注册集合, 使用集合)"""
+    registered = set()
     used = set()
-    if not Path(file_path).exists():
-        return used
     with open(file_path, 'r', encoding='utf-8') as f:
         content = f.read()
-    patterns = [
-        r'scoreboard\s+players\s+add\s+\S+\s+(\S+)',
-        r'scoreboard\s+players\s+remove\s+\S+\s+(\S+)',
-        r'scoreboard\s+players\s+set\s+\S+\s+(\S+)',
-        r'scoreboard\s+players\s+operation\s+\S+\s+(\S+)\s+[+\-*/%=&><^]+?\s+\S+\s+(\S+)',
-        r'scoreboard\s+players\s+get\s+\S+\s+(\S+)',
-        r'scoreboard\s+players\s+reset\s+\S+\s+(\S+)',
-        r'scoreboard\s+players\s+enable\s+\S+\s+(\S+)',
-        r'scoreboard\s+players\s+display\s+\S+\s+(\S+)',
+    
+    # 1. 注册：scoreboard objectives add <name> <criteria>
+    reg_pattern = r'scoreboard\s+objectives\s+add\s+([^\s]+)\s+[^\s]+'
+    registered.update(re.findall(reg_pattern, content))
+    
+    # 2. 使用：scoreboard players ... <objective>
+    use_patterns = [
+        r'scoreboard\s+players\s+add\s+\S+\s+([^\s]+)',
+        r'scoreboard\s+players\s+remove\s+\S+\s+([^\s]+)',
+        r'scoreboard\s+players\s+set\s+\S+\s+([^\s]+)',
+        r'scoreboard\s+players\s+operation\s+\S+\s+([^\s]+)\s+[+\-*/%=&><^]+?\s+\S+\s+([^\s]+)',
+        r'scoreboard\s+players\s+get\s+\S+\s+([^\s]+)',
+        r'scoreboard\s+players\s+reset\s+\S+\s+([^\s]+)',
+        r'scoreboard\s+players\s+enable\s+\S+\s+([^\s]+)',
+        r'scoreboard\s+players\s+display\s+\S+\s+([^\s]+)',
+        r'scoreboard\s+players\s+operation\s+\S+\s+([^\s]+)\s+[+\-*/%=&><^]+?\s+\S+',
     ]
-    for pattern in patterns:
+    for pattern in use_patterns:
         matches = re.findall(pattern, content)
         for match in matches:
             if isinstance(match, tuple):
@@ -55,71 +43,44 @@ def extract_usage(file_path):
             else:
                 if match and not match.startswith('#'):
                     used.add(match)
-    return used
-
-def extract_function_calls(file_path):
-    calls = set()
-    if not Path(file_path).exists():
-        return calls
-    with open(file_path, 'r', encoding='utf-8') as f:
-        content = f.read()
-    pattern = r'function\s+(\S+)'
-    matches = re.findall(pattern, content)
-    for m in matches:
-        if '{' not in m:
-            calls.add(m)
-    return calls
-
-def collect_all_usages(start_file, visited=None):
-    if visited is None:
-        visited = set()
-    if start_file in visited:
-        return set()
-    visited.add(start_file)
-    all_used = set()
-    all_used.update(extract_usage(start_file))
-    for sub_func in extract_function_calls(start_file):
-        sub_path = f"data/age/functions/{sub_func}.mcfunction"
-        if Path(sub_path).exists():
-            all_used.update(collect_all_usages(sub_path, visited))
-    return all_used
+    
+    return registered, used
 
 def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--strict', action='store_true',
-                        help='若存在未注册记分板则返回非零退出码')
-    args = parser.parse_args()
-
-    root = Path(".")
-    init_path = root / INIT_FILE
-    loop_path = root / LOOP_FILE
-
-    registered = extract_objectives(init_path)
-    print(f"[已注册] {len(registered)} 个记分板")
-
-    all_used = collect_all_usages(loop_path)
-    all_used.update(extract_usage(init_path))
-    all_used = all_used - WHITELIST
-
-    print(f"[已使用] {len(all_used)} 个记分板")
-
-    unregistered = all_used - registered
-    print(f"[未注册] {len(unregistered)} 个")
-
+    func_dir = Path(FUNCTION_DIR)
+    if not func_dir.exists():
+        print(f"❌ 目录不存在: {func_dir}")
+        sys.exit(1)
+    
+    all_registered = set()
+    all_used = set()
+    file_count = 0
+    
+    for mc_file in func_dir.rglob("*.mcfunction"):
+        file_count += 1
+        reg, used = scan_file(mc_file)
+        all_registered.update(reg)
+        all_used.update(used)
+    
+    print(f"📁 扫描了 {file_count} 个 .mcfunction 文件")
+    print(f"📝 注册的记分板: {len(all_registered)} 个")
+    print(f"📝 使用的记分板: {len(all_used)} 个")
+    
+    # 找出未注册的（移除白名单，全部检查）
+    unregistered = all_used - all_registered
+    
     if unregistered:
-        print("\n⚠️ 警告：以下记分板使用了但未在 init.mcfunction 中注册：")
+        print("\n⚠️ 警告：以下记分板使用了但未注册：")
         for obj in sorted(unregistered):
             print(f"  - {obj}")
         print("\n建议在 init.mcfunction 中添加：")
         for obj in sorted(unregistered):
             print(f"  scoreboard objectives add {obj} dummy")
-        if args.strict:
-            print("\n❌ 严格模式：存在未注册记分板，检查失败。")
-            sys.exit(1)
+        sys.exit(1)
     else:
         print("\n✅ 所有使用的记分板都已注册！")
-
-    unused = registered - all_used
+    
+    unused = all_registered - all_used
     if unused:
         print(f"\n[未使用] {len(unused)} 个记分板已注册但未使用：")
         for obj in sorted(unused):
