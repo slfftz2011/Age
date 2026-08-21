@@ -53,10 +53,14 @@ jobs:
         run: |
           TAG="v${{ env.VERSION }}"
           echo "tag=$TAG" >> $GITHUB_OUTPUT
+          SHORT_HASH=$(git rev-parse --short=7 HEAD)
+          echo "short_hash=$SHORT_HASH" >> $GITHUB_OUTPUT
           if git rev-parse "$TAG" >/dev/null 2>&1; then
-            echo "hotfix_suffix=-hotfix-$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+            echo "hotfix_suffix=-hotfix-$SHORT_HASH" >> $GITHUB_OUTPUT
+            echo "is_hotfix=true" >> $GITHUB_OUTPUT
           else
             echo "hotfix_suffix=" >> $GITHUB_OUTPUT
+            echo "is_hotfix=false" >> $GITHUB_OUTPUT
           fi
 
       - name: 设置资产名称
@@ -81,12 +85,16 @@ jobs:
       - name: 构建 Release 正文
         id: build_body
         run: |
+          FULL_HASH=$(git rev-parse HEAD)
+          SHORT_HASH=$(git rev-parse --short=7 HEAD)
+          REPO_URL="https://github.com/${{ github.repository }}"
+          COMMIT_LINK="[$SHORT_HASH]($REPO_URL/commit/$FULL_HASH)"
           {
             echo "release_body<<EOF"
             echo "## 🧪 Pre-Release ${{ env.VERSION }}"
             echo ""
             echo "**触发方式**: ${{ github.event_name == 'schedule' && '⏰ 每日定时构建' || '👤 手动触发' }}"
-            echo "**提交哈希**: \`${{ github.sha }}\`"
+            echo "**提交**: $COMMIT_LINK"
             echo ""
             echo "> ⚠️ **注意**: 此为每日自动构建的预发布版本，未经充分测试，不保证可用性。请谨慎使用。"
             echo ""
@@ -107,5 +115,7 @@ jobs:
           prerelease: true
           allowUpdates: true
           updateOnlyUnreleased: false
-          makeLatest: ${{ steps.set_tag.outputs.hotfix_suffix == '' }}
+          makeLatest: ${{ steps.set_tag.outputs.is_hotfix == 'false' }}
+          omitName: ${{ steps.set_tag.outputs.is_hotfix == 'true' }}
+          omitBody: ${{ steps.set_tag.outputs.is_hotfix == 'true' }}
           token: ${{ secrets.GITHUB_TOKEN }}
