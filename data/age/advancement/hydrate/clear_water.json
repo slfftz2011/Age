@@ -1,0 +1,29 @@
+{
+  "display": {
+    "title": "clear_water"
+    "description": "",
+    "icon": {
+      "id": "minecraft:water_bottle"
+    },
+    "background": "minecraft:block/water",
+    "show_toast": false,
+    "announce_to_chat": false,
+    "hidden": true
+  },
+  "criteria": {
+    "drink": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": "minecraft:potion",
+          "components": {
+             "minecraft:potion_contents": "mundane"
+          }     
+        }
+      }
+    }
+  },
+  "rewards": {
+    "function": "age:thirst/hydrate/clear_water"
+  }
+}
