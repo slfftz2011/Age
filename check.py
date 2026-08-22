@@ -46,8 +46,10 @@ def scan_mcfunction(file_path):
     
     # 记分板注册
     reg_pattern = re.compile(r'scoreboard\s+objectives\s+add\s+([^\s]+)\s+[^\s]+')
-    # 记分板使用
+    
+    # 记分板使用（各种命令）
     use_patterns = [
+        # scoreboard players ... <objective>
         re.compile(r'scoreboard\s+players\s+add\s+\S+\s+([^\s]+)'),
         re.compile(r'scoreboard\s+players\s+remove\s+\S+\s+([^\s]+)'),
         re.compile(r'scoreboard\s+players\s+set\s+\S+\s+([^\s]+)'),
@@ -57,6 +59,9 @@ def scan_mcfunction(file_path):
         re.compile(r'scoreboard\s+players\s+enable\s+\S+\s+([^\s]+)'),
         re.compile(r'scoreboard\s+players\s+display\s+\S+\s+([^\s]+)'),
         re.compile(r'scoreboard\s+players\s+\w+\s+\S+\s+([^\s]+)'),
+        # execute if/unless score <实体> <记分板1> <op> <实体> <记分板2>
+        # 捕获两个记分板
+        re.compile(r'(?:if|unless)\s+score\s+\S+\s+([^\s]+)\s+[+\-*/%=&><^]+?\s+\S+\s+([^\s]+)'),
     ]
     
     # 标签引用
@@ -73,10 +78,12 @@ def scan_mcfunction(file_path):
     struct_pattern = re.compile(r'structure\s+(load|place)\s+age:([a-zA-Z0-9_/]+)')
     
     for line in lines:
-        # 记分板
+        # 记分板注册
         m = reg_pattern.search(line)
         if m:
             result['scoreboard_registered'].add(m.group(1))
+        
+        # 记分板使用
         for pat in use_patterns:
             matches = pat.findall(line)
             for match in matches:
@@ -360,3 +367,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+ 
