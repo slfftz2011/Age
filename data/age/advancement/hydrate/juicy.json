@@ -1,0 +1,26 @@
+{
+  "display": {
+    "title": "juicy"
+    "description": "",
+    "icon": {
+      "id": "minecraft:potion"
+    },
+    "background": "minecraft:block/water",
+    "show_toast": false,
+    "announce_to_chat": false,
+    "hidden": true
+  },
+  "criteria": {
+    "eat": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": "#age:juicy"
+        }
+      }
+    }
+  },
+  "rewards": {
+    "function": "age:thirst/hydrate/juicy"
+  }
+}
