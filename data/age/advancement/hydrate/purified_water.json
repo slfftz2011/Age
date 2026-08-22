@@ -3,7 +3,7 @@
     "title": "purified_water"
     "description": "",
     "icon": {
-      "id": "minecraft:water_bottle"
+      "id": "minecraft:potion"
     },
     "background": "minecraft:block/water",
     "show_toast": false,
