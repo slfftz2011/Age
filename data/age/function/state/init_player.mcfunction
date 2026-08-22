@@ -1,3 +1,8 @@
+execute store result score @s food_cur run data get entity @s foodLevel
+execute store result score @s sat_cur run data get entity @s foodSaturationLevel
+scoreboard players operation @s food_prev = @s food_cur
+scoreboard players operation @s sat_prev = @s sat_cur
+
 scoreboard players set @s thirst 20
 scoreboard players set @s thirst_max 20
 scoreboard players set @s mana 0
