@@ -5,7 +5,12 @@ scoreboard objectives add global_state_timer dummy
 scoreboard objectives add weather_clear_timer dummy
 scoreboard objectives add time_offset dummy
 scoreboard objectives add time_of_day dummy
-
+scoreboard objectives add food_cur dummy
+scoreboard objectives add food_prev dummy
+scoreboard objectives add sat_cur dummy
+scoreboard objectives add sat_prev dummy
+scoreboard objectives add food_diff dummy
+scoreboard objectives add sat_diff dummy
 
 
 # ---- 辅助记分板 ----
