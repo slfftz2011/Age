@@ -21,6 +21,6 @@
     }
   },
   "rewards": {
-    "function": "age:thirst/hydrate/juicy"
+    "function": "age:state/thirst/hydrate/juicy"
   }
 }
