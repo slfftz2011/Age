@@ -24,6 +24,6 @@
     }
   },
   "rewards": {
-    "function": "age:thirst/hydrate/wasted_water"
+    "function": "age:state/thirst/hydrate/wasted_water"
   }
 }
