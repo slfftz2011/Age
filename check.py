@@ -1,6 +1,16 @@
 #!/usr/bin/env python3
 """
-综合数据包检查工具
+综合数据包检查工具（增强统计版）
+检查项目：
+- 记分板注册与使用（含未使用报告）
+- 标签引用（方块/物品/实体/函数）
+- 谓词引用
+- 进度引用
+- 函数路径
+- 战利品表引用
+- 结构引用
+- JSON 语法
+- NBT 结构（可选）
 """
 
 import re
@@ -82,17 +92,15 @@ def scan_mcfunction(file_path):
         for m in tag_pattern.finditer(line):
             tag_path = m.group(1)
             context = line.lower()
-            # 物品标签关键词
-            if ('block' in context or 'setblock' in context or 'fill' in context):
+            if 'block' in context or 'setblock' in context or 'fill' in context:
                 result['tag_refs']['block'].add(tag_path)
-            elif ('items' in context or 'item' in context or 'clear' in context or 
-                  'container' in context or 'inventory' in context or 
+            elif ('items' in context or 'item' in context or 'clear' in context or
+                  'container' in context or 'inventory' in context or
                   'give' in context or 'replaceitem' in context or 'loot' in context):
                 result['tag_refs']['item'].add(tag_path)
-            elif ('entity' in context or 'tag' in context or 'type' in context or 'summon' in context):
+            elif 'entity' in context or 'tag' in context or 'type' in context or 'summon' in context:
                 result['tag_refs']['entity'].add(tag_path)
             else:
-                # 默认函数标签（但可能是误判，用户需检查）
                 result['tag_refs']['function'].add(tag_path)
         
         # 谓词
@@ -246,10 +254,18 @@ def main():
     print(f"📝 注册的记分板: {len(all_registered)} 个")
     print(f"📝 使用的记分板: {len(all_used)} 个")
     
-    # 记分板未注册检查
+    # ===== 未使用的记分板 =====
+    unused = all_registered - all_used
+    if unused:
+        print("\n[未使用] 以下记分板已注册但未使用：")
+        for obj in sorted(unused):
+            print(f"  - {obj}")
+        print()
+    
+    # ===== 检查缺失 =====
     unregistered = all_used - all_registered
     if unregistered:
-        print("\n⚠️ 未注册的记分板：")
+        print("⚠️ 未注册的记分板：")
         for obj in sorted(unregistered):
             print(f"  - {obj}")
         print("\n建议在 init.mcfunction 中添加：")
@@ -257,7 +273,6 @@ def main():
             print(f"  scoreboard objectives add {obj} dummy")
         print()
     
-    # 标签检查
     missing_tags = check_tags(tag_refs)
     if any(missing_tags.values()):
         print("⚠️ 缺失的标签：")
@@ -268,7 +283,6 @@ def main():
                     print(f"    - {p}")
         print()
     
-    # 谓词检查
     missing_preds = check_predicates(pred_refs)
     if missing_preds:
         print("⚠️ 缺失的谓词：")
@@ -276,7 +290,6 @@ def main():
             print(f"  - {p}")
         print()
     
-    # 进度检查
     missing_advs = check_advancements(adv_refs)
     if missing_advs:
         print("⚠️ 缺失的进度：")
@@ -284,7 +297,6 @@ def main():
             print(f"  - {p}")
         print()
     
-    # 函数调用检查
     missing_funcs = check_function_calls(func_calls)
     if missing_funcs:
         print("⚠️ 缺失的函数文件：")
@@ -292,7 +304,6 @@ def main():
             print(f"  - {p}")
         print()
     
-    # 战利品表检查
     missing_loots = check_loot_tables(loot_refs)
     if missing_loots:
         print("⚠️ 缺失的战利品表：")
@@ -300,7 +311,6 @@ def main():
             print(f"  - {p}")
         print()
     
-    # 结构文件检查
     missing_structs = check_structures(struct_refs)
     if missing_structs:
         print("⚠️ 缺失的结构文件：")
@@ -308,7 +318,6 @@ def main():
             print(f"  - {p}")
         print()
     
-    # JSON 语法检查
     json_errors = check_json_syntax()
     if json_errors:
         print("⚠️ JSON 语法错误：")
@@ -316,7 +325,6 @@ def main():
             print(f"  {err}")
         print()
     
-    # NBT 检查
     nbt_errors = check_nbt()
     if nbt_errors:
         print("⚠️ NBT 文件错误：")
@@ -324,16 +332,31 @@ def main():
             print(f"  {err}")
         print()
     
-    total = (len(unregistered) + sum(len(v) for v in missing_tags.values()) +
-             len(missing_preds) + len(missing_advs) + len(missing_funcs) +
-             len(missing_loots) + len(missing_structs) + len(json_errors) + len(nbt_errors))
-    if total == 0:
-        print("✅ 所有检查通过！")
+    # ===== 统计汇总 =====
+    print("\n=== 统计汇总 ===")
+    print(f"总函数文件数: {len(list(FUNCTION_DIR.rglob('*.mcfunction')))}")
+    print(f"注册记分板: {len(all_registered)}")
+    print(f"使用记分板: {len(all_used)}")
+    print(f"未使用记分板: {len(unused)}")
+    print(f"未注册记分板: {len(unregistered)}")
+    print(f"标签引用: {sum(len(v) for v in tag_refs.values())} (block: {len(tag_refs['block'])}, item: {len(tag_refs['item'])}, entity: {len(tag_refs['entity'])}, function: {len(tag_refs['function'])})")
+    print(f"谓词引用: {len(pred_refs)}")
+    print(f"进度引用: {len(adv_refs)}")
+    print(f"函数调用: {len(func_calls)}")
+    print(f"战利品表引用: {len(loot_refs)}")
+    print(f"结构引用: {len(struct_refs)}")
+    print(f"JSON 语法错误: {len(json_errors)}")
+    print(f"NBT 错误: {len(nbt_errors)}")
+    
+    total_issues = (len(unregistered) + sum(len(v) for v in missing_tags.values()) +
+                    len(missing_preds) + len(missing_advs) + len(missing_funcs) +
+                    len(missing_loots) + len(missing_structs) + len(json_errors) + len(nbt_errors))
+    if total_issues == 0:
+        print("\n✅ 所有检查通过！")
         sys.exit(0)
     else:
-        print(f"❌ 发现 {total} 个问题，请修复。")
+        print(f"\n❌ 发现 {total_issues} 个问题，请修复。")
         sys.exit(1)
 
 if __name__ == "__main__":
     main()
-     
