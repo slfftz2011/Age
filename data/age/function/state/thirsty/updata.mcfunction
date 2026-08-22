@@ -20,6 +20,14 @@ execute if score @s sat_diff matches 1.. run scoreboard players remove @s thirst
 execute if score @s thirst_buff_timer matches 1.. if score @s food_diff matches 1.. run scoreboard players remove @s thirst 1
 execute if score @s thirst_buff_timer matches 1.. if score @s sat_diff matches 1.. run scoreboard players remove @s thirst 1
 
+execute if score @s thirst matches ..0 run scoreboard players set @s thirst 0
+execute if score @s thirst matches 21.. run scoreboard players set @s thirst 20
+
+execute if score @s thirst_buff_timer matches 1.. run scoreboard players add @s thirst_buff_timer -1
+execute if score @s thirst_buff_timer matches ..0 run scoreboard players set @s thirst_buff_timer 0
+
+function age:state/thirst/hydrate
+
 # 更新记录
 scoreboard players operation @s food_prev = @s food_cur
 scoreboard players operation @s sat_prev = @s sat_cur
