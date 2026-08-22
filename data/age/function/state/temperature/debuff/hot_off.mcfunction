@@ -1,1 +1,0 @@
-tag remove @s hot
