@@ -11,7 +11,7 @@ execute if score @s global_state_timer matches 20.. run function age:state/tempe
 
 # 温度计时器（每10 tick）
 scoreboard players add @a temp_timer 1
-execute as @a if score @s temp_timer matches 10.. run function age:state/temperature/update
+execute as @a if score @s temp_timer matches 10.. run function age:state/temperature/updata
 execute as @a run function age:state/thirst/updata
 
 
