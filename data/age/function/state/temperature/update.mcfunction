@@ -49,8 +49,8 @@ scoreboard players operation @s temp_prev = @s temperature
 
 # 12. 判定趋势
 scoreboard players set @s temp_trend 0
-execute if score @s temp_delta matches 2.. run scoreboard players set @s temperature_trend 1
-execute if score @s temp_delta matches ..-2 run scoreboard players set @s temperature_trend -1
+execute if score @s temp_delta matches 2.. run scoreboard players set @s temp_trend 1
+execute if score @s temp_delta matches ..-2 run scoreboard players set @s temp_trend -1
 
 # 13. 重置计时器
-scoreboard players set @s temperature_timer 0
+scoreboard players set @s temp_timer 0
