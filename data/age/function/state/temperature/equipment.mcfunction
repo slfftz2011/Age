@@ -1,7 +1,7 @@
 # ===== 护甲修正（非全套铜） =====
 
 # 金属修正（方向敏感）
-scoreboard players set @s metal_count 0
+scoreboard players set @s metal_modify 0
 
 # 铜装备（每件 5）
 execute if items entity @s armor.head minecraft:copper_helmet run scoreboard players add @s metal_modify 5
