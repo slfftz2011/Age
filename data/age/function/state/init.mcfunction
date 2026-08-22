@@ -56,6 +56,12 @@ scoreboard objectives add sanity_prev dummy
 scoreboard objectives add energy_prev dummy
 
 
+# ---- debuff ----
+scoreboard objectives add heatstroke dummy
+scoreboard objectives add hot dummy
+scoreboard objectives add scorch dummy
+scoreboard objectives add froze dummy
+
 
 # 显示计时器
 scoreboard players set #state time 0
