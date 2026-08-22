@@ -1,7 +1,7 @@
 {
   "display": {
-    "title": "purified_water"
-    "description": ".",
+    "title": "purified_water",
+    "description": "",
     "icon": {
       "id": "minecraft:potion"
     },
