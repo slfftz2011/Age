@@ -19,7 +19,7 @@ execute as @a if score @s temperature matches 72.. run title @s actionbar [
 ]
 
 # 3. 升温（⬆️ 淡黄）
-execute as @a if score @s temperature matches 24..53 if score @s temperature_trend matches 1 run title @s actionbar [
+execute as @a if score @s temperature matches 24..53 if score @s temp_trend matches 1 run title @s actionbar [
   [{score:{name:"@s",objective:"thirst"},color:"aqua"},{text:"/",color:"aqua"},{score:{name:"@s",objective:"thirst_max"},color:"aqua"},{text:"💧   ",color:"aqua"}],
   [{score:{name:"@s",objective:"mana"},color:"red"},{text:"/",color:"red"},{score:{name:"@s",objective:"mana_max"},color:"red"},{text:"✨   ",color:"red"}],
   {text:"⬆️   ",color:"yellow"},
@@ -28,7 +28,7 @@ execute as @a if score @s temperature matches 24..53 if score @s temperature_tre
 ]
 
 # 4. 适宜（🟡️ 淡黄）
-execute as @a if score @s temperature matches 24..53 if score @s temperature_trend matches 0 run title @s actionbar [
+execute as @a if score @s temperature matches 24..53 if score @s temp_trend matches 0 run title @s actionbar [
   [{score:{name:"@s",objective:"thirst"},color:"aqua"},{text:"/",color:"aqua"},{score:{name:"@s",objective:"thirst_max"},color:"aqua"},{text:"💧   ",color:"aqua"}],
   [{score:{name:"@s",objective:"mana"},color:"red"},{text:"/",color:"red"},{score:{name:"@s",objective:"mana_max"},color:"red"},{text:"✨   ",color:"red"}],
   {text:"🟡️   ",color:"yellow"},
@@ -37,7 +37,7 @@ execute as @a if score @s temperature matches 24..53 if score @s temperature_tre
 ]
 
 # 5. 降温（⬇️ 淡黄）
-execute as @a if score @s temperature matches 24..53 if score @s temperature_trend matches -1 run title @s actionbar [
+execute as @a if score @s temperature matches 24..53 if score @s temp_trend matches -1 run title @s actionbar [
   [{score:{name:"@s",objective:"thirst"},color:"aqua"},{text:"/",color:"aqua"},{score:{name:"@s",objective:"thirst_max"},color:"aqua"},{text:"💧   ",color:"aqua"}],
   [{score:{name:"@s",objective:"mana"},color:"red"},{text:"/",color:"red"},{score:{name:"@s",objective:"mana_max"},color:"red"},{text:"✨   ",color:"red"}],
   {text:"⬇️   ",color:"yellow"},
