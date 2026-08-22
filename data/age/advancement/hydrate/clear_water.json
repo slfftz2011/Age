@@ -24,6 +24,6 @@
     }
   },
   "rewards": {
-    "function": "age:thirst/hydrate/clear_water"
+    "function": "age:state/thirst/hydrate/clear_water"
   }
 }
