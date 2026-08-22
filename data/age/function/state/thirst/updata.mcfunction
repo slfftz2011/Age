@@ -21,7 +21,7 @@ execute if score @s thirst_buff_timer matches 1.. if score @s food_diff matches 
 execute if score @s thirst_buff_timer matches 1.. if score @s sat_diff matches 1.. run scoreboard players remove @s thirst 1
 
 execute if score @s thirst matches ..0 run scoreboard players set @s thirst 0
-execute if score @s thirst matches 21.. run scoreboard players set @s thirst 20
+execute if score @s thirst >= @s thirst_max run scoreboard players operation @s thirst = @s thirst_max
 
 execute if score @s thirst_buff_timer matches 1.. run scoreboard players add @s thirst_buff_timer -1
 execute if score @s thirst_buff_timer matches ..0 run scoreboard players set @s thirst_buff_timer 0
