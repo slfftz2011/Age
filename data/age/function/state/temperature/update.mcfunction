@@ -47,6 +47,8 @@ scoreboard players operation @s temp_delta -= @s temp_prev
 # 11. 更新上次温度
 execute if score @s temperature matches 72.. if score @s temp_prev matches 54..71 run function age:state/temperature/debuff/stroke
 execute if score @s temperature matches 54..71 if score @s temp_prev matches 24..53 run function age:state/temperature/debuff/scorch
+execute if score @s temperature matches 10..23 if score @s temp_prev matches 24..53 run function age:state/temperature/debuff/chill
+execute if score @s temperature matches ..9 if score @s temp_prev matches 10..23 run function age:state/temperature/debuff/frozen
 
 
 scoreboard players operation @s temp_prev = @s temperature
