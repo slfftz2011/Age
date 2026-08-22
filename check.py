@@ -62,6 +62,8 @@ def scan_mcfunction(file_path):
         # execute if/unless score <实体> <记分板1> <op> <实体> <记分板2>
         # 捕获两个记分板
         re.compile(r'(?:if|unless)\s+score\s+\S+\s+([^\s]+)\s+[+\-*/%=&><^]+?\s+\S+\s+([^\s]+)'),
+        # execute if/unless score matches <数值范围>
+re.compile(r'(?:if|unless)\s+score\s+\S+\s+([^\s]+)\s+matches\s+[^\d\s]+'),
     ]
     
     # 标签引用
