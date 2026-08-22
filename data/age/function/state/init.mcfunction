@@ -4,7 +4,7 @@ scoreboard objectives add global_state_timer dummy
 
 scoreboard objectives add weather_clear_timer dummy
 scoreboard objectives add time_offset dummy
-scoreboard objectives add time_day dummy
+scoreboard objectives add time_of_day dummy
 
 
 
