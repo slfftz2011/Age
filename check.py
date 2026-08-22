@@ -254,7 +254,6 @@ def main():
     for name, file_path, line in struct_refs:
         struct_file = STRUCTURE_DIR / f"{name}.nbt"
         if not struct_file.exists():
-            missing_file.exists():
             missing_structs.append((name, file_path, line))
     if missing_structs:
         print("⚠️ 缺失的结构文件：")
