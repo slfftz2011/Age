@@ -24,6 +24,6 @@
     }
   },
   "rewards": {
-    "function": "age:thirst/hydrate/purified_water"
+    "function": "age:state/thirst/hydrate/purified_water"
   }
 }
