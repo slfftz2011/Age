@@ -49,7 +49,7 @@ def scan_mcfunction(file_path):
     
     # 记分板使用（各种命令）
     use_patterns = [
-        # scoreboard players ... <objective>
+    # scoreboard players ... <objective>
         re.compile(r'scoreboard\s+players\s+add\s+\S+\s+([^\s]+)'),
         re.compile(r'scoreboard\s+players\s+remove\s+\S+\s+([^\s]+)'),
         re.compile(r'scoreboard\s+players\s+set\s+\S+\s+([^\s]+)'),
@@ -59,11 +59,14 @@ def scan_mcfunction(file_path):
         re.compile(r'scoreboard\s+players\s+enable\s+\S+\s+([^\s]+)'),
         re.compile(r'scoreboard\s+players\s+display\s+\S+\s+([^\s]+)'),
         re.compile(r'scoreboard\s+players\s+\w+\s+\S+\s+([^\s]+)'),
-        # execute if/unless score <实体> <记分板1> <op> <实体> <记分板2>
-        # 捕获两个记分板
+    # execute store (result|success) score <实体> <记分板>
+        re.compile(r'execute\s+store\s+(?:result|success)\s+score\s+\S+\s+([^\s]+)'),
+    # execute if/unless score <实体> <记分板> <op> <实体> <记分板> (比较运算符)
         re.compile(r'(?:if|unless)\s+score\s+\S+\s+([^\s]+)\s+[+\-*/%=&><^]+?\s+\S+\s+([^\s]+)'),
-        # execute if/unless score matches <数值范围>
-re.compile(r'(?:if|unless)\s+score\s+\S+\s+([^\s]+)\s+matches\s+[^\d\s]+'),
+    # execute if/unless score <实体> <记分板> matches <数值范围> (仅一个记分板)
+        re.compile(r'(?:if|unless)\s+score\s+\S+\s+([^\s]+)\s+matches\s+[^\s]+'),
+    # 通用捕获：score 子句（兜底）
+        re.compile(r'score\s+\S+\s+([^\s]+)'),
     ]
     
     # 标签引用
