@@ -3,7 +3,7 @@
     "title": "wasted_water"
     "description": "",
     "icon": {
-      "id": "minecraft:water_bottle"
+      "id": "minecraft:potion"
     },
     "background": "minecraft:block/water",
     "show_toast": false,
@@ -15,7 +15,10 @@
       "trigger": "minecraft:consume_item",
       "conditions": {
         "item": {
-          "items": "minecraft:water_bottle"
+          "items": "minecraft:potion",
+          "components": {
+            "minecraft:potion_contents": "water"
+          }
         }
       }
     }
