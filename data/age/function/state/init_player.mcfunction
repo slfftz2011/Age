@@ -9,10 +9,10 @@ scoreboard players set @s energy_max 20
 
 
 scoreboard players set @s temperature 50
-scoreboard players set @s temperature_prev 50
-scoreboard players set @s temperature_delta 0
-scoreboard players set @s temperature_trend 0
-scoreboard players set @s temperature_timer 0
+scoreboard players set @s temp_prev 50
+scoreboard players set @s temp_delta 0
+scoreboard players set @s temp_trend 0
+scoreboard players set @s temp_timer 0
 
 # 记录上一次值（用于检测变化）
 scoreboard players operation @s thirst_prev = @s thirst
