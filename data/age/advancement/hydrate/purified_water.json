@@ -1,0 +1,29 @@
+{
+  "display": {
+    "title": "purified_water"
+    "description": "",
+    "icon": {
+      "id": "minecraft:water_bottle"
+    },
+    "background": "minecraft:block/water",
+    "show_toast": false,
+    "announce_to_chat": false,
+    "hidden": true
+  },
+  "criteria": {
+    "drink": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": "minecraft:potion",
+          "components": {
+             "minecraft:potion_contents": "thick"
+          }     
+        }
+      }
+    }
+  },
+  "rewards": {
+    "function": "age:thirst/hydrate/purified_water"
+  }
+}
