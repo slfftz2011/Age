@@ -1,0 +1,15 @@
+{
+  "criteria": {
+    "drink": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": "minecraft:water_bottle"
+        }
+      }
+    }
+  },
+  "rewards": {
+    "function": "age:thirst/hydrate/wasted_water"
+  }
+}
