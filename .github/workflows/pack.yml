@@ -121,6 +121,5 @@ jobs:
           allowUpdates: true
           updateOnlyUnreleased: false
           makeLatest: ${{ steps.set_tag.outputs.is_hotfix == 'false' }}
-          omitName: ${{ steps.set_tag.outputs.is_hotfix == 'true' }}
-          omitBody: ${{ steps.set_tag.outputs.is_hotfix == 'true' }}
           token: ${{ secrets.GITHUB_TOKEN }}
+    
