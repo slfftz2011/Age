@@ -45,6 +45,8 @@ scoreboard players operation @s temp_delta = @s temperature
 scoreboard players operation @s temp_delta -= @s temp_prev
 
 # 11. 更新上次温度
+execute if score @s temperature matches 72.. if score @s temp_prev matches 65..71 run function age:state/temperature/debuff/stroke
+
 scoreboard players operation @s temp_prev = @s temperature
 
 # 12. 判定趋势
