@@ -21,6 +21,6 @@
     }
   },
   "rewards": {
-    "function": "age:thirst/hydrate/refleshing"
+    "function": "age:state/thirst/hydrate/refleshing"
   }
 }
