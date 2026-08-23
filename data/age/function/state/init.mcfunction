@@ -58,8 +58,6 @@ scoreboard objectives add energy_prev dummy
 
 # ---- debuff ----
 scoreboard objectives add heatstroke dummy
-scoreboard objectives add hot dummy
-scoreboard objectives add scorch dummy
 scoreboard objectives add frozen dummy
 
 
