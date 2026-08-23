@@ -6,7 +6,8 @@ scoreboard players add @a global_state_timer 1
 
 # 秒级更新
 execute as @a if score @s global_state_timer matches 20.. run function age:state/temperature/weather_timer
-execute if score @s global_state_timer matches 20.. run function age:state/temperature/debuff
+execute as @a if score @s global_state_timer matches 20.. run function age:state/temperature/debuff
+execute as @a if score @s global_state_timer matches 20.. run function age:state/thirst/debuff
 
 
 # 温度计时器（每10 tick）
