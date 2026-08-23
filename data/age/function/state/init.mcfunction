@@ -60,6 +60,9 @@ scoreboard objectives add energy_prev dummy
 scoreboard objectives add heatstroke dummy
 scoreboard objectives add frozen dummy
 
+scoreboard objectives add dry dummy
+scoreboard objectives add famish dummy
+
 
 # 显示计时器
 scoreboard players set #state time 0
