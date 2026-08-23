@@ -28,6 +28,13 @@ execute if score @s thirst_buff_timer matches ..0 run scoreboard players set @s 
 
 function age:state/thirst/hydrate
 
+execute if score @s thirst matches ..2 if score @s thirst_prev matches 3.. run function age:state/thirst/debuff/arid_on
+
+
+execute if score @s thirst_prev matches ..2 if score @s thirst matches 3.. run function age:state/thirst/debuff/arid_off
+
+scoreboard players operation @s thirst_prev = @s thirst
+
 # 更新记录
 scoreboard players operation @s food_prev = @s food_cur
 scoreboard players operation @s sat_prev = @s sat_cur
