@@ -13,8 +13,10 @@ scoreboard players operation @s sat_diff -= @s sat_cur
 # 应用食物消耗导致的口渴减少
 # 饥饿值下降
 execute if score @s food_diff matches 1.. run scoreboard players remove @s thirst 1
+execute if score @s food_diff matches 1.. run scoreboard players add @s temperature 2
 # 饱食度下降
 execute if score @s sat_diff matches 1.. run scoreboard players remove @s thirst 1
+execute if score @s food_diff matches 1.. run scoreboard players add @s temperature 2
 
 # 如果存在口渴buff（thirst_buff_timer > 0），额外再减1
 execute if score @s thirst_buff_timer matches 1.. if score @s food_diff matches 1.. run scoreboard players remove @s thirst 1
