@@ -5,6 +5,7 @@ from pathlib import Path
 TAG_STRENGTH = {
     "hot_strong": 20,
     "hot_medium": 12,
+    "hot_medium_lit": 12,
     "hot_weak": 4,
     "cold_strong": -12,
     "cold_medium": -8,
@@ -13,7 +14,7 @@ TAG_STRENGTH = {
 
 RANGE = 3
 CONTACT_DIST = 1.0
-OUTPUT = Path("data/age/functions/state/temperature/hot_cold.mcfunction")
+OUTPUT = Path("function/state/temperature/hot_cold.mcfunction")
 
 def generate():
     lines = ["# ===== 热源/冷源检测（自动生成） =====", ""]
@@ -32,7 +33,10 @@ def generate():
                     value = round(strength * factor)
                     if value == 0:
                         continue
-                    cmd = f"execute if block ~{dx} ~{dy} ~{dz} #age:{tag} run scoreboard players"
+                    if tag.find("lit") != -1:
+                        cmd = f"execute if block ~{dx} ~{dy} ~{dz} #age:{tag}[lit=true] run scoreboard players"
+                    else:
+                        cmd = f"execute if block ~{dx} ~{dy} ~{dz} #age:{tag} run scoreboard players"
                     if value > 0:
                         lines.append(f"{cmd} add @s env_temp {value}")
                     else:

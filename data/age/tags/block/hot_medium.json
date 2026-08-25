@@ -2,9 +2,6 @@
   "values": [
     "minecraft:campfire",
     "minecraft:soul_campfire",
-    "minecraft:magma_block",
-    "minecraft:furnace[lit=true]",
-    "minecraft:blast_furnace[lit=true]",
-    "minecraft:smoker[lit=true]"
+    "minecraft:magma_block"
   ]
 }
