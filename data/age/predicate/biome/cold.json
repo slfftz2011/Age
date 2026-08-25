@@ -1,6 +1,6 @@
 {
   "condition": "minecraft:location_check",
   "predicate": {
-    "biome": "#age:cold_biomes"
+    "biome": "#mine:cold_biomes"
   }
 }
