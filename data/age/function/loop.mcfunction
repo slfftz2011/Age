@@ -116,7 +116,7 @@ kill @e[type=item,nbt={Item:{id:"minecraft:barrier"}}]
 execute as @a run function age:state/updata
 
 scoreboard players add #state time 1
-execute if score #state time matches 100.. run function age:state/show
+execute if score #state time matches 50.. run function age:state/show
 
 
 # 其他

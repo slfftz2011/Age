@@ -14,7 +14,7 @@ NAMESPACE = "age"
 
 FUNCTION_DIR = PACK_ROOT / "data" / NAMESPACE / "function"
 TAG_DIR = PACK_ROOT / "data" / NAMESPACE / "tags"
-PREDICATE_DIR = PACK_ROOT / "data" / NAMESPACE / "predicates"
+PREDICATE_DIR = PACK_ROOT / "data" / NAMESPACE / "predicate"
 ADVANCEMENT_DIR = PACK_ROOT / "data" / NAMESPACE / "advancement"
 LOOT_TABLE_DIR = PACK_ROOT / "data" / NAMESPACE / "loot_table"
 STRUCTURE_DIR = PACK_ROOT / "data" / NAMESPACE / "structure"
