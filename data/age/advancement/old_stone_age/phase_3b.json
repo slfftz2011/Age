@@ -40,7 +40,15 @@
           {
             "items": "minecraft:stick"
           }
-        ]
+        ],
+        "player": {
+          "type": "player",
+          "type_specific": {
+            "advancements": {
+              "age:old_stone_age/phase_3b_unlocker": true
+            }
+          }
+        }
       }
     }
   },

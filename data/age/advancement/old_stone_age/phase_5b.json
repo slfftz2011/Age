@@ -24,13 +24,18 @@
   "parent": "age:old_stone_age/phase_5b_unlocker",
   "criteria": {
     "kill_monster_ranged": {
-      "trigger": "minecraft:player_killed_entity",
+      "trigger": "minecraft:killed_by_arrow",
       "conditions": {
-        "entity": {
+        "victims": {
           "type": "#age:monster"
         },
-        "killing_blow": {
-          "is_projectile": true
+        "player": {
+          "type": "player",
+          "type_specific": {
+            "advancements": {
+              "age:old_stone_age/phase_5b_unlocker": true
+            }
+          }
         }
       }
     }

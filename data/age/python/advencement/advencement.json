@@ -112,9 +112,17 @@
                                     "eat_raw_food": {
                                         "trigger": "minecraft:consume_item",
                                         "conditions": {
-                                          "item": {
-                                            "items": ["minecraft:porkchop","minecraft:beef","minecraft:mutton","minecraft:chicken","minecraft:rabbit","minecraft:rotten_flesh"]
-                                          }
+                                            "item": {
+                                                "items": ["minecraft:porkchop","minecraft:beef","minecraft:mutton","minecraft:chicken","minecraft:rabbit","minecraft:rotten_flesh"]
+                                            },
+                                            "player": {
+                                                "type": "player",
+                                                "type_specific": {
+                                                    "advancements": {
+                                                        "age:old_stone_age/phase_3a_unlocker": true
+                                                    }
+                                                }
+                                            }
                                         }
                                     }
                                 }
@@ -165,7 +173,15 @@
                                                 {
                                                     "items": "minecraft:stick"
                                                 }
-                                            ]
+                                            ],
+                                            "player": {
+                                                "type": "player",
+                                                "type_specific": {
+                                                    "advancements": {
+                                                        "age:old_stone_age/phase_3b_unlocker": true
+                                                    }
+                                                }
+                                            }
                                         }
                                     }
                                 }
@@ -189,7 +205,15 @@
                                                         {
                                                             "items": "minecraft:stick"
                                                         }
-                                                    ]
+                                                    ],
+                                                    "player": {
+                                                        "type": "player",
+                                                        "type_specific": {
+                                                            "advancements": {
+                                                                "age:old_stone_age/phase_4b_unlocker": true
+                                                            }
+                                                        }
+                                                    }
                                                 }
                                             }
                                         }
@@ -203,17 +227,22 @@
                                                 "hidden": false,
                                                 "criteria": {
                                                     "kill_monster_ranged": {
-                                                      "trigger": "minecraft:player_killed_entity",
-                                                      "conditions": {
-                                                        "entity": {
-                                                          "type": "#age:monster"
-                                                        },
-                                                        "killing_blow": {
-                                                          "is_projectile": true
+                                                        "trigger": "minecraft:killed_by_arrow",
+                                                        "conditions": {
+                                                            "victims": {
+                                                                "type": "#age:monster"
+                                                            },
+                                                            "player": {
+                                                                "type": "player",
+                                                                "type_specific": {
+                                                                    "advancements": {
+                                                                        "age:old_stone_age/phase_5b_unlocker": true
+                                                                    }
+                                                                }
+                                                            }
                                                         }
-                                                      }
                                                     }
-                                                  }
+                                                }
                                             },
                                             "child": []
                                         }
