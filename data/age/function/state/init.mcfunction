@@ -32,8 +32,8 @@ scoreboard objectives add temp_humid_dir dummy
 scoreboard objectives add metal_modify dummy
 
 # 口渴值
-scoreboard objectives add thirst_timer dummy       # 下雨计时器
-scoreboard objectives add thirst_buff_timer dummy  # 解渴效果计时器
+scoreboard objectives add thirst_timer dummy
+scoreboard objectives add thirst_buff_timer dummy
 
 
 # ---- 主记分板 ----

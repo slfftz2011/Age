@@ -53,7 +53,7 @@ execute if score @s time_of_day matches 12001..24000 run scoreboard players add 
 execute store result score @s temp_y run data get entity @s Pos[1] 100
 scoreboard players operation @s temp_height = @s temp_y
 scoreboard players operation @s temp_height /= #height_div temperature.tmp
-execute if score @s temp_y matches 81.. run scoreboard players remove @s env_temp @s temp_height
+execute if score @s temp_y matches 81.. run scoreboard players operation @s env_temp -= @s temp_height
 
 # 7. 限制范围 0~80
 execute if score @s env_temp matches 81.. run scoreboard players set @s env_temp 80
