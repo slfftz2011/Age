@@ -30,8 +30,8 @@
           "type": "#age:monster"
         },
         "player": {
-          "type": "player",
           "type_specific": {
+            "type": "player",
             "advancements": {
               "age:old_stone_age/phase_5b_unlocker": true
             }

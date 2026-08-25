@@ -36,8 +36,8 @@
           }
         ],
         "player": {
-          "type": "player",
           "type_specific": {
+            "type": "player",
             "advancements": {
               "age:old_stone_age/phase_4b_unlocker": true
             }
