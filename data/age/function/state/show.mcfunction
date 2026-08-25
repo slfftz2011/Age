@@ -31,7 +31,7 @@ execute as @a if score @s temperature matches 24..53 if score @s temp_trend matc
 execute as @a if score @s temperature matches 24..53 if score @s temp_trend matches 0 run title @s actionbar [
   [{score:{name:"@s",objective:"thirst"},color:"aqua"},{text:"/",color:"aqua"},{score:{name:"@s",objective:"thirst_max"},color:"aqua"},{text:"💧   ",color:"aqua"}],
   [{score:{name:"@s",objective:"mana"},color:"red"},{text:"/",color:"red"},{score:{name:"@s",objective:"mana_max"},color:"red"},{text:"✨   ",color:"red"}],
-  {text:"🟡️   ",color:"yellow"},
+  {text:"🔴   ",color:"yellow"},
   [{score:{name:"@s",objective:"energy"},color:"gold"},{text:"/",color:"gold"},{score:{name:"@s",objective:"energy_max"},color:"gold"},{text:"⚡   ",color:"gold"}],
   [{score:{name:"@s",objective:"sanity"},color:"light_purple"},{text:"/",color:"light_purple"},{score:{name:"@s",objective:"sanity_max"},color:"light_purple"},{text:"🧠",color:"light_purple"}]
 ]
@@ -49,7 +49,7 @@ execute as @a if score @s temperature matches 24..53 if score @s temp_trend matc
 execute as @a if score @s temperature matches 10..23 run title @s actionbar [
   [{score:{name:"@s",objective:"thirst"},color:"aqua"},{text:"/",color:"aqua"},{score:{name:"@s",objective:"thirst_max"},color:"aqua"},{text:"💧   ",color:"aqua"}],
   [{score:{name:"@s",objective:"mana"},color:"red"},{text:"/",color:"red"},{score:{name:"@s",objective:"mana_max"},color:"red"},{text:"✨   ",color:"red"}],
-  {text:"🔵   ",color:"aqua"},
+  {text:"🔴   ",color:"aqua"},
   [{score:{name:"@s",objective:"energy"},color:"gold"},{text:"/",color:"gold"},{score:{name:"@s",objective:"energy_max"},color:"gold"},{text:"⚡   ",color:"gold"}],
   [{score:{name:"@s",objective:"sanity"},color:"light_purple"},{text:"/",color:"light_purple"},{score:{name:"@s",objective:"sanity_max"},color:"light_purple"},{text:"🧠",color:"light_purple"}]
 ]
