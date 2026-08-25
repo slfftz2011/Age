@@ -1,1 +1,1 @@
-tag remove @s heatstroke
+tag @s remove heatstroke

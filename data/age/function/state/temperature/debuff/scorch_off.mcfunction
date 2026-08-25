@@ -1,1 +1,1 @@
-tag remove @s scorch
+tag @s remove scorch
