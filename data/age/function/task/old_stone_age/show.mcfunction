@@ -7,12 +7,12 @@ execute if score old_stone_age task matches 0 run bossbar set old_stone_age name
 execute if score old_stone_age task matches 57 run bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ", {text:"无",color:"gray"}]
 
 # ----- 狩猎任务（个人） -----
-execute if score old_stone_age task matches 1 run bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ", {text:"[狩猎] 击杀 猪 x5",color:"#554411"}]
-execute if score old_stone_age task matches 2 run bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ", {text:"[狩猎] 击杀 羊 x5",color:"#554411"}]
-execute if score old_stone_age task matches 3 run bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ", {text:"[狩猎] 击杀 牛 x5",color:"#554411"}]
-execute if score old_stone_age task matches 4 run bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ", {text:"[狩猎] 击杀 兔 x3",color:"#554411"}]
-execute if score old_stone_age task matches 5 run bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ", {text:"[狩猎] 击杀 马 x3",color:"#554411"}]
-execute if score old_stone_age task matches 6 run bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ", {text:"[狩猎] 击杀 鸡 x5",color:"#554411"}]
+execute if score old_stone_age task matches 1 run bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ", {text:"[狩猎] 击杀 猪 x5",color:"#CFCF5F"}]
+execute if score old_stone_age task matches 2 run bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ", {text:"[狩猎] 击杀 羊 x5",color:"#CFCF5F"}]
+execute if score old_stone_age task matches 3 run bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ", {text:"[狩猎] 击杀 牛 x5",color:"#CFCF5F"}]
+execute if score old_stone_age task matches 4 run bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ", {text:"[狩猎] 击杀 兔 x3",color:"#CFCF5F"}]
+execute if score old_stone_age task matches 5 run bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ", {text:"[狩猎] 击杀 马 x3",color:"#CFCF5F"}]
+execute if score old_stone_age task matches 6 run bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ", {text:"[狩猎] 击杀 鸡 x5",color:"#CFCF5F"}]
 
 # ----- 围剿任务（队伍共享，初始显示 0/目标） -----
 execute if score old_stone_age task matches 7 run bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ", {text:"[围剿] 共同击杀 僵尸 0/5",color:"red"}]
