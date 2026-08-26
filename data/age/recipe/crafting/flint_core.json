@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "key": {
+      "#": "minecraft:disc_fragment_5"
+    },
+    "pattern": [
+      " # ",
+      "###",
+      " # "
+    ],
+    "result": {
+      "count": 1,
+      "id": "minecraft:arrow",
+      "components": {
+        "minecraft:item_name": "燧石核", 
+        "minecraft:lore": [
+          {"text":"一块由燧石敲成的球状器","color":"green"},
+          ["「通过",{"text":"旧石器时代","color":"#424529"},"途径获取」"]
+        ], 
+        "minecraft:custom_data": {"special": 0, "from": "old_stone_age"}}
+    }
+  }

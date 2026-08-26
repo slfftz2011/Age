@@ -1,0 +1,24 @@
+{
+    "type": "crafting_shapeless",
+    "category": "misc",
+    "group": "string",
+    "ingredients": ["minecraft:melon"],
+    "result": {
+        "id": "minecraft:melon",
+        "components":{
+            "minecraft:item_name": "去皮西瓜",
+            "minecraft:custom_data": {
+                "from": "old_stone_age",
+                "special": 0
+            },
+            "minecraft:food": {
+              "nutrition": 8,
+              "saturation": 5
+            },
+            "minecraft:consumable": {
+                "animation":"eat",
+                "consume_seconds": 6
+            }
+        }
+    }
+}

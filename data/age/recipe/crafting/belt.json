@@ -10,11 +10,7 @@
     "result": {
         "id": "minecraft:leather",
         "components":{
-            "minecraft:custom_name": {
-                "text": "皮带",
-                "color": "#424529",
-                "italic": false
-            },
+            "minecraft:item_name": "皮带",
             "minecraft:custom_data": {
                 "from": "old_stone_age",
                 "special": 0

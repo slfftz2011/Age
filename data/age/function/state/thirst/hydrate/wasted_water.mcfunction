@@ -1,4 +1,4 @@
-scoreboard players add @s thirst 4
+scoreboard players add @s thirst 6
 scoreboard players remove @s temperature 3
 execute if score @s thirst >= @s thirst_max run scoreboard players operation @s thirst = @s thirst_max
 scoreboard players add @s thirst_buff_timer 6000

@@ -5,10 +5,7 @@
     "result": {
         "id": "minecraft:flint",
         "components":{
-            "minecraft:custom_name": {
-                "text": "打制石器件",
-                "italic": false
-            },
+            "minecraft:item_name": "打制石器件",
             "minecraft:custom_data": {
                 "from": "old_stone_age",
                 "special": 1

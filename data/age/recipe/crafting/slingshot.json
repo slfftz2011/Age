@@ -12,11 +12,7 @@
     "result": {
         "id": "minecraft:bow",
         "components":{
-            "minecraft:custom_name": {
-                "text": "弹弓",
-                "color": "#424529",
-                "italic": false
-            },
+            "minecraft:item_name": "弹弓",
             "minecraft:custom_data": {
                 "from": "old_stone_age",
                 "special": 0

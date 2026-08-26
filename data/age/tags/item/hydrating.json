@@ -3,6 +3,15 @@
     "minecraft:carrot",
     "minecraft:potato",
     "minecraft:beetroot",
-    "minecraft:pumpkin"
+    "minecraft:pumpkin",
+    "minecraft:rotten_flesh",
+    "minecraft:porkchop",
+    "minecraft:beef",
+    "minecraft:mutton",
+    "minecraft:rabbit",
+    "minecraft:chicken",
+    "minecraft:cod",
+    "minecraft:salmon",
+    "minecraft:tropical_fish"
   ]
 }

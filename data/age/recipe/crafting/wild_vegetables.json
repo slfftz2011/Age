@@ -5,10 +5,7 @@
     "result": {
         "id": "minecraft:beetroot",
         "components":{
-            "minecraft:custom_name": {
-                "text": "野菜",
-                "italic": false
-            },
+            "minecraft:item_name": "野菜",
             "minecraft:custom_data": {
                 "from": "old_stone_age",
                 "special": 0

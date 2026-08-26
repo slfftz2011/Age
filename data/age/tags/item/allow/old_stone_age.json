@@ -117,6 +117,8 @@
         "minecraft:totem_of_undying",
         "#minecraft:wool",
         "minecraft:barrier",
-        "minecraft:rooted_dirt"
+        "minecraft:rooted_dirt",
+        "minecraft:disc_fragment_5",
+        "minecraft:potion"
     ]
 }

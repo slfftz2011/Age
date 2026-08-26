@@ -257,19 +257,18 @@
                             "entity": "this",
                             "lore": [
                                 {"text":"一块由燧石敲成的球状器","color":"green"},
-                                ["「通过",{"text":"旧石器时代","color":"#424529"},"途径获取」"],
-                                ["制作者: ",{"type":"selector","selector":"@s"}]
+                                ["「通过",{"text":"旧石器时代","color":"#424529"},"途径获取」"]
                             ],
                             "mode": "replace_all"
                         },
                         {
                             "function": "set_name",
-                            "name": {"text":"燧石核","color":"#505339"},
+                            "name": "燧石核",
                             "target":"item_name"
                         }
                     ],
                     "name": "minecraft:arrow",
-                    "weight": 20
+                    "weight": 24
                 },
                 {
                     "type": "item",
@@ -293,11 +292,11 @@
                         },
                         {
                             "function": "set_name",
-                            "name": {"text":"燧石废料","color":"#505339"},
+                            "name": "燧石废料",
                             "target":"item_name"
                         }
                     ],
-                    "name": "minecraft:flint",
+                    "name": "minecraft:disc_fragment_5",
                     "weight": 84
                 },
                 {
