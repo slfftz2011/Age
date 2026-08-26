@@ -27,3 +27,5 @@ scoreboard players operation @s energy_prev = @s energy
 
 # 重置计时器
 scoreboard players set @s global_state_timer 0
+#重置死亡计数
+scoreboard players reset @s death
