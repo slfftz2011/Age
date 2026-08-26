@@ -27,5 +27,11 @@ scoreboard players operation @s energy_prev = @s energy
 
 # 重置计时器
 scoreboard players set @s global_state_timer 0
+scoreboard players set @s thirst_buff_timer 0
 #重置死亡计数
 scoreboard players reset @s death
+function age:state/temperature/debuff/chill_off
+function age:state/temperature/debuff/frozen_off
+function age:state/temperature/debuff/heatstroke_off
+function age:state/temperature/debuff/scorch_off
+function age:state/thirst/debuff/arid_off
