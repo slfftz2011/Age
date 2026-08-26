@@ -100,6 +100,8 @@ bossbar set modern_age value 1
 
 
 # 记分板初始化
+scoreboard objectives add death deathCount "死亡榜"
+
 scoreboard objectives add time dummy "计时器"
 
 scoreboard objectives add task dummy "随机任务"
