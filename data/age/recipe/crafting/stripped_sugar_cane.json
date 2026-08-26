@@ -2,22 +2,22 @@
     "type": "crafting_shapeless",
     "category": "misc",
     "group": "string",
-    "ingredients": ["minecraft:pumpkin_seeds"],
+    "ingredients": ["minecraft:sugar_cane"],
     "result": {
-        "id": "minecraft:pumpkin_seeds",
+        "id": "minecraft:sugar_cane",
         "components":{
-            "minecraft:item_name": "去皮南瓜种子",
+            "minecraft:item_name": "去皮甘蔗",
             "minecraft:custom_data": {
                 "from": "old_stone_age",
                 "special": 0
             },
             "minecraft:food": {
               "nutrition": 3,
-              "saturation": 1
+              "saturation": 3
             },
             "minecraft:consumable": {
                 "animation":"eat",
-                "consume_seconds": 3
+                "consume_seconds": 5
             }
         }
     }
