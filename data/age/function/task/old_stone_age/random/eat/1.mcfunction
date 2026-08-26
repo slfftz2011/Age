@@ -10,6 +10,7 @@ execute unless entity @s[tag=task_done] run scoreboard players operation @s veg_
 
 # 3. 显示进度（使用主记分板，同样只有未完成且分数变化时才更新）
 execute unless entity @s[tag=task_done] unless score @s veg_eat = @s veg_updata run title @s actionbar ["",{"text":"🍽️ 食用: 蔬菜 ","color":"#55FF55"},{"score":{"name":"@s","objective":"veg_eat"},"color":"gray"},{"text":"/8","color":"gray"}]
+tag @s add actionbar_block
 execute unless entity @s[tag=task_done] run scoreboard players operation @s veg_updata = @s veg_eat
 
 # 4. 检测完成
