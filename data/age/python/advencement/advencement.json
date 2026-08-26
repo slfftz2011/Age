@@ -229,9 +229,9 @@
                                                     "kill_monster_ranged": {
                                                         "trigger": "minecraft:killed_by_arrow",
                                                         "conditions": {
-                                                            "victims": {
+                                                            "victims": [{
                                                                 "type": "#age:monster"
-                                                            },
+                                                            }],
                                                             "player": {
                                                                 "type_specific": {
                                                                     "type": "player",
