@@ -1,7 +1,7 @@
 {
     "type": "crafting_shapeless",
     "category": "misc",
-    "group": "string",
+    "group": "strip",
     "ingredients": ["minecraft:melon"],
     "result": {
         "id": "minecraft:melon",
