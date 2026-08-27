@@ -5,9 +5,9 @@
       "conditions": {
         "items": [{
           "items": [
-            "minecraft:eggs",
-            "minecraft:blue_eggs",
-            "minecraft:brown_eggs"
+            "minecraft:egg",
+            "minecraft:blue_egg",
+            "minecraft:brown_egg"
           ]
         }]
       }
@@ -15,9 +15,9 @@
   },
   "rewards": {
     "recipes": [
-        "age:crafting/stripped_eggs",
-        "age:crafting/stripped_blue_eggs",
-        "age:crafting/stripped_brown_eggs"
+        "age:crafting/stripped_egg",
+        "age:crafting/stripped_blue_egg",
+        "age:crafting/stripped_brown_egg"
     ]
   }
 }

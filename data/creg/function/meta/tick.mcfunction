@@ -6,7 +6,7 @@
 ##
 
 execute as @a[gamemode=!creative,gamemode=!spectator] store result score @s creg.hunger run data get entity @s foodLevel
-execute as @a[tag=!creg.givehealth,gamemode=!creative,gamemode=!spectator] store result score @s creg.health.max.main run attribute @s generic.max_health base get
+execute as @a[tag=!creg.givehealth,gamemode=!creative,gamemode=!spectator] store result score @s creg.health.max.main run attribute @s minecraft:max_health base get
 execute as @a[tag=!creg.givehealth,gamemode=!creative,gamemode=!spectator] store result score @s creg.health.curr.main run data get entity @s Health
 
 

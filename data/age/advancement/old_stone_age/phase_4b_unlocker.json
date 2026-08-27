@@ -25,6 +25,6 @@
   },
   "rewards": {
     "function": "age:task/old_stone_age/main/4b_unlock",
-    "recipes": "age:crafting/slingshot"
+    "recipes": ["age:crafting/slingshot"]
   }
 }
