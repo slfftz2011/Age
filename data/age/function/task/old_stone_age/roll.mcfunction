@@ -138,6 +138,18 @@ execute if score old_stone_age task matches 26 run scoreboard objectives remove 
 execute if score old_stone_age task matches 27 run scoreboard objectives remove berry_sweet
 execute if score old_stone_age task matches 27 run scoreboard objectives remove berry_glow
 
+execute if score old_stone_age task matches 50 run scoreboard objectives remove oak_leaves
+execute if score old_stone_age task matches 50 run scoreboard objectives remove acacia_leaves
+execute if score old_stone_age task matches 50 run scoreboard objectives remove azalea_leaves
+execute if score old_stone_age task matches 50 run scoreboard objectives remove birch_leaves
+execute if score old_stone_age task matches 50 run scoreboard objectives remove cherry_leaves
+execute if score old_stone_age task matches 50 run scoreboard objectives remove dark_oak_leaves
+execute if score old_stone_age task matches 50 run scoreboard objectives remove flowering_azalea_leaves
+execute if score old_stone_age task matches 50 run scoreboard objectives remove jungle_leaves
+execute if score old_stone_age task matches 50 run scoreboard objectives remove mangrove_leaves
+execute if score old_stone_age task matches 50 run scoreboard objectives remove pale_oak_leaves
+execute if score old_stone_age task matches 50 run scoreboard objectives remove spruce_leaves
+
 
 execute store result score old_stone_age task run random value 0..57
 
@@ -213,13 +225,25 @@ execute if score old_stone_age task matches 47 run scoreboard objectives add red
 
 execute if score old_stone_age task matches 48 run scoreboard objectives add dirt_mine minecraft.mined:minecraft.dirt "采掘泥土"
 execute if score old_stone_age task matches 49 run scoreboard objectives add grass_mine minecraft.mined:minecraft.grass_block "采掘草方块"
-execute if score old_stone_age task matches 50 run scoreboard objectives add leaves_mine minecraft.mined:minecraft.oak_leaves "采掘树叶"
+execute if score old_stone_age task matches 50 run scoreboard objectives add leaves_mine dummy "采掘树叶"
 execute if score old_stone_age task matches 51 run scoreboard objectives add log_mine minecraft.mined:minecraft.oak_log "采掘原木"
 execute if score old_stone_age task matches 52 run scoreboard objectives add clay_mine minecraft.mined:minecraft.clay "采掘黏土"
 execute if score old_stone_age task matches 53 run scoreboard objectives add sand_mine minecraft.mined:minecraft.sand "采掘沙子"
 execute if score old_stone_age task matches 54 run scoreboard objectives add red_sand_mine minecraft.mined:minecraft.red_sand "采掘红沙"
 execute if score old_stone_age task matches 55 run scoreboard objectives add cobweb_mine minecraft.mined:minecraft.cobweb "采掘蜘蛛网"
 execute if score old_stone_age task matches 56 run scoreboard objectives add gravel_mine minecraft.mined:minecraft.gravel "采掘沙砾"
+
+execute if score old_stone_age task matches 50 run scoreboard objectives add oak_leaves minecraft.mined:minecraft.oak_leaves
+execute if score old_stone_age task matches 50 run scoreboard objectives add acacia_leaves minecraft.mined:minecraft.acacia_leaves
+execute if score old_stone_age task matches 50 run scoreboard objectives add azalea_leaves minecraft.mined:minecraft.azalea_leaves
+execute if score old_stone_age task matches 50 run scoreboard objectives add birch_leaves minecraft.mined:minecraft.birch_leaves
+execute if score old_stone_age task matches 50 run scoreboard objectives add cherry_leaves minecraft.mined:minecraft.cherry_leaves
+execute if score old_stone_age task matches 50 run scoreboard objectives add dark_oak_leaves minecraft.mined:minecraft.dark_oak_leaves
+execute if score old_stone_age task matches 50 run scoreboard objectives add flowering_azalea_leaves minecraft.mined:minecraft.flowering_azalea_leaves
+execute if score old_stone_age task matches 50 run scoreboard objectives add jungle_leaves minecraft.mined:minecraft.jungle_leaves
+execute if score old_stone_age task matches 50 run scoreboard objectives add mangrove_leaves minecraft.mined:minecraft.mangrove_leaves
+execute if score old_stone_age task matches 50 run scoreboard objectives add pale_oak_leaves minecraft.mined:minecraft.pale_oak_leaves
+execute if score old_stone_age task matches 50 run scoreboard objectives add spruce_leaves minecraft.mined:minecraft.spruce_leaves
 
 
 execute if score old_stone_age task matches 1 run scoreboard objectives add pig_updata dummy
@@ -276,7 +300,7 @@ execute if score old_stone_age task matches 47 run scoreboard objectives add red
 
 execute if score old_stone_age task matches 48 run scoreboard objectives add dirt_updata dummy
 execute if score old_stone_age task matches 49 run scoreboard objectives add grass_updata dummy
-execute if score old_stone_age task matches 50 run scoreboard objectives add leaves_updata dummy
+execute if score old_stone_age task matches 50 run scoreboard add add leaves_updata dummy
 execute if score old_stone_age task matches 51 run scoreboard objectives add log_updata dummy
 execute if score old_stone_age task matches 52 run scoreboard objectives add clay_updata dummy
 execute if score old_stone_age task matches 53 run scoreboard objectives add sand_updata dummy
