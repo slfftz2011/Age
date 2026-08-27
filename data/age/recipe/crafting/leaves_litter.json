@@ -1,9 +1,9 @@
 {
     "type": "crafting_shapeless",
     "category": "misc",
-    "ingredients": ["minecraft:sugar_cane","minecraft:sugar_cane","minecraft:sugar_cane"],
+    "ingredients": ["minecraft:leaves_litter","minecraft:leaves_litter","minecraft:leaves_litter"],
     "result": {
-        "id": "minecraft:sugar_cane",
+        "id": "minecraft:leaves_litter",
         "components":{
             "minecraft:item_name": "去皮甘蔗",
             "minecraft:custom_data": {
@@ -11,14 +11,14 @@
                 "special": 0
             },
             "minecraft:food": {
-              "nutrition": 3,
-              "saturation": 3
+              "nutrition": 0,
+              "saturation": 2
             },
             "minecraft:consumable": {
                 "animation":"eat",
-                "consume_seconds": 5
+                "consume_seconds": 4
             }
         },
-        "count": 3
+        "count": 1
     }
 }
