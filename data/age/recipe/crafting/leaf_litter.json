@@ -1,11 +1,11 @@
 {
     "type": "crafting_shapeless",
     "category": "misc",
-    "ingredients": ["minecraft:leaves_litter","minecraft:leaves_litter","minecraft:leaves_litter"],
+    "ingredients": ["minecraft:leaf_litter","minecraft:leaf_litter","minecraft:leaf_litter"],
     "result": {
-        "id": "minecraft:leaves_litter",
+        "id": "minecraft:leaf_litter",
         "components":{
-            "minecraft:item_name": "去皮甘蔗",
+            "minecraft:item_name": "腐殖质",
             "minecraft:custom_data": {
                 "from": "old_stone_age",
                 "special": 0
