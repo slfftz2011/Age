@@ -1,0 +1,17 @@
+{
+  "criteria": {
+    "pickup": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{
+          "items": "minecraft:leaf_litter"
+        }]
+      }
+    }
+  },
+  "rewards": {
+    "recipes": [
+        "age:crafting/leaf_litter"
+    ]
+  }
+}
