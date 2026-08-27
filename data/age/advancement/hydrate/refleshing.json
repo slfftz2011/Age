@@ -1,15 +1,4 @@
 {
-  "display": {
-    "title": "refleshing",
-    "description": "",
-    "icon": {
-      "id": "minecraft:potion"
-    },
-    "background": "minecraft:block/water",
-    "show_toast": false,
-    "announce_to_chat": false,
-    "hidden": true
-  },
   "criteria": {
     "eat": {
       "trigger": "minecraft:consume_item",

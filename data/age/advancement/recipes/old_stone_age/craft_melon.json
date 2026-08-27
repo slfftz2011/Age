@@ -1,0 +1,19 @@
+{
+  "criteria": {
+    "pickup": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{
+          "items": [
+            "minecraft:melon"
+          ]
+        }]
+      }
+    }
+  },
+  "rewards": {
+    "recipes": [
+        "age:crafting/stripped_melon"
+    ]
+  }
+}

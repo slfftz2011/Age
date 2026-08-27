@@ -1,19 +1,19 @@
 {
     "type": "crafting_shapeless",
     "category": "misc",
-    "group": "strip_seeds",
-    "ingredients": ["minecraft:wheat_seeds"],
+    "group": "strip_egg",
+    "ingredients": ["minecraft:blue_egg"],
     "result": {
-        "id": "minecraft:wheat_seeds",
+        "id": "minecraft:blue_egg",
         "components":{
-            "minecraft:item_name": "去壳小麦种子",
+            "minecraft:item_name": "破壳蓝色鸡蛋",
             "minecraft:custom_data": {
                 "from": "old_stone_age",
                 "special": 0
             },
             "minecraft:food": {
-              "nutrition": 1,
-              "saturation": 2
+              "nutrition": 5,
+              "saturation": 3
             },
             "minecraft:consumable": {
                 "animation":"eat",

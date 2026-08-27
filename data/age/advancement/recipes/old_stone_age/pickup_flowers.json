@@ -1,0 +1,17 @@
+{
+  "criteria": {
+    "pickup": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{
+          "items": "#minecraft:small_flowers"
+        }]
+      }
+    }
+  },
+  "rewards": {
+    "recipes": [
+        "age:crafting/wild_vegetables"
+    ]
+  }
+}

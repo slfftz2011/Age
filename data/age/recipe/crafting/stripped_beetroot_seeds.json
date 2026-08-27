@@ -1,12 +1,12 @@
 {
     "type": "crafting_shapeless",
     "category": "misc",
-    "group": "strip",
+    "group": "strip_seeds",
     "ingredients": ["minecraft:beetroot_seeds"],
     "result": {
         "id": "minecraft:beetroot_seeds",
         "components":{
-            "minecraft:item_name": "去皮甜菜种子",
+            "minecraft:item_name": "去壳甜菜种子",
             "minecraft:custom_data": {
                 "from": "old_stone_age",
                 "special": 0

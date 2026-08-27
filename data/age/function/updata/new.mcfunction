@@ -22,9 +22,9 @@ tellraw @a[tag=new] ["11. ",{text:"效率低下：",color:"dark_red",bold:true},
 tellraw @a[tag=new] ["12. ",{text:"行动不便：",color:"dark_red",bold:true},{text:"刚从树上下来的你腿部并不发达",color:"red",hover_event:{action:"show_text",value:{text:"缓慢 II",color:"red"}}}]
 tellraw @a[tag=new] ["13. ",{text:"羸弱：",color:"dark_red",bold:true},{text:"空有身躯，难以与怪物抗衡",color:"red",hover_event:{action:"show_text",value:{text:"虚弱 I",color:"red"}}}]
 tellraw @a[tag=new] ["14. ",{text:"不堪负重：",color:"dark_red",bold:true},{text:"难以携带过多行囊",color:"red",hover_event:{action:"show_text",value:{text:"禁用27个槽位",color:"red"}}}]
-tellraw @a[tag=new] [" - 当前解锁特殊配方: ",{text:"8/8",color:"dark_green",bold:true},]
+tellraw @a[tag=new] [" - 当前可解锁特殊配方: ",{text:"19/19",color:"dark_green",bold:true},]
 tellraw @a[tag=new] [" - 当前锁定配方: ",{text:"1446/1461",color:"dark_green",bold:true},]
-tellraw @a[tag=new] [" - 当前发现物品: ",{text:"225/1449",color:"dark_green",bold:true},]
+tellraw @a[tag=new] [" - 当前发现物品: ",{text:"227/1449",color:"dark_green",bold:true},]
 
 # 属性给予
 execute as @a[tag=new] run attribute @s minecraft:max_health base set 6.0
@@ -35,16 +35,6 @@ execute as @a[tag=new] run attribute @s minecraft:fall_damage_multiplier base se
 execute as @a[tag=new] run attribute @s minecraft:submerged_mining_speed base set 0.1
 execute as @a[tag=new] run attribute @s minecraft:scale base set 1.2
 
-# 配方给予
-recipe give @a[tag=new] age:crafting/string_from_wheat_seeds
-recipe give @a[tag=new] age:crafting/string_from_leather
-recipe give @a[tag=new] age:crafting/chipped_stone_tool
-recipe give @a[tag=new] age:crafting/grass_skirt
-recipe give @a[tag=new] age:crafting/slingshot
-recipe give @a[tag=new] age:crafting/wild_vegetables
-recipe give @a[tag=new] age:crafting/belt
-
-recipe give @a[tag=new] minecraft:crafting_table
 
 # 进度给予
 advancement grant @a[tag=new] only age:old_stone_age/branch_root

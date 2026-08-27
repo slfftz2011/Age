@@ -24,6 +24,7 @@
     }
   },
   "rewards": {
-    "function": "age:task/old_stone_age/main/3b_unlock"
+    "function": "age:task/old_stone_age/main/3b_unlock",
+    "recipes": ["minecraft:crafting_table"]
   }
 }

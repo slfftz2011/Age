@@ -1,0 +1,18 @@
+{
+  "criteria": {
+    "pickup": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{
+          "items": "minecraft:leather"
+        }]
+      }
+    }
+  },
+  "rewards": {
+    "recipes": [
+        "age:crafting/belt",
+        "age:crafting/string_from_leather"
+    ]
+  }
+}

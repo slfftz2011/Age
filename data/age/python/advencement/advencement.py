@@ -105,7 +105,7 @@ def generate_branch(branch_data, index, age):
         description=branch_data['description'],
         icon=branch_data['icon'],
         hidden=False,
-        frame="task",
+        frame="challenge",
         announce=False
     )
     # 支持自定义 criteria

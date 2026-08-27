@@ -1,0 +1,17 @@
+{
+  "criteria": {
+    "pickup": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{
+          "items": "minecraft:flint"
+        }]
+      }
+    }
+  },
+  "rewards": {
+    "recipes": [
+        "age:crafting/chipped_stone_tool"
+    ]
+  }
+}

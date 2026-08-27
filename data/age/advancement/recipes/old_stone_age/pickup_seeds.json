@@ -1,0 +1,24 @@
+{
+  "criteria": {
+    "pickup": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{
+          "items": [
+            "minecraft:wheat_seeds",
+            "minecraft:pumpkin_seeds",
+            "minecraft:beetroot_seeds"
+          ]
+        }]
+      }
+    }
+  },
+  "rewards": {
+    "recipes": [
+        "age:crafting/stripped_wheat_seeds",
+        "age:crafting/stripped_pumpkin_seeds",
+        "age:crafting/stripped_beetroot_seeds",
+        "age:crafting/string_from_wheat_seeds"
+    ]
+  }
+}

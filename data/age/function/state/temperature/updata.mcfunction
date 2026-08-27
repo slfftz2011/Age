@@ -45,14 +45,14 @@ scoreboard players operation @s temp_delta = @s temperature
 scoreboard players operation @s temp_delta -= @s temp_prev
 
 # 11. 更新上次温度
-execute if score @s temperature matches 72.. if score @s temp_prev matches 54..71 run function age:state/temperature/debuff/heatstroke_on
-execute if score @s temperature matches 54..71 if score @s temp_prev matches 24..53 run function age:state/temperature/debuff/scorch_on
-execute if score @s temperature matches 10..23 if score @s temp_prev matches 24..53 run function age:state/temperature/debuff/chill_on
-execute if score @s temperature matches ..9 if score @s temp_prev matches 10..23 run function age:state/temperature/debuff/frozen_on
-execute if score @s temp_prev matches 72.. if score @s temperature matches 54..71 run function age:state/temperature/debuff/heatstroke_off
-execute if score @s temp_prev matches 54..71 if score @s temperature matches 24..53 run function age:state/temperature/debuff/scorch_off
-execute if score @s temp_prev matches 10..23 if score @s temperature matches 24..53 run function age:state/temperature/debuff/chill_off
-execute if score @s temp_prev matches ..9 if score @s temperature matches 10..23 run function age:state/temperature/debuff/frozen_off
+execute if score @s temperature matches 69.. if score @s temp_prev matches 55..68 run function age:state/temperature/debuff/heatstroke_on
+execute if score @s temperature matches 55..68 if score @s temp_prev matches 32..54 run function age:state/temperature/debuff/scorch_on
+execute if score @s temperature matches 14..31 if score @s temp_prev matches 32..54 run function age:state/temperature/debuff/chill_on
+execute if score @s temperature matches ..13 if score @s temp_prev matches 14..31 run function age:state/temperature/debuff/frozen_on
+execute if score @s temp_prev matches 69.. if score @s temperature matches 55..68 run function age:state/temperature/debuff/heatstroke_off
+execute if score @s temp_prev matches 55..68 if score @s temperature matches 32..54 run function age:state/temperature/debuff/scorch_off
+execute if score @s temp_prev matches 14..31 if score @s temperature matches 32..54 run function age:state/temperature/debuff/chill_off
+execute if score @s temp_prev matches ..13 if score @s temperature matches 14..31 run function age:state/temperature/debuff/frozen_off
 
 
 

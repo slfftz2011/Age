@@ -1,0 +1,23 @@
+{
+  "criteria": {
+    "pickup": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{
+          "items": [
+            "minecraft:eggs",
+            "minecraft:blue_eggs",
+            "minecraft:brown_eggs"
+          ]
+        }]
+      }
+    }
+  },
+  "rewards": {
+    "recipes": [
+        "age:crafting/stripped_eggs",
+        "age:crafting/stripped_blue_eggs",
+        "age:crafting/stripped_brown_eggs"
+    ]
+  }
+}

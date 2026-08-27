@@ -59,7 +59,7 @@
                         }
                     ],
                     "name": "minecraft:stone_axe",
-                    "weight": 32
+                    "weight": 33
                 },
                 {
                     "type": "item",
@@ -117,7 +117,7 @@
                         }
                     ],
                     "name": "minecraft:stone_sword",
-                    "weight": 24
+                    "weight": 22
                 },
                 {
                     "type": "item",
@@ -182,7 +182,7 @@
                         }
                     ],
                     "name": "minecraft:stone_sword",
-                    "weight": 16
+                    "weight": 15
                 },
                 {
                     "type": "item",
@@ -268,7 +268,7 @@
                         }
                     ],
                     "name": "minecraft:arrow",
-                    "weight": 24
+                    "weight": 20
                 },
                 {
                     "type": "item",
@@ -297,7 +297,7 @@
                         }
                     ],
                     "name": "minecraft:disc_fragment_5",
-                    "weight": 84
+                    "weight": 80
                 },
                 {
                     "type": "item",

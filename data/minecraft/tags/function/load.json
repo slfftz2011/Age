@@ -1,5 +1,6 @@
 {
     "values": [
-        "age:init"
+        "age:init",
+        "creg:meta/load"
     ]
 }

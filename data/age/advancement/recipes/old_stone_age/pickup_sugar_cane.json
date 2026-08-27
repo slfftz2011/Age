@@ -1,0 +1,18 @@
+{
+  "criteria": {
+    "pickup": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{
+          "items": "minecraft:sugar_cane"
+        }]
+      }
+    }
+  },
+  "rewards": {
+    "recipes": [
+        "age:crafting/stick",
+        "age:crafting/stripped_sugar_cane"
+    ]
+  }
+}

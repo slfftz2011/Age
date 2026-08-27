@@ -1,7 +1,6 @@
 {
     "type": "crafting_shapeless",
     "category": "misc",
-    "group": "strip",
     "ingredients": ["minecraft:sugar_cane","minecraft:sugar_cane"],
     "result": {
         "id": "minecraft:sugar_cane",

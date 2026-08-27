@@ -1,0 +1,19 @@
+{
+  "criteria": {
+    "get": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{
+          "items": "minecraft:crafting_table"
+        }]
+      }
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "age:crafting/flint_core",
+      "age:crafting/flint",
+      "age:crafting/grass_skirt"
+    ]
+  }
+}

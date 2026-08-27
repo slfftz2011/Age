@@ -1,12 +1,12 @@
 {
     "type": "crafting_shapeless",
     "category": "misc",
-    "group": "strip",
+    "group": "strip_seeds",
     "ingredients": ["minecraft:pumpkin_seeds"],
     "result": {
         "id": "minecraft:pumpkin_seeds",
         "components":{
-            "minecraft:item_name": "去皮南瓜种子",
+            "minecraft:item_name": "去壳南瓜种子",
             "minecraft:custom_data": {
                 "from": "old_stone_age",
                 "special": 0
