@@ -1,5 +1,5 @@
 
-$tag ${target} add level_reset
+$tag $(target) add level_reset
 team join new_stone_age @a[tag=level_reset]
 effect clear @a[tag=level_reset]
 tellraw @a ["",{text:"恭喜玩家 ",color:"#aaddaa"},{type:"selector",selector:"@a[tag=level_reset]",separator:","},{text:" 降级至 ",color:"#aaddaa"},{text:"旧石器时代",color:"#646464"},{text:" !",color:"#aaddaa"}]
