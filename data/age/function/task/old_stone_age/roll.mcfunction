@@ -300,7 +300,7 @@ execute if score old_stone_age task matches 47 run scoreboard objectives add red
 
 execute if score old_stone_age task matches 48 run scoreboard objectives add dirt_updata dummy
 execute if score old_stone_age task matches 49 run scoreboard objectives add grass_updata dummy
-execute if score old_stone_age task matches 50 run scoreboard add add leaves_updata dummy
+execute if score old_stone_age task matches 50 run scoreboard objectives add leaves_updata dummy
 execute if score old_stone_age task matches 51 run scoreboard objectives add log_updata dummy
 execute if score old_stone_age task matches 52 run scoreboard objectives add clay_updata dummy
 execute if score old_stone_age task matches 53 run scoreboard objectives add sand_updata dummy
