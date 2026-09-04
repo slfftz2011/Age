@@ -150,6 +150,18 @@ execute if score old_stone_age task matches 50 run scoreboard objectives remove 
 execute if score old_stone_age task matches 50 run scoreboard objectives remove pale_oak_leaves
 execute if score old_stone_age task matches 50 run scoreboard objectives remove spruce_leaves
 
+execute if score old_stone_age task matches 50 run scoreboard objectives remove oak_log
+execute if score old_stone_age task matches 50 run scoreboard objectives remove acacia_log
+execute if score old_stone_age task matches 50 run scoreboard objectives remove azalea_log
+execute if score old_stone_age task matches 50 run scoreboard objectives remove birch_log
+execute if score old_stone_age task matches 50 run scoreboard objectives remove cherry_log
+execute if score old_stone_age task matches 50 run scoreboard objectives remove dark_oak_log
+execute if score old_stone_age task matches 50 run scoreboard objectives remove flowering_azalea_log
+execute if score old_stone_age task matches 50 run scoreboard objectives remove jungle_log
+execute if score old_stone_age task matches 50 run scoreboard objectives remove mangrove_log
+execute if score old_stone_age task matches 50 run scoreboard objectives remove pale_oak_log
+execute if score old_stone_age task matches 50 run scoreboard objectives remove spruce_log
+
 
 execute store result score old_stone_age task run random value 0..57
 
@@ -244,6 +256,18 @@ execute if score old_stone_age task matches 50 run scoreboard objectives add jun
 execute if score old_stone_age task matches 50 run scoreboard objectives add mangrove_leaves minecraft.mined:minecraft.mangrove_leaves
 execute if score old_stone_age task matches 50 run scoreboard objectives add pale_oak_leaves minecraft.mined:minecraft.pale_oak_leaves
 execute if score old_stone_age task matches 50 run scoreboard objectives add spruce_leaves minecraft.mined:minecraft.spruce_leaves
+
+execute if score old_stone_age task matches 50 run scoreboard objectives add oak_log minecraft.mined:minecraft.oak_log
+execute if score old_stone_age task matches 50 run scoreboard objectives add acacia_log minecraft.mined:minecraft.acacia_log
+execute if score old_stone_age task matches 50 run scoreboard objectives add azalea_log minecraft.mined:minecraft.azalea_log
+execute if score old_stone_age task matches 50 run scoreboard objectives add birch_log minecraft.mined:minecraft.birch_log
+execute if score old_stone_age task matches 50 run scoreboard objectives add cherry_log minecraft.mined:minecraft.cherry_log
+execute if score old_stone_age task matches 50 run scoreboard objectives add dark_oak_log minecraft.mined:minecraft.dark_oak_log
+execute if score old_stone_age task matches 50 run scoreboard objectives add flowering_azalea_log minecraft.mined:minecraft.flowering_azalea_log
+execute if score old_stone_age task matches 50 run scoreboard objectives add jungle_log minecraft.mined:minecraft.jungle_log
+execute if score old_stone_age task matches 50 run scoreboard objectives add mangrove_log minecraft.mined:minecraft.mangrove_log
+execute if score old_stone_age task matches 50 run scoreboard objectives add pale_oak_log minecraft.mined:minecraft.pale_oak_log
+execute if score old_stone_age task matches 50 run scoreboard objectives add spruce_log minecraft.mined:minecraft.spruce_log
 
 
 execute if score old_stone_age task matches 1 run scoreboard objectives add pig_updata dummy
