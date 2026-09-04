@@ -59,7 +59,7 @@
                         }
                     ],
                     "name": "minecraft:stone_axe",
-                    "weight": 33
+                    "weight": 36
                 },
                 {
                     "type": "item",
@@ -117,7 +117,7 @@
                         }
                     ],
                     "name": "minecraft:stone_sword",
-                    "weight": 22
+                    "weight": 16
                 },
                 {
                     "type": "item",
@@ -182,7 +182,7 @@
                         }
                     ],
                     "name": "minecraft:stone_sword",
-                    "weight": 15
+                    "weight": 11
                 },
                 {
                     "type": "item",
@@ -240,7 +240,7 @@
                         }
                     ],
                     "name": "minecraft:stone_shovel",
-                    "weight": 18
+                    "weight": 24
                 },
                 {
                     "type": "item",
@@ -285,19 +285,18 @@
                             "entity": "this",
                             "lore": [
                                 {"text":"一块失败的打制石器","color":"green"},
-                                ["「通过",{"text":"旧石器时代","color":"#424529"},"途径获取」"],
-                                ["制作者: ",{"type":"selector","selector":"@s"}]
+                                ["「通过",{"text":"旧石器时代","color":"#424529"},"途径获取」"]
                             ],
                             "mode": "replace_all"
                         },
                         {
                             "function": "set_name",
-                            "name": "燧石废料",
+                            "name": {"text":"燧石废料","color":"#424529"},
                             "target":"item_name"
                         }
                     ],
                     "name": "minecraft:disc_fragment_5",
-                    "weight": 80
+                    "weight": 84
                 },
                 {
                     "type": "item",
