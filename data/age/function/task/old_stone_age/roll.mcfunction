@@ -30,7 +30,7 @@ execute if score old_stone_age task matches 26 run scoreboard objectives remove 
 execute if score old_stone_age task matches 27 run scoreboard objectives remove berry_eat
 execute if score old_stone_age task matches 28 run scoreboard objectives remove apple_eat
 execute if score old_stone_age task matches 29 run scoreboard objectives remove melon_eat
-execute if score old_stone_age task matches 30 run scoreboard objectives remove pumpkin_eat
+execute if score old_stone_age task matches 30 run scoreboard objectives remove sugar_cane_eat
 execute if score old_stone_age task matches 31 run scoreboard objectives remove pork_eat
 execute if score old_stone_age task matches 32 run scoreboard objectives remove mutton_eat
 execute if score old_stone_age task matches 33 run scoreboard objectives remove beef_eat
@@ -93,7 +93,7 @@ execute if score old_stone_age task matches 26 run scoreboard objectives remove 
 execute if score old_stone_age task matches 27 run scoreboard objectives remove berry_updata
 execute if score old_stone_age task matches 28 run scoreboard objectives remove apple_updata
 execute if score old_stone_age task matches 29 run scoreboard objectives remove melon_updata
-execute if score old_stone_age task matches 30 run scoreboard objectives remove pumpkin_updata
+execute if score old_stone_age task matches 30 run scoreboard objectives remove sugar_cane_updata
 execute if score old_stone_age task matches 31 run scoreboard objectives remove pork_updata
 execute if score old_stone_age task matches 32 run scoreboard objectives remove mutton_updata
 execute if score old_stone_age task matches 33 run scoreboard objectives remove beef_updata
@@ -152,11 +152,9 @@ execute if score old_stone_age task matches 50 run scoreboard objectives remove 
 
 execute if score old_stone_age task matches 50 run scoreboard objectives remove oak_log
 execute if score old_stone_age task matches 50 run scoreboard objectives remove acacia_log
-execute if score old_stone_age task matches 50 run scoreboard objectives remove azalea_log
 execute if score old_stone_age task matches 50 run scoreboard objectives remove birch_log
 execute if score old_stone_age task matches 50 run scoreboard objectives remove cherry_log
 execute if score old_stone_age task matches 50 run scoreboard objectives remove dark_oak_log
-execute if score old_stone_age task matches 50 run scoreboard objectives remove flowering_azalea_log
 execute if score old_stone_age task matches 50 run scoreboard objectives remove jungle_log
 execute if score old_stone_age task matches 50 run scoreboard objectives remove mangrove_log
 execute if score old_stone_age task matches 50 run scoreboard objectives remove pale_oak_log
@@ -214,7 +212,7 @@ execute if score old_stone_age task matches 27 run scoreboard objectives add ber
 # 28-41 单一物品，直接使用 minecraft.used
 execute if score old_stone_age task matches 28 run scoreboard objectives add apple_eat minecraft.used:minecraft.apple "食用苹果"
 execute if score old_stone_age task matches 29 run scoreboard objectives add melon_eat minecraft.used:minecraft.melon_slice "食用西瓜片"
-execute if score old_stone_age task matches 30 run scoreboard objectives add pumpkin_eat minecraft.used:minecraft.pumpkin_pie "食用南瓜派"
+execute if score old_stone_age task matches 30 run scoreboard objectives add sugar_cane_eat minecraft.used:minecraft.sugar_cane "食用南瓜派"
 execute if score old_stone_age task matches 31 run scoreboard objectives add pork_eat minecraft.used:minecraft.porkchop "食用生猪肉"
 execute if score old_stone_age task matches 32 run scoreboard objectives add mutton_eat minecraft.used:minecraft.mutton "食用生羊肉"
 execute if score old_stone_age task matches 33 run scoreboard objectives add beef_eat minecraft.used:minecraft.beef "食用生牛肉"
@@ -259,11 +257,9 @@ execute if score old_stone_age task matches 50 run scoreboard objectives add spr
 
 execute if score old_stone_age task matches 50 run scoreboard objectives add oak_log minecraft.mined:minecraft.oak_log
 execute if score old_stone_age task matches 50 run scoreboard objectives add acacia_log minecraft.mined:minecraft.acacia_log
-execute if score old_stone_age task matches 50 run scoreboard objectives add azalea_log minecraft.mined:minecraft.azalea_log
 execute if score old_stone_age task matches 50 run scoreboard objectives add birch_log minecraft.mined:minecraft.birch_log
 execute if score old_stone_age task matches 50 run scoreboard objectives add cherry_log minecraft.mined:minecraft.cherry_log
 execute if score old_stone_age task matches 50 run scoreboard objectives add dark_oak_log minecraft.mined:minecraft.dark_oak_log
-execute if score old_stone_age task matches 50 run scoreboard objectives add flowering_azalea_log minecraft.mined:minecraft.flowering_azalea_log
 execute if score old_stone_age task matches 50 run scoreboard objectives add jungle_log minecraft.mined:minecraft.jungle_log
 execute if score old_stone_age task matches 50 run scoreboard objectives add mangrove_log minecraft.mined:minecraft.mangrove_log
 execute if score old_stone_age task matches 50 run scoreboard objectives add pale_oak_log minecraft.mined:minecraft.pale_oak_log
@@ -302,7 +298,7 @@ execute if score old_stone_age task matches 26 run scoreboard objectives add see
 execute if score old_stone_age task matches 27 run scoreboard objectives add berry_updata dummy
 execute if score old_stone_age task matches 28 run scoreboard objectives add apple_updata dummy
 execute if score old_stone_age task matches 29 run scoreboard objectives add melon_updata dummy
-execute if score old_stone_age task matches 30 run scoreboard objectives add pumpkin_updata dummy
+execute if score old_stone_age task matches 30 run scoreboard objectives add sugar_cane_updata dummy
 execute if score old_stone_age task matches 31 run scoreboard objectives add pork_updata dummy
 execute if score old_stone_age task matches 32 run scoreboard objectives add mutton_updata dummy
 execute if score old_stone_age task matches 33 run scoreboard objectives add beef_updata dummy

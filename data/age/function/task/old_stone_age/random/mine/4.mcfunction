@@ -2,11 +2,9 @@
 execute unless entity @s[tag=task_done] run scoreboard players reset @s log_mine
 execute unless entity @s[tag=task_done] run scoreboard players operation @s log_mine += @s oak_log
 execute unless entity @s[tag=task_done] run scoreboard players operation @s log_mine += @s acacia_log
-execute unless entity @s[tag=task_done] run scoreboard players operation @s log_mine += @s azalea_log
 execute unless entity @s[tag=task_done] run scoreboard players operation @s log_mine += @s birch_log
 execute unless entity @s[tag=task_done] run scoreboard players operation @s log_mine += @s cherry_log
 execute unless entity @s[tag=task_done] run scoreboard players operation @s log_mine += @s dark_oak_log
-execute unless entity @s[tag=task_done] run scoreboard players operation @s log_mine += @s flowering_azalea_log
 execute unless entity @s[tag=task_done] run scoreboard players operation @s log_mine += @s jungle_log
 execute unless entity @s[tag=task_done] run scoreboard players operation @s log_mine += @s mangrove_log
 execute unless entity @s[tag=task_done] run scoreboard players operation @s log_mine += @s pale_oak_log

@@ -1,5 +1,5 @@
 playsound minecraft:entity.player.levelup player @s ~ ~ ~ 1 1.5
-execute if entity @s[team=old_stone_age] run scoreboard players add old_stone_age stage 20
-tellraw @a ["",{text:"恭喜玩家 ",color:"#aaddaa"},{type:"selector",selector:"@s"},{text:" 完成了委托 ",color:"#aaddaa"},{text:"食用: 南瓜 x5",color:"#55FF55"},{text:" !",color:"#aaddaa"}]
-tellraw @a {text:"时代进度 +20! ",color:"#aaddaa"}
+execute if entity @s[team=old_stone_age] run scoreboard players add old_stone_age stage 24
+tellraw @a ["",{text:"恭喜玩家 ",color:"#aaddaa"},{type:"selector",selector:"@s"},{text:" 完成了委托 ",color:"#aaddaa"},{text:"食用: 甘蔗 x6",color:"#55FF55"},{text:" !",color:"#aaddaa"}]
+tellraw @a {text:"时代进度 +24! ",color:"#aaddaa"}
 tag @s add task_done

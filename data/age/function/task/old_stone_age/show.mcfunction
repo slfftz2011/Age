@@ -42,7 +42,7 @@ execute if score old_stone_age task matches 26 run bossbar set old_stone_age nam
 execute if score old_stone_age task matches 27 run bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ", {text:"[食用] 浆果 x8",color:"#55FF55"}]
 execute if score old_stone_age task matches 28 run bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ", {text:"[食用] 苹果 x4",color:"#55FF55"}]
 execute if score old_stone_age task matches 29 run bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ", {text:"[食用] 西瓜片 x8",color:"#55FF55"}]
-execute if score old_stone_age task matches 30 run bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ", {text:"[食用] 南瓜 x5",color:"#55FF55"}]
+execute if score old_stone_age task matches 30 run bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ", {text:"[食用] 甘蔗 x6",color:"#55FF55"}]
 execute if score old_stone_age task matches 31 run bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ", {text:"[食用] 生猪肉 x4",color:"#55FF55"}]
 execute if score old_stone_age task matches 32 run bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ", {text:"[食用] 生羊肉 x4",color:"#55FF55"}]
 execute if score old_stone_age task matches 33 run bossbar set old_stone_age name ["当前时代 - ", {text:"旧石器时代",color:"#424529"}, "   当前任务 - ", {text:"[食用] 生牛肉 x4",color:"#55FF55"}]
