@@ -119,6 +119,8 @@
         "minecraft:barrier",
         "minecraft:rooted_dirt",
         "minecraft:disc_fragment_5",
+        "minecraft:pumpkin_seeds",
+        "minecraft:melon_seeds",
         "minecraft:potion"
     ]
 }

@@ -133,6 +133,7 @@ execute if score old_stone_age task matches 25 run scoreboard objectives remove 
 # 种子（小麦种子、甜菜种子）
 execute if score old_stone_age task matches 26 run scoreboard objectives remove seed_wheat
 execute if score old_stone_age task matches 26 run scoreboard objectives remove seed_beetroot
+execute if score old_stone_age task matches 26 run scoreboard objectives remove seed_pumpkin
 
 # 浆果（甜浆果、发光浆果）
 execute if score old_stone_age task matches 27 run scoreboard objectives remove berry_sweet
@@ -203,6 +204,7 @@ execute if score old_stone_age task matches 25 run scoreboard objectives add veg
 execute if score old_stone_age task matches 26 run scoreboard objectives add seed_eat dummy "食用种子"
 execute if score old_stone_age task matches 26 run scoreboard objectives add seed_wheat minecraft.used:minecraft.wheat_seeds
 execute if score old_stone_age task matches 26 run scoreboard objectives add seed_beetroot minecraft.used:minecraft.beetroot_seeds
+execute if score old_stone_age task matches 26 run scoreboard objectives add seed_pumpkin minecraft.used:minecraft.pumpkin_seeds
 
 # 27. 浆果（主记分板 dummy）
 execute if score old_stone_age task matches 27 run scoreboard objectives add berry_eat dummy "食用浆果"
