@@ -1,0 +1,4 @@
+execute unless entity @s[tag=task_done] unless score @s tropical_fish = @s tropical_updata run title @s actionbar ["",{"text":"🎣 ","color":"#55AAFF"},{"text":"捕获: 热带鱼 ","color":"#55AAFF"},{"score":{"name":"@s","objective":"tropical_fish"},"color":"gray"},{"text":"/5","color":"gray"}]
+execute unless entity @s[tag=task_done] unless score @s tropical_fish = @s tropical_updata run tag @s add actionbar_block
+scoreboard players operation @s tropical_updata = @s tropical_fish
+execute as @s unless entity @s[tag=task_done] if score @s tropical_fish matches 5.. run function age:task/old_stone_age/random/fish/21_c
