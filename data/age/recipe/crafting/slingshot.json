@@ -21,7 +21,7 @@
                 {"text":"一把原始的弹弓","color":"green"},
                 ["「通过",{"text":"旧石器时代","color":"#424529"},"途径获取」"]
             ],
-            "minecraft:damage": 375
+            "minecraft:max_damage": 17
         }
     }
 }

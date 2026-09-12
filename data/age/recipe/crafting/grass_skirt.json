@@ -22,7 +22,7 @@
                 {"text":"几片树叶，不是为了遮住什么，而是展示羞耻","color":"green"},
                 ["「通过",{"text":"旧石器时代","color":"#424529"},"途径获取」"]
             ],
-            "minecraft:damage": 55
+            "minecraft:max_damage": 13
         }
     }
 }
