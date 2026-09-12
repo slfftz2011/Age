@@ -1,4 +1,0 @@
-execute unless entity @s[tag=task_done] unless score @s leather_craft = @s leather_updata run title @s actionbar ["",{"text":"🔨 ","color":"#AA55FF"},{"text":"制作: 皮革 ","color":"#AA55FF"},{"score":{"name":"@s","objective":"leather_craft"},"color":"gray"},{"text":"/10","color":"gray"}]
-execute unless entity @s[tag=task_done] unless score @s leather_craft = @s leather_updata run tag @s add actionbar_block
-scoreboard players operation @s leather_updata = @s leather_craft
-execute as @s unless entity @s[tag=task_done] if score @s leather_craft matches 10.. run function age:task/old_stone_age/random/craft/45_c
