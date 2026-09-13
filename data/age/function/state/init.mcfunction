@@ -13,23 +13,41 @@ scoreboard objectives add food_diff dummy
 scoreboard objectives add sat_diff dummy
 
 
-# ---- 辅助记分板 ----
-# 体感温度
-scoreboard objectives add temp_diff dummy
+# ---- 体感温度 ----
+scoreboard objectives add temperaturec dummy
+scoreboard objectives add temp_resistance dummy
+scoreboard objectives add potion_cooling dummy
+scoreboard objectives add beetroot_soup_cooling dummy
+scoreboard objectives add warp_rabbit_stew dummy
+scoreboard objectives add beetroot_cooling dummy
+scoreboard objectives add apple_cooling dummy
+scoreboard objectives add carrot_cooling dummy
+scoreboard objectives add sweet_berries_cooling dummy
+scoreboard objectives add glow_berries_cooling dummy
+scoreboard objectives add melon_cooling dummy
+scoreboard objectives add golden_carrot_cooling dummy
+scoreboard objectives add sleep_temperature dummy
+scoreboard objectives add disable_nether dummy
+scoreboard objectives add disable_end dummy
+scoreboard objectives add enable_nether dummy
+scoreboard objectives add enable_end dummy
+scoreboard objectives add admin dummy
+scoreboard objectives add is_admin dummy
+scoreboard objectives add temp_step_pending dummy
 scoreboard objectives add temp_step_abs dummy
-scoreboard objectives add temp_delta dummy
-scoreboard objectives add temp_prev dummy
 scoreboard objectives add env_temp dummy
-scoreboard objectives add temp_trend dummy
-scoreboard objectives add temp_timer dummy
-scoreboard objectives add temperature.tmp dummy
-
-# 环境温度
-scoreboard objectives add temp_y dummy
+scoreboard objectives add metal_modify dummy
+scoreboard objectives add temp_delta dummy
+scoreboard objectives add temp_diff dummy
 scoreboard objectives add temp_height dummy
 scoreboard objectives add temp_humid_dir dummy
-
-scoreboard objectives add metal_modify dummy
+scoreboard objectives add temp_prev dummy
+scoreboard objectives add temp_timer dummy
+scoreboard objectives add temp_trend dummy
+scoreboard objectives add temp_y dummy
+scoreboard objectives add temperature dummy
+scoreboard objectives add temperature.tmp dummy
+scoreboard objectives add temperature_resistance dummy
 
 # 口渴值
 scoreboard objectives add thirst_timer dummy
@@ -37,7 +55,6 @@ scoreboard objectives add thirst_buff_timer dummy
 
 
 # ---- 主记分板 ----
-scoreboard objectives add temperature dummy "体感温度"
 scoreboard objectives add thirst dummy "口渴值"
 scoreboard objectives add mana dummy "魔法值"
 scoreboard objectives add sanity dummy "心情值"
