@@ -263,11 +263,19 @@
                         },
                         {
                             "function": "set_name",
-                            "name": "燧石核",
-                            "target":"item_name"
+                            "name": {"text":"燧石核","italic":false},
+                            "target":"custom_name"
+                        },
+                        {
+                            "function": "set_components",
+                            "components": {
+                                "minecraft:potion_contents": {
+                                    "custom_color": 4869966
+                                }
+                            }
                         }
                     ],
-                    "name": "minecraft:arrow",
+                    "name": "minecraft:tipped_arrow",
                     "weight": 20
                 },
                 {
