@@ -52,8 +52,8 @@ execute as @s[scores={creg.health.curr=38}] unless score @s creg.health.curr >= 
 execute as @s[scores={creg.health.curr=39}] unless score @s creg.health.curr >= @s creg.health.max run attribute @s minecraft:max_health base set 39
 execute as @s[scores={creg.health.curr=40}] unless score @s creg.health.curr >= @s creg.health.max run attribute @s minecraft:max_health base set 40
 
-execute unless score @s creg.health.curr matches 41.. run effect give @s instant_health 11 1 true
-execute unless score @s creg.health.curr matches 41.. run effect give @s minecraft:hunger 11 4 true
+execute unless score @s creg.health.curr matches 41.. run effect give @s instant_health 1 1 true
+execute unless score @s creg.health.curr matches 41.. run effect give @s minecraft:hunger 15 4 true
 
 execute unless score @s creg.health.curr matches 41.. run tag @s add creg.givehealth
 

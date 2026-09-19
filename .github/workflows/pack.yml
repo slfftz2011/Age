@@ -22,6 +22,7 @@ jobs:
       tag: ${{ steps.set_tag.outputs.tag }}
       hotfix_suffix: ${{ steps.set_tag.outputs.hotfix_suffix }}
       asset_name: ${{ steps.set_asset_name.outputs.asset_name }}
+      asset_name_compat: ${{ steps.set_asset_name.outputs.asset_name_compat }}
       release_body: ${{ steps.build_body.outputs.release_body }}
       check_output: ${{ steps.run_check.outputs.check_output }}
 
@@ -67,8 +68,8 @@ jobs:
         id: set_asset_name
         run: |
           SUFFIX="${{ steps.set_tag.outputs.hotfix_suffix }}"
-          ASSET="Age-${{ env.VERSION }}${SUFFIX}.zip"
-          echo "asset_name=$ASSET" >> $GITHUB_OUTPUT
+          echo "asset_name=Age-${{ env.VERSION }}${SUFFIX}.zip" >> $GITHUB_OUTPUT
+          echo "asset_name_compat=Age-${{ env.VERSION }}-compat${SUFFIX}.zip" >> $GITHUB_OUTPUT
 
       - name: 运行综合检查（不中断构建）
         id: run_check
@@ -85,7 +86,10 @@ jobs:
       - name: 重命名产物（热修复时添加后缀）
         if: steps.set_tag.outputs.is_hotfix == 'true'
         run: |
-          mv "output/Age-${{ env.VERSION }}.zip" "output/${{ steps.set_asset_name.outputs.asset_name }}"
+          VERSION="${{ env.VERSION }}"
+          SUFFIX="${{ steps.set_tag.outputs.hotfix_suffix }}"
+          mv "output/Age-${VERSION}.zip"        "output/${{ steps.set_asset_name.outputs.asset_name }}"
+          mv "output/Age-${VERSION}-compat.zip" "output/${{ steps.set_asset_name.outputs.asset_name_compat }}"
 
       - name: 构建 Release 正文
         id: build_body
@@ -103,6 +107,10 @@ jobs:
             echo ""
             echo "> ⚠️ **注意**: 此为每日自动构建的预发布版本，未经充分测试，不保证可用性。请谨慎使用。"
             echo ""
+            echo "### 📦 下载"
+            echo "- \`Age-${{ env.VERSION }}.zip\` — **通用版**，已移除 \`data/c/\`，纯原版可用"
+            echo "- \`Age-${{ env.VERSION }}-compat.zip\` — **兼容版**，保留 \`data/c/\`，需 Fabric API / NeoForge"
+            echo ""
             echo "### 检查结果"
             echo '```'
             cat check_output.txt
@@ -113,7 +121,7 @@ jobs:
       - name: 创建/更新 Release
         uses: ncipollo/release-action@v1.14.0
         with:
-          artifacts: "output/${{ steps.set_asset_name.outputs.asset_name }}"
+          artifacts: "output/${{ steps.set_asset_name.outputs.asset_name }},output/${{ steps.set_asset_name.outputs.asset_name_compat }}"
           tag: ${{ steps.set_tag.outputs.tag }}
           name: "Pre-Release ${{ env.VERSION }}"
           body: ${{ steps.build_body.outputs.release_body }}
@@ -122,4 +130,3 @@ jobs:
           updateOnlyUnreleased: false
           makeLatest: ${{ steps.set_tag.outputs.is_hotfix == 'false' }}
           token: ${{ secrets.GITHUB_TOKEN }}
-    

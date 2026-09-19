@@ -162,7 +162,7 @@ def replace_macros(content, macros):
         content = re.sub(pattern, str(macros[key]), content)
     return content
 
-def collect_files(source_dir):
+def collect_files(source_dir, filter_c=False):
     source = Path(source_dir).resolve()
     files = []
     for root, dirs, files_list in os.walk(source):
@@ -170,10 +170,17 @@ def collect_files(source_dir):
         rel_root = root_path.relative_to(source)
         if should_ignore(rel_root.parts):
             continue
+        # 通用版跳过 data/c/ 整个目录
+        if filter_c and rel_root.parts[:2] == ('data', 'c'):
+            dirs[:] = []   # 阻止 os.walk 继续进入子目录
+            continue
         for name in files_list:
             file_path = root_path / name
             rel_path = file_path.relative_to(source)
             if should_ignore(rel_path.parts):
+                continue
+            # 文件级的兜底判断
+            if filter_c and rel_path.parts[:2] == ('data', 'c'):
                 continue
             if len(rel_path.parts) == 1 and name in KEEP_FILES:
                 files.append(file_path)
@@ -182,13 +189,14 @@ def collect_files(source_dir):
                 files.append(file_path)
     return files
 
-def pack(source_dir, output_zip, macros):
+def pack(source_dir, output_zip, macros, filter_c=False):
     source = Path(source_dir).resolve()
-    files = collect_files(source)
+    files = collect_files(source, filter_c)   # ← 传入参数
     if not files:
         print("警告：没有找到任何符合规则的文件。")
     output_path = Path(output_zip).parent
     output_path.mkdir(parents=True, exist_ok=True)
+
     with zipfile.ZipFile(output_zip, 'w', zipfile.ZIP_DEFLATED) as zipf:
         for file_path in files:
             arcname = file_path.relative_to(source)
@@ -206,7 +214,9 @@ def pack(source_dir, output_zip, macros):
                 zipf.writestr(str(arcname), content)
             else:
                 zipf.write(file_path, arcname)
-    print(f"打包完成：{output_zip} (共 {len(files)} 个文件)")
+
+    tag = " [通用版·无 c 目录]" if filter_c else " [兼容版·含 c 目录]"
+    print(f"打包完成：{output_zip}{tag} (共 {len(files)} 个文件)")
 
 def load_macros(source_dir):
     macro_path = Path(source_dir) / MACRO_FILE

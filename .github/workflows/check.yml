@@ -28,6 +28,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install nbtlib
 
-      - name: 运行记分板检查（严格模式）
+      - name: 运行检查（严格模式）
         run: |
           python check.py --strict
