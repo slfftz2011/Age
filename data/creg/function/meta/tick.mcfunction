@@ -18,5 +18,5 @@ execute as @a[scores={creg.hunger=..13,creg.timer=1..}] run scoreboard players s
 #if you change how fast the regen is and its less than 45 ticks, change this 40 to be lower
 execute as @a[scores={creg.timer=40},gamemode=!creative,gamemode=!spectator] unless score @s creg.health.curr.main = @s creg.health.max.main run function creg:regen
 #adjust the regen timer here (change 160 to whatever amout of ticks you want)
-execute as @a[scores={creg.timer=640..},gamemode=!creative,gamemode=!spectator] run scoreboard players set @s creg.timer 0
+execute as @a[scores={creg.timer=160..},gamemode=!creative,gamemode=!spectator] run scoreboard players set @s creg.timer 0
 execute as @a[scores={creg.timer=1..},gamemode=!creative,gamemode=!spectator] if score @s creg.health.curr.main = @s creg.health.max.main run scoreboard players set @s creg.timer 0
