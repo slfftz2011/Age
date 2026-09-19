@@ -14,7 +14,7 @@ BLOCK_SUFFIXES = [
     "log", "wood", "stripped_log", "stripped_wood",
     "planks", "stairs", "slab", "fence", "fence_gate",
     "door", "trapdoor", "button", "pressure_plate",
-    "sign", "wall_sign", "hanging_sign", "wall_hanging_sign",
+    "sign", "hanging_sign",
     "shelf"
 ]
 
@@ -76,7 +76,7 @@ def get_block_id(wood_type, suffix):
 
 
 def main():
-    loot_dir = os.path.join("data", "minecraft", "loot_table", "blocks")
+    loot_dir = os.path.join("loot_table", "blocks")
     os.makedirs(loot_dir, exist_ok=True)
 
     count = 0

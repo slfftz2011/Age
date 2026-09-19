@@ -1,7 +1,7 @@
 # ===== 基础环境温度 =====
 
-# 基础温度 20°C
-scoreboard players set @s env_temp 20
+# 基础温度 25°C
+scoreboard players set @s env_temp 25
 
 # 时间修正
 execute store result score @s time_of_day run time query daytime
