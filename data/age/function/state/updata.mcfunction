@@ -8,10 +8,10 @@ execute as @a if score @s global_state_timer matches 20.. run function age:state
 execute as @a if score @s global_state_timer matches 20.. run function age:state/temperature/debuff
 execute as @a if score @s global_state_timer matches 20.. run function age:state/thirst/debuff
 
-# 温度计时器（每10 tick计算一次环境温度）
+# 温度计时器（每5 tick计算一次环境温度）
 scoreboard players add @a temp_timer 1
-execute as @a if score @s temp_timer matches 10.. run function age:state/temperature/updata
-execute as @a if score @s temp_timer matches 10.. run scoreboard players set @s temp_timer 0
+execute as @a if score @s temp_timer matches 5.. run function age:state/temperature/updata
+execute as @a if score @s temp_timer matches 5.. run scoreboard players set @s temp_timer 0
 
 # 口渴更新（保持原样）
 execute as @a run function age:state/thirst/updata
