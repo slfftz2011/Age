@@ -427,6 +427,13 @@ execute at @s if block ~0 ~0 ~-1 #age:hot_weak run scoreboard players add @s env
 execute at @s if block ~0 ~0 ~-1 #age:cold_strong run scoreboard players remove @s env_temp 12
 execute at @s if block ~0 ~0 ~-1 #age:cold_medium run scoreboard players remove @s env_temp 8
 execute at @s if block ~0 ~0 ~-1 #age:cold_weak run scoreboard players remove @s env_temp 3
+execute at @s if block ~0 ~0 ~0 #age:hot_strong run scoreboard players add @s env_temp 20
+execute at @s if block ~0 ~0 ~0 #age:hot_medium run scoreboard players add @s env_temp 12
+execute at @s if block ~0 ~0 ~0 #age:hot_medium_lit[lit=true] run scoreboard players add @s env_temp 12
+execute at @s if block ~0 ~0 ~0 #age:hot_weak run scoreboard players add @s env_temp 4
+execute at @s if block ~0 ~0 ~0 #age:cold_strong run scoreboard players remove @s env_temp 12
+execute at @s if block ~0 ~0 ~0 #age:cold_medium run scoreboard players remove @s env_temp 8
+execute at @s if block ~0 ~0 ~0 #age:cold_weak run scoreboard players remove @s env_temp 3
 execute at @s if block ~0 ~0 ~1 #age:hot_strong run scoreboard players add @s env_temp 20
 execute at @s if block ~0 ~0 ~1 #age:hot_medium run scoreboard players add @s env_temp 12
 execute at @s if block ~0 ~0 ~1 #age:hot_medium_lit[lit=true] run scoreboard players add @s env_temp 12

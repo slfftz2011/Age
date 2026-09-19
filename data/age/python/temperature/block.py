@@ -14,7 +14,7 @@ TAG_STRENGTH = {
 
 RANGE = 3
 CONTACT_DIST = 1.0
-OUTPUT = Path("function/state/temperature/hot_cold.mcfunction")
+OUTPUT = Path("function/state/temperature/env/block.mcfunction")
 
 
 def safe_round(x):
@@ -26,8 +26,6 @@ def generate():
     for dx in range(-RANGE, RANGE + 1):
         for dy in range(-RANGE, RANGE + 1):
             for dz in range(-RANGE, RANGE + 1):
-                if dx == 0 and dy == 0 and dz == 0:
-                    continue
                 dist = math.sqrt(dx * dx + dy * dy + dz * dz)
                 if dist > RANGE:          # 允许边界
                     continue
