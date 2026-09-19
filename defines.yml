@@ -1,3 +1,12 @@
-VERSION: "v1.0.0-snapshot-11"
+VERSION: "v1.0.0-rc-1"
 AUTHOR: "slfftz520"
 GAME_VERSION: "1.21.10"
+
+DESCRIPTION: "迎接新世代"
+# 数据包格式（1.21.9 - 1.21.10 对应 88）
+DATA_MIN_FORMAT: [88, 0]
+DATA_MAX_FORMAT: [88, 33]
+
+# 资源包格式（1.21.10 对应 69）
+RESOURCE_MIN_FORMAT: [69, 0]
+RESOURCE_MAX_FORMAT: [69, 0]

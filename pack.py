@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 """
-Minecraft 数据包打包工具（支持宏替换 + 命令 JSON 压缩）
+Minecraft 数据包/资源包打包工具
+- 从 defines.yml 读取格式配置
+- 分别生成数据包和资源包的 pack.mcmeta
+- 支持宏替换 + 命令 JSON 压缩
 """
 
 import os
@@ -9,13 +12,21 @@ import zipfile
 import re
 import json
 import yaml
+import argparse
 from pathlib import Path
 
 EXTENSIONS = {'.json', '.mcfunction', '.nbt'}
-KEEP_FILES = {'README', 'LICENSE', 'pack.mcmeta'}
-IGNORE_DIRS = {'python', '__pycache__', '.git'}
+KEEP_FILES = {'README', 'LICENSE'}
+IGNORE_DIRS = {'python', '__pycache__', '.git', 'output'}
 OUTPUT_DIR = 'output'
 MACRO_FILE = 'defines.yml'
+
+# 默认格式（Minecraft 1.21.10）
+DEFAULT_DATA_MIN_FORMAT = [88, 0]
+DEFAULT_DATA_MAX_FORMAT = [88, 33]
+DEFAULT_RESOURCE_MIN_FORMAT = [69, 0]
+DEFAULT_RESOURCE_MAX_FORMAT = [69, 0]
+DEFAULT_DESCRIPTION = "欢迎游玩！"
 
 # ===== 工具函数 =====
 
@@ -33,10 +44,7 @@ def compress_json(content):
         return content
 
 def compress_command_json(command):
-    """
-    如果命令包含 JSON 数组或对象，将其压缩为紧凑格式。
-    """
-    # 查找第一个 [ 或 { 的位置
+    """压缩命令中的 JSON 部分"""
     start = -1
     for i, ch in enumerate(command):
         if ch in '[{':
@@ -45,7 +53,6 @@ def compress_command_json(command):
     if start == -1:
         return command
 
-    # 从 start 开始计数括号，找到匹配的结束位置
     stack = []
     end = start
     for i in range(start, len(command)):
@@ -61,108 +68,87 @@ def compress_command_json(command):
                 if not stack:
                     end = i
                     break
-            else:
-                # 不匹配，继续
-                pass
     if not stack and end > start:
         json_part = command[start:end+1]
         try:
             data = json.loads(json_part)
             compressed = json.dumps(data, ensure_ascii=False, separators=(',', ':'))
-            new_command = command[:start] + compressed + command[end+1:]
-            return new_command
+            return command[:start] + compressed + command[end+1:]
         except json.JSONDecodeError:
             return command
     return command
 
 def fold_multiline_commands(content):
-    """
-    将 .mcfunction 中跨多行的命令折叠为一行，并压缩其中的 JSON。
-    改进：检测行中是否包含 tellraw/title/bossbar 等关键词，而不仅仅匹配行开头。
-    """
+    """将 .mcfunction 中跨多行的命令折叠为一行"""
     lines = content.splitlines()
     result = []
     i = 0
     while i < len(lines):
         line = lines[i]
         stripped = line.strip()
-        
-        # 检测是否包含需要折叠的关键词
-        # 匹配 tellraw、title、bossbar set ... name 等
-        # 注意：使用 \b 确保是完整单词
+
         keywords = re.compile(r'\b(tellraw|title|bossbar\s+set\s+\S+\s+name)\s+')
         match = keywords.search(stripped)
         if not match:
             result.append(line)
             i += 1
             continue
-        
-        # 检查该行（或合并后）的括号是否未闭合
-        # 由于该行可能已经包含 JSON 的一部分，我们需要检查括号平衡
+
         open_brackets = stripped.count('[') + stripped.count('{') + stripped.count('(')
         close_brackets = stripped.count(']') + stripped.count('}') + stripped.count(')')
-        
-        # 如果括号已经平衡且不以 [ 或 { 结尾，则不需要折叠
-        if open_brackets == close_brackets and not (stripped.endswith('[') or stripped.endswith('{') or stripped.endswith('(')):
+
+        if open_brackets == close_brackets and not stripped.endswith(('[', '{', '(')):
             result.append(line)
             i += 1
             continue
-        
-        # 否则，开始合并后续行直到括号闭合
+
         merged = line
         j = i + 1
-        open_brackets = merged.count('[') + merged.count('{') + merged.count('(')
-        close_brackets = merged.count(']') + merged.count('}') + merged.count(')')
         while j < len(lines) and open_brackets > close_brackets:
             next_line = lines[j].strip()
-            # 如果下一行是注释，停止合并（注释不应出现在命令中间）
             if next_line.startswith('#'):
                 break
             merged += ' ' + next_line
             open_brackets = merged.count('[') + merged.count('{') + merged.count('(')
             close_brackets = merged.count(']') + merged.count('}') + merged.count(')')
             j += 1
-        
-        # 如果合并后括号仍未闭合（可能文件不完整），则不折叠，保留原样
+
         if open_brackets != close_brackets:
-            # 保持原行不变，但为了避免无限循环，我们将原行加入结果并跳过已合并的行？
-            # 更安全：将合并后的内容原样加入，但可能导致语法错误，不过用户应当保证文件完整。
-            # 这里我们直接将合并后的内容加入（可能不完整），但继续。
             result.append(merged)
             i = j
             continue
-        
-        # 合并后，压缩命令中的 JSON
+
         merged = compress_command_json(merged)
         result.append(merged)
         i = j
-    
+
     return '\n'.join(result)
 
 def clean_mcfunction(content):
-    """删除注释行和空行，然后折叠多行命令"""
+    """删除注释和空行，折叠多行命令"""
     lines = content.splitlines()
-    cleaned = []
-    for line in lines:
-        stripped = line.strip()
-        if stripped.startswith('#'):
-            continue
-        if stripped == '':
-            continue
-        cleaned.append(line)
+    cleaned = [line for line in lines
+               if line.strip() and not line.strip().startswith('#')]
     content = '\n'.join(cleaned)
-    content = fold_multiline_commands(content)
-    return content
+    return fold_multiline_commands(content)
 
 def replace_macros(content, macros):
     if not macros:
         return content
     for key in sorted(macros.keys(), key=len, reverse=True):
+        value = macros[key]
+        if isinstance(value, list):
+            value_str = json.dumps(value, separators=(',', ':'))
+        else:
+            value_str = str(value)
         pattern = re.escape(f'@{key}@')
-        content = re.sub(pattern, str(macros[key]), content)
+        content = re.sub(pattern, value_str, content)
     return content
 
-def collect_files(source_dir, filter_c=False):
+# ===== 文件收集 =====
+
+def collect_data_files(source_dir, filter_c=False):
+    """收集数据包文件（仅 data/ 目录）"""
     source = Path(source_dir).resolve()
     files = []
     for root, dirs, files_list in os.walk(source):
@@ -170,34 +156,89 @@ def collect_files(source_dir, filter_c=False):
         rel_root = root_path.relative_to(source)
         if should_ignore(rel_root.parts):
             continue
-        # 通用版跳过 data/c/ 整个目录
-        if filter_c and rel_root.parts[:2] == ('data', 'c'):
-            dirs[:] = []   # 阻止 os.walk 继续进入子目录
+        # 只处理 data/ 目录
+        if rel_root.parts and rel_root.parts[0] != 'data':
+            dirs[:] = []  # 不进入其他目录
+            continue
+        # filter_c: 跳过 data/c/
+        if filter_c and len(rel_root.parts) >= 2 and rel_root.parts[:2] == ('data', 'c'):
+            dirs[:] = []
             continue
         for name in files_list:
             file_path = root_path / name
             rel_path = file_path.relative_to(source)
             if should_ignore(rel_path.parts):
                 continue
-            # 文件级的兜底判断
-            if filter_c and rel_path.parts[:2] == ('data', 'c'):
+            if filter_c and len(rel_path.parts) >= 2 and rel_path.parts[:2] == ('data', 'c'):
                 continue
-            if len(rel_path.parts) == 1 and name in KEEP_FILES:
-                files.append(file_path)
-                continue
-            if rel_path.parts[0] == 'data' and file_path.suffix.lower() in EXTENSIONS:
+            if file_path.suffix.lower() in EXTENSIONS:
                 files.append(file_path)
     return files
 
-def pack(source_dir, output_zip, macros, filter_c=False):
+def collect_resource_files(source_dir):
+    """收集资源包文件（仅 assets/ 目录）"""
     source = Path(source_dir).resolve()
-    files = collect_files(source, filter_c)   # ← 传入参数
+    files = []
+    for root, dirs, files_list in os.walk(source):
+        root_path = Path(root)
+        rel_root = root_path.relative_to(source)
+        if should_ignore(rel_root.parts):
+            continue
+        # 只处理 assets/ 目录
+        if rel_root.parts and rel_root.parts[0] != 'assets':
+            dirs[:] = []
+            continue
+        for name in files_list:
+            file_path = root_path / name
+            rel_path = file_path.relative_to(source)
+            if should_ignore(rel_path.parts):
+                continue
+            files.append(file_path)
+    return files
+
+# ===== pack.mcmeta 生成 =====
+
+def generate_pack_mcmeta(pack_type, macros):
+    """
+    根据包类型生成 pack.mcmeta 内容。
+    pack_type: 'data' 或 'resource'
+    """
+    if pack_type == 'data':
+        min_fmt = macros.get('DATA_MIN_FORMAT', DEFAULT_DATA_MIN_FORMAT)
+        max_fmt = macros.get('DATA_MAX_FORMAT', DEFAULT_DATA_MAX_FORMAT)
+    else:
+        min_fmt = macros.get('RESOURCE_MIN_FORMAT', DEFAULT_RESOURCE_MIN_FORMAT)
+        max_fmt = macros.get('RESOURCE_MAX_FORMAT', DEFAULT_RESOURCE_MAX_FORMAT)
+
+    description = macros.get('DESCRIPTION', DEFAULT_DESCRIPTION)
+
+    mcmeta = {
+        "pack": {
+            "description": description,
+            "min_format": min_fmt,
+            "max_format": max_fmt
+        }
+    }
+    return json.dumps(mcmeta, ensure_ascii=False, indent=2)
+
+# ===== 打包函数 =====
+
+def pack_data(source_dir, output_zip, macros, filter_c=False):
+    """打包数据包"""
+    source = Path(source_dir).resolve()
+    files = collect_data_files(source, filter_c)
+
     if not files:
-        print("警告：没有找到任何符合规则的文件。")
+        print("⚠️ 数据包：没有找到任何 data/ 下的文件。")
+
     output_path = Path(output_zip).parent
     output_path.mkdir(parents=True, exist_ok=True)
 
+    pack_mcmeta = generate_pack_mcmeta('data', macros)
+
     with zipfile.ZipFile(output_zip, 'w', zipfile.ZIP_DEFLATED) as zipf:
+        zipf.writestr('pack.mcmeta', pack_mcmeta)
+
         for file_path in files:
             arcname = file_path.relative_to(source)
             if file_path.suffix.lower() == '.mcfunction':
@@ -215,13 +256,45 @@ def pack(source_dir, output_zip, macros, filter_c=False):
             else:
                 zipf.write(file_path, arcname)
 
-    tag = " [通用版·无 c 目录]" if filter_c else " [兼容版·含 c 目录]"
-    print(f"打包完成：{output_zip}{tag} (共 {len(files)} 个文件)")
+    tag = " [无 c 目录]" if filter_c else " [含 c 目录]"
+    print(f"✅ 数据包：{output_zip}{tag} (共 {len(files)} 个文件)")
+
+def pack_resource(source_dir, output_zip, macros):
+    """打包资源包"""
+    source = Path(source_dir).resolve()
+    files = collect_resource_files(source)
+
+    if not files:
+        print("⚠️ 资源包：没有找到任何 assets/ 下的文件。")
+
+    output_path = Path(output_zip).parent
+    output_path.mkdir(parents=True, exist_ok=True)
+
+    pack_mcmeta = generate_pack_mcmeta('resource', macros)
+
+    with zipfile.ZipFile(output_zip, 'w', zipfile.ZIP_DEFLATED) as zipf:
+        zipf.writestr('pack.mcmeta', pack_mcmeta)
+
+        for file_path in files:
+            arcname = file_path.relative_to(source)
+            if file_path.suffix.lower() == '.json':
+                with open(file_path, 'r', encoding='utf-8') as f:
+                    content = f.read()
+                content = replace_macros(content, macros)
+                content = compress_json(content)
+                zipf.writestr(str(arcname), content)
+            else:
+                # 二进制文件（.png、.ogg 等）直接写入
+                zipf.write(file_path, arcname)
+
+    print(f"✅ 资源包：{output_zip} (共 {len(files)} 个文件)")
+
+# ===== 配置加载 =====
 
 def load_macros(source_dir):
     macro_path = Path(source_dir) / MACRO_FILE
     if not macro_path.exists():
-        print(f"警告：未找到 {MACRO_FILE}，将使用空宏。")
+        print(f"警告：未找到 {MACRO_FILE}，将使用默认配置。")
         return {}
     try:
         with open(macro_path, 'r', encoding='utf-8') as f:
@@ -230,16 +303,51 @@ def load_macros(source_dir):
         for k, v in data.items():
             if isinstance(v, (str, int, float)):
                 macros[k] = str(v)
+            else:
+                macros[k] = v  # 保留列表/字典用于格式配置
         return macros
     except Exception as e:
         print(f"错误：读取 {MACRO_FILE} 失败：{e}")
         sys.exit(1)
 
-if __name__ == '__main__':
+# ===== 主入口 =====
+
+def main():
+    parser = argparse.ArgumentParser(description='打包 Minecraft 数据包/资源包')
+    parser.add_argument('--data', action='store_true', help='只打包数据包')
+    parser.add_argument('--resource', action='store_true', help='只打包资源包')
+    parser.add_argument('--all', action='store_true', help='打包数据包和资源包（默认）')
+    parser.add_argument('--version', help='指定版本号（覆盖 defines.yml 中的 VERSION）')
+    parser.add_argument('--no-compat', action='store_true', help='不生成兼容版数据包')
+    parser.add_argument('--no-generic', action='store_true', help='不生成通用版数据包')
+    args = parser.parse_args()
+
+    # 默认打包两者
+    if not (args.data or args.resource or args.all):
+        args.all = True
+
     src_dir = '.'
     source = Path(src_dir).resolve()
     macros = load_macros(source)
-    version = macros.get('VERSION', '0.0.0')
-    zip_name = f"Age-{version}.zip"
-    output_zip = Path(OUTPUT_DIR) / zip_name
-    pack(src_dir, str(output_zip), macros)
+    version = args.version or macros.get('VERSION', '0.0.0')
+
+    # ===== 数据包 =====
+    if args.data or args.all:
+        # 通用版（移除 data/c/）
+        if not args.no_generic:
+            data_generic_zip = Path(OUTPUT_DIR) / f"Age-Data-{version}-generic.zip"
+            pack_data(src_dir, str(data_generic_zip), macros, filter_c=True)
+
+        # 兼容版（保留 data/c/）
+        if not args.no_compat:
+            data_compat_zip = Path(OUTPUT_DIR) / f"Age-Data-{version}-compat.zip"
+            pack_data(src_dir, str(data_compat_zip), macros, filter_c=False)
+
+    # ===== 资源包 =====
+    if args.resource or args.all:
+        resource_zip = Path(OUTPUT_DIR) / f"Age-Assets-{version}.zip"
+        pack_resource(src_dir, str(resource_zip), macros)
+
+
+if __name__ == '__main__':
+    main()

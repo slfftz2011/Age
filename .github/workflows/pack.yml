@@ -21,8 +21,9 @@ jobs:
       version: ${{ steps.get_version.outputs.version }}
       tag: ${{ steps.set_tag.outputs.tag }}
       hotfix_suffix: ${{ steps.set_tag.outputs.hotfix_suffix }}
-      asset_name: ${{ steps.set_asset_name.outputs.asset_name }}
-      asset_name_compat: ${{ steps.set_asset_name.outputs.asset_name_compat }}
+      asset_data_generic: ${{ steps.set_asset_name.outputs.asset_data_generic }}
+      asset_data_compat: ${{ steps.set_asset_name.outputs.asset_data_compat }}
+      asset_resource: ${{ steps.set_asset_name.outputs.asset_resource }}
       release_body: ${{ steps.build_body.outputs.release_body }}
       check_output: ${{ steps.run_check.outputs.check_output }}
 
@@ -67,9 +68,11 @@ jobs:
       - name: 设置资产名称
         id: set_asset_name
         run: |
+          VERSION="${{ env.VERSION }}"
           SUFFIX="${{ steps.set_tag.outputs.hotfix_suffix }}"
-          echo "asset_name=Age-${{ env.VERSION }}${SUFFIX}.zip" >> $GITHUB_OUTPUT
-          echo "asset_name_compat=Age-${{ env.VERSION }}-compat${SUFFIX}.zip" >> $GITHUB_OUTPUT
+          echo "asset_data_generic=Age-Data-${VERSION}-generic${SUFFIX}.zip" >> $GITHUB_OUTPUT
+          echo "asset_data_compat=Age-Data-${VERSION}-compat${SUFFIX}.zip" >> $GITHUB_OUTPUT
+          echo "asset_resource=Age-Assets-${VERSION}${SUFFIX}.zip" >> $GITHUB_OUTPUT
 
       - name: 运行综合检查（不中断构建）
         id: run_check
@@ -80,16 +83,17 @@ jobs:
           cat check_output.txt >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
 
-      - name: 打包数据包
-        run: python pack.py
+      - name: 打包数据包和资源包
+        run: python pack.py --all
 
       - name: 重命名产物（热修复时添加后缀）
         if: steps.set_tag.outputs.is_hotfix == 'true'
         run: |
           VERSION="${{ env.VERSION }}"
           SUFFIX="${{ steps.set_tag.outputs.hotfix_suffix }}"
-          mv "output/Age-${VERSION}.zip"        "output/${{ steps.set_asset_name.outputs.asset_name }}"
-          mv "output/Age-${VERSION}-compat.zip" "output/${{ steps.set_asset_name.outputs.asset_name_compat }}"
+          mv "output/Age-Data-${VERSION}-generic.zip" "output/${{ steps.set_asset_name.outputs.asset_data_generic }}"
+          mv "output/Age-Data-${VERSION}-compat.zip"  "output/${{ steps.set_asset_name.outputs.asset_data_compat }}"
+          mv "output/Age-Assets-${VERSION}.zip"       "output/${{ steps.set_asset_name.outputs.asset_resource }}"
 
       - name: 构建 Release 正文
         id: build_body
@@ -108,8 +112,11 @@ jobs:
             echo "> ⚠️ **注意**: 此为每日自动构建的预发布版本，未经充分测试，不保证可用性。请谨慎使用。"
             echo ""
             echo "### 📦 下载"
-            echo "- \`Age-${{ env.VERSION }}.zip\` — **通用版**，已移除 \`data/c/\`，纯原版可用"
-            echo "- \`Age-${{ env.VERSION }}-compat.zip\` — **兼容版**，保留 \`data/c/\`，需 Fabric API / NeoForge"
+            echo "| 文件 | 类型 | 说明 |"
+            echo "|------|------|------|"
+            echo "| \`Age-Data-${{ env.VERSION }}-generic.zip\` | 数据包·通用版 | 已移除 \`data/c/\`，纯原版可用 |"
+            echo "| \`Age-Data-${{ env.VERSION }}-compat.zip\`  | 数据包·兼容版 | 保留 \`data/c/\`，需 Fabric API / NeoForge |"
+            echo "| \`Age-Assets-${{ env.VERSION }}.zip\`       | 资源包 | 自定义材质、模型、音效 |"
             echo ""
             echo "### 检查结果"
             echo '```'
@@ -121,7 +128,7 @@ jobs:
       - name: 创建/更新 Release
         uses: ncipollo/release-action@v1.14.0
         with:
-          artifacts: "output/${{ steps.set_asset_name.outputs.asset_name }},output/${{ steps.set_asset_name.outputs.asset_name_compat }}"
+          artifacts: "output/${{ steps.set_asset_name.outputs.asset_data_generic }},output/${{ steps.set_asset_name.outputs.asset_data_compat }},output/${{ steps.set_asset_name.outputs.asset_resource }}"
           tag: ${{ steps.set_tag.outputs.tag }}
           name: "Pre-Release ${{ env.VERSION }}"
           body: ${{ steps.build_body.outputs.release_body }}
