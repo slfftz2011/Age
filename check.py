@@ -61,6 +61,11 @@ def scan_mcfunction(file_path):
     struct_pattern = re.compile(r'structure\s+(load|place)\s+age:([a-zA-Z0-9_/]+)')
     
     for line_no, line in enumerate(lines, start=1):
+        stripped = line.strip()
+        if stripped.startswith('#'):
+            continue
+        if any(kw in stripped for kw in ('tellraw', 'actionbar')):
+            continue
         # 记分板注册
         for m in reg_pattern.finditer(line):
             result['scoreboard_registered'].append((m.group(1), line_no))

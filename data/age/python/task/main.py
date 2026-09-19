@@ -1,14 +1,15 @@
 import json
 import os
+import argparse
 
-def generate_mcfunctions(config_path, output_dir="data"):
+
+def generate_mcfunctions(config_path, output_dir):
     with open(config_path, 'r', encoding='utf-8') as f:
         config = json.load(f)
 
     era = config["era"]
+    era_display = config.get("era_display", era)  # 时代显示名，缺省回退到 era
     namespace = config["namespace"]
-    base_path = namespace.replace(":", "/")
-    full_base = os.path.join(output_dir, base_path)
 
     type_map = {t["id"]: t for t in config["types"]}
     all_tasks = []
@@ -37,6 +38,7 @@ def generate_mcfunctions(config_path, output_dir="data"):
         if not main_content and not contents:
             raise ValueError(f"任务 {task_id} 必须指定 main_content 或 contents")
 
+        # 主计分板
         main_sb = {
             "name": f"{task_name}_{task_type}",
             "criterion": f"minecraft.{criterion}:minecraft.{main_content}" if main_content else "dummy",
@@ -45,14 +47,19 @@ def generate_mcfunctions(config_path, output_dir="data"):
         }
         scoreboards = [main_sb]
 
-        updata_sb = {"name": f"{task_name}_updata", "criterion": "dummy", "updata": True}
-        scoreboards.append(updata_sb)
+        # updata 计分板（仅个人任务需要）
+        updata_sb = None
+        if team_scope == "personal":
+            updata_sb = {"name": f"{task_name}_updata", "criterion": "dummy", "updata": True}
+            scoreboards.append(updata_sb)
 
+        # all 计分板（仅团队任务需要）
         all_sb = None
         if team_scope == "team":
             all_sb = {"name": f"{task_name}_all", "criterion": "dummy", "all": True}
             scoreboards.append(all_sb)
 
+        # 子计分板
         sub_sbs = []
         for content in contents:
             sub = {
@@ -83,12 +90,11 @@ def generate_mcfunctions(config_path, output_dir="data"):
         }
         all_tasks.append(task_info)
 
-        type_path = os.path.join(full_base, "random", task_type)
+        type_path = os.path.join(output_dir, "random", task_type)
         os.makedirs(type_path, exist_ok=True)
 
         # ===== {id}.mcfunction =====
         if team_scope == "team":
-            # 团队任务特殊格式：全局追踪 {task_name}_all
             lines = [
                 f"# ===== {type_name}：{display_name} x{target}（队伍共享）=====",
                 "",
@@ -99,13 +105,12 @@ def generate_mcfunctions(config_path, output_dir="data"):
                 f"execute unless score {era} {all_sb['name']} matches {target}.. as @a[team={era}] run scoreboard players operation {era} {all_sb['name']} += @s {main_sb['name']}",
                 "",
                 "# 更新 Bossbar 名称",
-                f'bossbar set {era} name ["当前时代 - ", {{text:"旧石器时代",color:"#424529"}}, "   当前任务 - ", {{text:"[{type_name}] 共同击杀 {display_name} ",color:"{color}"}}, {{score:{{name:"{era}",objective:"{all_sb["name"]}"}}}}, {{text:"/{target}",color:"gray"}}]',
+                f'bossbar set {era} name ["当前时代 - ", {{text:"{era_display}",color:"#424529"}}, "   当前任务 - ", {{text:"[{type_name}] 共同击杀 {display_name} ",color:"{color}"}}, {{score:{{name:"{era}",objective:"{all_sb["name"]}"}}}}, {{text:"/{target}",color:"gray"}}]',
                 "",
                 "# 仅在未完成时检测是否达到目标",
                 f"execute unless entity @a[team={era},tag=task_done] if score {era} {all_sb['name']} matches {target}.. run function {namespace}/random/{task_type}/{task_id}_c"
             ]
         else:
-            # 个人任务
             lines = []
             if task_info["is_collection"]:
                 for sub in sub_sbs:
@@ -125,7 +130,7 @@ def generate_mcfunctions(config_path, output_dir="data"):
                 f"playsound minecraft:entity.player.levelup player @a ~ ~ ~ 1 1.5",
                 f"execute if entity @a[team={era}] run scoreboard players add {era} stage {reward}",
                 f"xp add @a[team={era}] {xp_reward}",
-                f'tellraw @a ["",{{text:"恭喜队伍 ",color:"#aaddaa"}},{{text:"旧石器时代",color:"#424529"}},{{text:" 完成了委托 ",color:"#aaddaa"}},{{text:"{type_name}: {display_name} x{target}",color:"{color}"}},{{text:" !",color:"#aaddaa"}}]',
+                f'tellraw @a ["",{{text:"恭喜队伍 ",color:"#aaddaa"}},{{text:"{era_display}",color:"#424529"}},{{text:" 完成了委托 ",color:"#aaddaa"}},{{text:"{type_name}: {display_name} x{target}",color:"{color}"}},{{text:" !",color:"#aaddaa"}}]',
                 f'tellraw @a {{text:"时代进度 +{reward}! ",color:"#aaddaa"}}',
                 f"tag @a[team={era}] add task_done"
             ]
@@ -156,7 +161,7 @@ def generate_mcfunctions(config_path, output_dir="data"):
             else:
                 check_lines.append(f"execute if score {era} task matches {t['id']} as @a[team={era}] run function {namespace}/random/{type_id}/{t['id']}")
 
-    with open(os.path.join(full_base, "check.mcfunction"), 'w', encoding='utf-8') as f:
+    with open(os.path.join(output_dir, "check.mcfunction"), 'w', encoding='utf-8') as f:
         f.write("\n".join(check_lines))
 
     # ===== roll.mcfunction =====
@@ -165,7 +170,8 @@ def generate_mcfunctions(config_path, output_dir="data"):
 
     for t in all_tasks:
         roll_lines.append(f"execute if score {era} task matches {t['id']} run scoreboard objectives remove {t['main_sb']['name']}")
-        roll_lines.append(f"execute if score {era} task matches {t['id']} run scoreboard objectives remove {t['updata_sb']['name']}")
+        if t['updata_sb']:
+            roll_lines.append(f"execute if score {era} task matches {t['id']} run scoreboard objectives remove {t['updata_sb']['name']}")
         if t['all_sb']:
             roll_lines.append(f"execute if score {era} task matches {t['id']} run scoreboard objectives remove {t['all_sb']['name']}")
         for sub in t['sub_sbs']:
@@ -184,35 +190,40 @@ def generate_mcfunctions(config_path, output_dir="data"):
             cmd = f"execute if score {era} task matches {t['id']} run scoreboard objectives add {main['name']} {main['criterion']} \"{main['display']}\""
         roll_lines.append(cmd)
 
-        up = t['updata_sb']
-        roll_lines.append(f"execute if score {era} task matches {t['id']} run scoreboard objectives add {up['name']} dummy")
-
+        if t['updata_sb']:
+            roll_lines.append(f"execute if score {era} task matches {t['id']} run scoreboard objectives add {t['updata_sb']['name']} dummy")
         if t['all_sb']:
-            all_sb = t['all_sb']
-            roll_lines.append(f"execute if score {era} task matches {t['id']} run scoreboard objectives add {all_sb['name']} dummy")
+            roll_lines.append(f"execute if score {era} task matches {t['id']} run scoreboard objectives add {t['all_sb']['name']} dummy")
 
         for sub in t['sub_sbs']:
             roll_lines.append(f"execute if score {era} task matches {t['id']} run scoreboard objectives add {sub['name']} {sub['criterion']}")
 
-    with open(os.path.join(full_base, "roll.mcfunction"), 'w', encoding='utf-8') as f:
+    with open(os.path.join(output_dir, "roll.mcfunction"), 'w', encoding='utf-8') as f:
         f.write("\n".join(roll_lines))
 
     # ===== show.mcfunction =====
     show_lines = [
         "# ===== 任务分配后更新 Bossbar 初始名称 =====",
         "# ----- 无任务 -----",
-        f'execute if score {era} task matches 0 run bossbar set {era} name ["当前时代 - ", {{text:"旧石器时代",color:"#424529"}}, " 当前任务 - ", {{text:"无",color:"gray"}}]',
+        f'execute if score {era} task matches 0 run bossbar set {era} name ["当前时代 - ", {{text:"{era_display}",color:"#424529"}}, " 当前任务 - ", {{text:"无",color:"gray"}}]',
     ]
     for t in all_tasks:
         display_text = f"[{t['type_name']}] {t['display_name']} x{t['target']}"
         if t["team_scope"] == "team":
             display_text = f"[{t['type_name']}] 共同击杀 {t['display_name']} 0/{t['target']}"
-        show_lines.append(f'execute if score {era} task matches {t["id"]} run bossbar set {era} name ["当前时代 - ", {{text:"旧石器时代",color:"#424529"}}, " 当前任务 - ", {{text:"{display_text}",color:"{t["color"]}"}}]')
-    with open(os.path.join(full_base, "show.mcfunction"), 'w', encoding='utf-8') as f:
+        show_lines.append(f'execute if score {era} task matches {t["id"]} run bossbar set {era} name ["当前时代 - ", {{text:"{era_display}",color:"#424529"}}, " 当前任务 - ", {{text:"{display_text}",color:"{t["color"]}"}}]')
+
+    with open(os.path.join(output_dir, "show.mcfunction"), 'w', encoding='utf-8') as f:
         f.write("\n".join(show_lines))
 
     print(f"✅ 成功生成 {len(all_tasks)} 个任务的全部函数文件")
-    print(f"📁 输出目录: {full_base}")
+    print(f"📁 输出目录: {output_dir}")
+
 
 if __name__ == "__main__":
-    generate_mcfunctions("old_stone_age.json")
+    parser = argparse.ArgumentParser(description="根据 JSON 配置生成 Minecraft 函数文件")
+    parser.add_argument("config", help="JSON 配置文件的路径")
+    parser.add_argument("-o", "--output", default="data", help="输出根目录（默认: data）")
+    args = parser.parse_args()
+
+    generate_mcfunctions(args.config, args.output)

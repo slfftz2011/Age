@@ -1,5 +1,6 @@
 {
   "era": "old_stone_age",
+  "era_display": "旧石器时代",
   "namespace": "age:task/old_stone_age",
   "max_task_id": 57,
   "types": [
