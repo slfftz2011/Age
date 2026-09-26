@@ -26,7 +26,6 @@ scoreboard objectives add sweet_berries_cooling dummy
 scoreboard objectives add glow_berries_cooling dummy
 scoreboard objectives add melon_cooling dummy
 scoreboard objectives add golden_carrot_cooling dummy
-scoreboard objectives add sleep_temperature dummy
 scoreboard objectives add disable_nether dummy
 scoreboard objectives add disable_end dummy
 scoreboard objectives add enable_nether dummy

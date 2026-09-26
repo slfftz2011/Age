@@ -14,7 +14,7 @@ TAG_STRENGTH = {
 
 RANGE = 3
 CONTACT_DIST = 1.0
-OUTPUT = Path("function/state/temperature/env/block.mcfunction")
+OUTPUT = Path("data/age/function/state/temperature/env/block.mcfunction")
 
 
 def safe_round(x):

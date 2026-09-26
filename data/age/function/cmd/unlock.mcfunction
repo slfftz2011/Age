@@ -1,1 +1,1 @@
-data remove block $(x) $(y) $(z) lock
+$data remove block $(x) $(y) $(z) lock
