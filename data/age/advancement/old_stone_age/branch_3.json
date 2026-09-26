@@ -13,7 +13,7 @@
     "icon": {
       "id": "minecraft:chicken"
     },
-    "frame": "task",
+    "frame": "challenge",
     "show_toast": true,
     "announce_to_chat": false,
     "hidden": false

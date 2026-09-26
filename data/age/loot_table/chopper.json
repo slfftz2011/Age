@@ -56,6 +56,12 @@
                             "function": "set_name",
                             "name": {"text":"燧石手斧","color":"#505339"},
                             "target":"item_name"
+                        },
+                        {
+                            "function": "set_components",
+                            "components": {
+                                "minecraft:item_model": "age:chopper"
+                            }
                         }
                     ],
                     "name": "minecraft:stone_axe"
