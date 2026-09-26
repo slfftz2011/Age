@@ -17,7 +17,7 @@ from pathlib import Path
 
 EXTENSIONS = {'.json', '.mcfunction', '.nbt'}
 KEEP_FILES = {'README', 'LICENSE'}
-IGNORE_DIRS = {'python', '__pycache__', '.git', 'output'}
+IGNORE_DIRS = {'python', '__pycache__', '.git', 'output', "pack.py", "check.py", "report.md"}
 OUTPUT_DIR = 'output'
 MACRO_FILE = 'defines.yml'
 
