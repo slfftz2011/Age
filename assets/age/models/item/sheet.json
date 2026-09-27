@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "age:item/core"
+    "layer0": "age:item/sheet"
   }
 }

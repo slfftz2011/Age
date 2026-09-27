@@ -56,6 +56,12 @@
                             "function": "set_name",
                             "name": {"text":"燧石小刀","color":"#505339"},
                             "target":"item_name"
+                        },
+                        {
+                            "function": "set_components",
+                            "components": {
+                                "minecraft:item_model": "age:scraper"
+                            }
                         }
                     ],
                     "name": "minecraft:stone_sword"
