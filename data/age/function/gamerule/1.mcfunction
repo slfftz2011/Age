@@ -9,4 +9,4 @@ tellraw @s [{"text":"[时代晋升] ","color":"gold","bold":true},{"text":"每�
 tellraw @s [{"text":"[时代榜] ","color":"gold","bold":true},{"text":"侧边栏实时显示当前时代与进度，完成主线或委托可加速进步。","color":"white"}]
 
 tellraw @s {text:"",color:"white"}
-tellraw @s ["", "[", {text:"这是第一页啦",color:"gold"}, "]","  |  [",{text:"下一页",color:"gold",click_event:{action:"run_command",command:"/function age:gamerule/2"}},"]"]
+tellraw @s ["", "[", {text:"这是第一页啦",color:"gold"}, "]","  |  [",{text:"下一页",color:"gold",click_event:{action:"run_command",command:"/trigger age_gamerule_page set 2"}},"]"]

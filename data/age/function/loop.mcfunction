@@ -126,3 +126,21 @@ execute as @a[team=old_stone_age] at @s run function age:container/unlock_radius
 execute as @a[team=old_stone_age] at @s anchored eyes run function age:container/lock_sight
 # 破坏旧石器玩家周围红石方块
 execute as @a[team=old_stone_age] at @s run fill ~-2 ~-2 ~-2 ~2 ~2 ~2 air replace #age:redstone_blocks destroy
+
+# 启用所有玩家的翻页触发器
+scoreboard players enable @a age_gamerule_page
+function age:gamerule/check
+
+
+# 启用菜单触发器
+scoreboard players enable @a age_menu
+
+# 点击“游戏规则” → 跳转第一页
+execute as @a[scores={age_menu=1}] run function age:gamerule/1
+
+# 点击“更新日志” → 打开更新日志
+execute as @a[scores={age_menu=2}] run function age:change_log
+
+# 处理完毕，重置并重新启用
+scoreboard players reset @a age_menu
+scoreboard players enable @a age_menu

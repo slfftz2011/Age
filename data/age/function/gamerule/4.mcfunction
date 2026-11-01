@@ -11,4 +11,4 @@ tellraw @s [{"text":"[配方锁定] ","color":"gold","bold":true},{"text":"未�
 tellraw @s [{"text":"[重要提醒] ","color":"red","bold":true},{"text":"以上均为总规则，适用于所有时代；每个时代还有其专属特性，将在对应时代的规则页中单独说明。","color":"white"}]
 
 tellraw @s {text:"",color:"white"}
-tellraw @s ["", "[", {text:"上一页",color:"gold",click_event:{action:"run_command",command:"/function age:gamerule/3"}}, "]","  |  [",{text:"返回第一页",color:"gold",click_event:{action:"run_command",command:"/function age:gamerule/1"}},"]"]
+tellraw @s ["", "[", {text:"上一页",color:"gold",click_event:{action:"run_command",command:"/trigger age_gamerule_page set 3"}}, "]","  |  [",{text:"返回第一页",color:"gold",click_event:{action:"run_command",command:"/trigger age_gamerule_page set 1"}},"]"]

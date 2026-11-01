@@ -13,4 +13,4 @@ tellraw @s [{"text":"[热源 / 冷源] ","color":"gold","bold":true},{"text":"�
 tellraw @s [{"text":"[温度负面效果] ","color":"gold","bold":true},{"text":"中暑 / 灼烧（高温），寒战 / 冰冻（低温），需及时调节体温。","color":"white"}]
 
 tellraw @s {text:"",color:"white"}
-tellraw @s ["", "[", {text:"上一页",color:"gold",click_event:{action:"run_command",command:"/function age:gamerule/1"}}, "]","  |  [",{text:"下一页",color:"gold",click_event:{action:"run_command",command:"/function age:gamerule/3"}},"]"]
+tellraw @s ["", "[", {text:"上一页",color:"gold",click_event:{action:"run_command",command:"/trigger age_gamerule_page set 1"}}, "]","  |  [",{text:"下一页",color:"gold",click_event:{action:"run_command",command:"/trigger age_gamerule_page set 3"}},"]"]

@@ -13,4 +13,4 @@ tellraw @s [{"text":"[主线任务] ","color":"gold","bold":true},{"text":"每�
 tellraw @s [{"text":"[分支任务] ","color":"gold","bold":true},{"text":"每个时代有独立分支线，通过进度树展示，完成后获得额外奖励。","color":"white"}]
 
 tellraw @s {text:"",color:"white"}
-tellraw @s ["", "[", {text:"上一页",color:"gold",click_event:{action:"run_command",command:"/function age:gamerule/2"}}, "]","  |  [",{text:"下一页",color:"gold",click_event:{action:"run_command",command:"/function age:gamerule/4"}},"]"]
+tellraw @s ["", "[", {text:"上一页",color:"gold",click_event:{action:"run_command",command:"/trigger age_gamerule_page set 2"}}, "]","  |  [",{text:"下一页",color:"gold",click_event:{action:"run_command",command:"/trigger age_gamerule_page set 4"}},"]"]
