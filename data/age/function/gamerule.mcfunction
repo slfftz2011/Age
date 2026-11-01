@@ -1,0 +1,1 @@
+function age:gamerule/1
