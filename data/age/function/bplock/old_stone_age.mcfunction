@@ -1,6 +1,6 @@
 # 槽位锁定/解锁函数
 # 锁定槽位: container.9-35
-# 保留槽位: hotbar.0,hotbar.1,hotbar.2,hotbar.3,hotbar.4,hotbar.5,hotbar.6,hotbar.7,hotbar.8,weapon.offhand,armor.head,armor.chest,armor.legs,armor.feet
+# 保留槽位: hotbar.0,hotbar.1,hotbar.2,hotbar.3,hotbar.4,hotbar.5,hotbar.6,hotbar.7,hotbar.8,weapon.offhand,armor.head,armor.chest,armor.legs,armor.feet,player.cursor,player.crafting.0,player.crafting.1,player.crafting.2,player.crafting.3
 
 # 清除保留槽位中的屏障
 execute if items entity @s hotbar.0 minecraft:barrier[minecraft:custom_name={text:"✖",color:"red",italic:false}] run item replace entity @s hotbar.0 with air
@@ -17,6 +17,11 @@ execute if items entity @s armor.head minecraft:barrier[minecraft:custom_name={t
 execute if items entity @s armor.chest minecraft:barrier[minecraft:custom_name={text:"✖",color:"red",italic:false}] run item replace entity @s armor.chest with air
 execute if items entity @s armor.legs minecraft:barrier[minecraft:custom_name={text:"✖",color:"red",italic:false}] run item replace entity @s armor.legs with air
 execute if items entity @s armor.feet minecraft:barrier[minecraft:custom_name={text:"✖",color:"red",italic:false}] run item replace entity @s armor.feet with air
+execute if items entity @s player.cursor minecraft:barrier[minecraft:custom_name={text:"✖",color:"red",italic:false}] run item replace entity @s player.cursor with air
+execute if items entity @s player.crafting.0 minecraft:barrier[minecraft:custom_name={text:"✖",color:"red",italic:false}] run item replace entity @s player.crafting.0 with air
+execute if items entity @s player.crafting.1 minecraft:barrier[minecraft:custom_name={text:"✖",color:"red",italic:false}] run item replace entity @s player.crafting.1 with air
+execute if items entity @s player.crafting.2 minecraft:barrier[minecraft:custom_name={text:"✖",color:"red",italic:false}] run item replace entity @s player.crafting.2 with air
+execute if items entity @s player.crafting.3 minecraft:barrier[minecraft:custom_name={text:"✖",color:"red",italic:false}] run item replace entity @s player.crafting.3 with air
 
 # 强制锁定指定槽位
 item replace entity @s container.9 with minecraft:barrier[minecraft:custom_name={text:"✖",color:"red",italic:false}]

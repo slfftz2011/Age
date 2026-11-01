@@ -83,6 +83,7 @@ execute as @a[team=old_stone_age] if items entity @s weapon.mainhand stone_axe[!
 execute as @a[team=old_stone_age] if items entity @s weapon.mainhand stone_sword[!custom_data={special:0b,from:"old_stone_age"}] run loot replace entity @s weapon.mainhand loot age:scraper
 execute as @a[team=old_stone_age] if items entity @s weapon.mainhand stone_shovel[!custom_data={special:0b,from:"old_stone_age"}] run loot replace entity @s weapon.mainhand loot age:engraver
 execute as @a[team=old_stone_age] if items entity @s container.* #age:ban/old_stone_age run function age:clear/old_stone_age
+execute as @a[team=old_stone_age] if items entity @s weapon.offhand #age:ban/old_stone_age run function age:clear/old_stone_age
 
 
 # 效果给予

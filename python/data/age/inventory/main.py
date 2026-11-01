@@ -37,11 +37,11 @@ def main():
     )
     parser.add_argument(
         "-l", "--lock-slots", required=True,
-        help="要锁定的槽位（替换为屏障），支持逗号分隔，支持范围，例如 'container.0-26'"
+        help="要锁定的槽位（替换为屏障），支持逗号分隔，支持范围，例如 'container.9-35'"
     )
     parser.add_argument(
-        "-k", "--keep-slots", default="hotbar.0-8,weapon.offhand,armor.head,armor.chest,armor.legs,armor.feet",
-        help="要保留的槽位（清除屏障），默认：hotbar.0-8,weapon.offhand,armor.head,armor.chest,armor.legs,armor.feet"
+        "-k", "--keep-slots", default="hotbar.0-8,weapon.offhand,armor.head,armor.chest,armor.legs,armor.feet,player.cursor,player.crafting.0-3",
+        help="要保留的槽位（清除屏障），默认：hotbar.0-8,weapon.offhand,armor.head,armor.chest,armor.legs,armor.feet,player.cursor,player.crafting.0-3"
     )
     parser.add_argument(
         "-o", "--output", default="lock_slots.mcfunction",
