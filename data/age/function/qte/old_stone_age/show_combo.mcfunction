@@ -1,0 +1,1 @@
+$tellraw @s {"text":"连击 ×$(combo)","color":"aqua"}

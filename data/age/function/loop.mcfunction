@@ -84,6 +84,10 @@ execute as @a[team=old_stone_age] if items entity @s weapon.mainhand stone_sword
 execute as @a[team=old_stone_age] if items entity @s weapon.mainhand stone_shovel[!custom_data={special:0b,from:"old_stone_age"}] run loot replace entity @s weapon.mainhand loot age:engraver
 execute as @a[team=old_stone_age] if items entity @s container.* #age:ban/old_stone_age run function age:clear/old_stone_age
 execute as @a[team=old_stone_age] if items entity @s weapon.offhand #age:ban/old_stone_age run function age:clear/old_stone_age
+execute as @a[team=old_stone_age] if items entity @s armor.head #age:ban/old_stone_age run function age:clear/old_stone_age
+execute as @a[team=old_stone_age] if items entity @s armor.chest #age:ban/old_stone_age run function age:clear/old_stone_age
+execute as @a[team=old_stone_age] if items entity @s armor.legs #age:ban/old_stone_age run function age:clear/old_stone_age
+execute as @a[team=old_stone_age] if items entity @s armor.feet #age:ban/old_stone_age run function age:clear/old_stone_age
 
 
 # 效果给予
@@ -126,6 +130,10 @@ execute as @a[team=old_stone_age] at @s run function age:container/unlock_radius
 execute as @a[team=old_stone_age] at @s anchored eyes run function age:container/lock_sight
 # 破坏旧石器玩家周围红石方块
 execute as @a[team=old_stone_age] at @s run fill ~-2 ~-2 ~-2 ~2 ~2 ~2 air replace #age:redstone_blocks destroy
+# QTE
+execute as @a[tag=!in_qte] run function age:qte/old_stone_age/try_trigger
+execute as @a[tag=in_qte,tag=qte_waiting] run function age:qte/old_stone_age/wait_tick
+execute as @a[tag=in_qte,tag=qte_running] run function age:qte/old_stone_age/bar_tick
 
 # 启用所有玩家的翻页触发器
 scoreboard players enable @a age_gamerule_page

@@ -130,5 +130,15 @@ scoreboard objectives setdisplay sidebar age
 
 scoreboard objectives add stage dummy "时代进度"
 
+## QTE
+scoreboard objectives add qte_click minecraft.used:minecraft.carrot_on_a_stick
+scoreboard objectives add qte_wait dummy
+scoreboard objectives add qte_elapsed dummy
+scoreboard objectives add qte_combo dummy
+scoreboard objectives add qte_tmp dummy
+
+scoreboard players set #c8 qte_tmp 8
+scoreboard players set #c10 qte_tmp 10
+
 
 function age:state/init

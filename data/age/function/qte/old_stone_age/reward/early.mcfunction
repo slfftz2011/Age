@@ -1,0 +1,1 @@
+loot give @s loot age:qte/old_stone_age/early
