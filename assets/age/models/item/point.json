@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/handheld",
   "textures": {
-    "layer0": "age:item/point"
+    "layer0": "age:item/handheld/point"
   }
 }

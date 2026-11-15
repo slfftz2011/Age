@@ -50,23 +50,45 @@ jobs:
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "VERSION=$VERSION" >> $GITHUB_ENV
 
-      - name: 设置标签和后缀
+      - name: 设置标签和后缀（含跳过判断）
         id: set_tag
         run: |
           TAG="${{ env.VERSION }}"
-          echo "tag=$TAG" >> $GITHUB_OUTPUT
+          FULL_HASH=$(git rev-parse HEAD)
           SHORT_HASH=$(git rev-parse --short=7 HEAD)
+          HOTFIX_TAG="${TAG}-hotfix-${SHORT_HASH}"
+          echo "tag=$TAG" >> $GITHUB_OUTPUT
           echo "short_hash=$SHORT_HASH" >> $GITHUB_OUTPUT
-          if git rev-parse "$TAG" >/dev/null 2>&1; then
-            echo "hotfix_suffix=-hotfix-$SHORT_HASH" >> $GITHUB_OUTPUT
-            echo "is_hotfix=true" >> $GITHUB_OUTPUT
+
+          # 1) 当前 commit 的 hotfix 已发布过 → skip
+          if git rev-parse "$HOTFIX_TAG" >/dev/null 2>&1; then
+            echo "skip=true" >> $GITHUB_OUTPUT
+            echo "hotfix_suffix=" >> $GITHUB_OUTPUT
+            echo "is_hotfix=false" >> $GITHUB_OUTPUT
+          # 2) 主 tag 存在，判断是否指向当前 HEAD
+          elif git rev-parse "$TAG" >/dev/null 2>&1; then
+            TAG_COMMIT=$(git rev-list -n 1 "$TAG")
+            if [ "$TAG_COMMIT" = "$FULL_HASH" ]; then
+              # 首次发布已完成，同一 commit → skip
+              echo "skip=true" >> $GITHUB_OUTPUT
+              echo "hotfix_suffix=" >> $GITHUB_OUTPUT
+              echo "is_hotfix=false" >> $GITHUB_OUTPUT
+            else
+              # 有新提交 → 发布 hotfix
+              echo "skip=false" >> $GITHUB_OUTPUT
+              echo "hotfix_suffix=-hotfix-$SHORT_HASH" >> $GITHUB_OUTPUT
+              echo "is_hotfix=true" >> $GITHUB_OUTPUT
+            fi
+          # 3) 主 tag 不存在 → 首次发布
           else
+            echo "skip=false" >> $GITHUB_OUTPUT
             echo "hotfix_suffix=" >> $GITHUB_OUTPUT
             echo "is_hotfix=false" >> $GITHUB_OUTPUT
           fi
 
       - name: 设置资产名称
         id: set_asset_name
+        if: steps.set_tag.outputs.skip != 'true'
         run: |
           VERSION="${{ env.VERSION }}"
           SUFFIX="${{ steps.set_tag.outputs.hotfix_suffix }}"
@@ -76,6 +98,7 @@ jobs:
 
       - name: 运行综合检查（不中断构建）
         id: run_check
+        if: steps.set_tag.outputs.skip != 'true'
         continue-on-error: true
         run: |
           python check.py 2>&1 | tee check_output.txt
@@ -84,10 +107,11 @@ jobs:
           echo "EOF" >> $GITHUB_OUTPUT
 
       - name: 打包数据包和资源包
+        if: steps.set_tag.outputs.skip != 'true'
         run: python pack.py --all
 
       - name: 重命名产物（热修复时添加后缀）
-        if: steps.set_tag.outputs.is_hotfix == 'true'
+        if: steps.set_tag.outputs.skip != 'true' && steps.set_tag.outputs.is_hotfix == 'true'
         run: |
           VERSION="${{ env.VERSION }}"
           SUFFIX="${{ steps.set_tag.outputs.hotfix_suffix }}"
@@ -97,6 +121,7 @@ jobs:
 
       - name: 构建 Release 正文
         id: build_body
+        if: steps.set_tag.outputs.skip != 'true'
         run: |
           FULL_HASH=$(git rev-parse HEAD)
           SHORT_HASH=$(git rev-parse --short=7 HEAD)
@@ -126,6 +151,7 @@ jobs:
           } >> $GITHUB_OUTPUT
 
       - name: 创建/更新 Release
+        if: steps.set_tag.outputs.skip != 'true'
         uses: ncipollo/release-action@v1.14.0
         with:
           artifacts: "output/${{ steps.set_asset_name.outputs.asset_data_generic }},output/${{ steps.set_asset_name.outputs.asset_data_compat }},output/${{ steps.set_asset_name.outputs.asset_resource }}"
@@ -137,3 +163,10 @@ jobs:
           updateOnlyUnreleased: false
           makeLatest: ${{ steps.set_tag.outputs.is_hotfix == 'false' }}
           token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 记录 hotfix 已发布
+        if: steps.set_tag.outputs.skip != 'true' && steps.set_tag.outputs.is_hotfix == 'true'
+        run: |
+          HOTFIX_TAG="${{ env.VERSION }}-hotfix-${{ steps.set_tag.outputs.short_hash }}"
+          git tag "$HOTFIX_TAG"
+          git push origin "$HOTFIX_TAG"
