@@ -1,4 +1,5 @@
 scoreboard players add @s qte_combo 1
+tellraw @s {"text":"晚了","color":"yellow"}
 execute store result storage age:qte.old_stone_age.res combo int 1 run scoreboard players get @s qte_combo
 function age:qte/old_stone_age/show_combo with storage age:qte.old_stone_age.res
 function age:qte/old_stone_age/reward/late

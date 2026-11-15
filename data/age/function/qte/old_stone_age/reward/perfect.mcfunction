@@ -1,1 +1,2 @@
-loot give @s loot age:qte/old_stone_age/perfect
+function age:qte/old_stone_age/util/calc_rolls
+function age:qte/old_stone_age/reward/roll_perfect

@@ -1,0 +1,27 @@
+{
+    "type": "crafting_shaped",
+    "category": "equipment",
+    "key": {
+        "~":"minecraft:string",
+        "/":"minecraft:stick",
+        "#":"minecraft:flint"
+    },
+    "pattern": [
+        "/~/",
+        "/#/"
+    ],
+    "result": {
+        "id": "minecraft:carrot_on_a_stick",
+        "components":{
+            "minecraft:item_name": "筛子",
+            "minecraft:custom_data": {
+                "from": "old_stone_age",
+                "special": 0
+            },
+            "minecraft:lore": [
+                {"text":"告别手挖，指甲的福音","color":"green"},
+                ["「通过",{"text":"旧石器时代","color":"#424529"},"途径获取」"]
+            ]
+        }
+    }
+}

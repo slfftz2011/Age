@@ -313,15 +313,6 @@
                             }
                         },
                         {
-                            "function": "set_lore",
-                            "entity": "this",
-                            "lore": [
-                                {"text":"一块失败的打制石器","color":"green"},
-                                ["「通过",{"text":"旧石器时代","color":"#424529"},"途径获取」"]
-                            ],
-                            "mode": "replace_all"
-                        },
-                        {
                             "function": "set_name",
                             "name": {"text":"燧石废料","color":"#424529"},
                             "target":"item_name"
