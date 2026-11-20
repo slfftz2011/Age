@@ -13,7 +13,8 @@
     "recipes": [
       "age:crafting/flint_core",
       "age:crafting/flint",
-      "age:crafting/grass_skirt"
+      "age:crafting/grass_skirt",
+      "age:crafting/sieve"
     ]
   }
 }
