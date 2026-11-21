@@ -21,6 +21,7 @@
         "minecraft:potion_contents": {
           "custom_color": 4869966
         },
-        "minecraft:custom_data": {"special": 0, "from": "old_stone_age"}}
+        "minecraft:custom_data": {"special": 0, "from": "old_stone_age"}},
+        "minecraft:item_model": "age:core"
     }
   }

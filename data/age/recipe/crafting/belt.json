@@ -8,7 +8,7 @@
         "~~~"
     ],
     "result": {
-        "id": "minecraft:leather",
+        "id": "minecraft:poisonous_potato",
         "components":{
             "minecraft:item_name": "皮带",
             "minecraft:custom_data": {
@@ -26,7 +26,8 @@
             "minecraft:consumable": {
                 "animation":"eat",
                 "consume_seconds": 16
-            }
+            },
+            "minecraft:item_model": "age:belt"
         }
     }
 }
