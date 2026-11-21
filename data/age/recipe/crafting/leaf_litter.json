@@ -3,7 +3,7 @@
     "category": "misc",
     "ingredients": ["minecraft:leaf_litter","minecraft:leaf_litter","minecraft:leaf_litter"],
     "result": {
-        "id": "minecraft:leaf_litter",
+        "id": "minecraft:poisonous_potato",
         "components":{
             "minecraft:item_name": "腐殖质",
             "minecraft:custom_data": {

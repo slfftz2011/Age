@@ -9,7 +9,8 @@
             "minecraft:custom_data": {
                 "from": "old_stone_age",
                 "special": 0
-            }
+            },
+            "minecraft:item_model": "age:wild_vegetable"
         }
     }
 }

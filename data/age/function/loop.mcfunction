@@ -78,6 +78,7 @@ execute if score steam_age_5 stage matches 5120.. run function age:updata/steam_
 
 
 # 物品替换
+execute as @a run clear @s minecraft:echo_shard[!minecraft:custom_data={"from": "old_stone_age", "special": 0b}]
 execute as @a[team=old_stone_age] if items entity @s container.* flint[custom_data={special:1b,from:"old_stone_age"}] run function age:convert/flint
 execute as @a[team=old_stone_age] if items entity @s weapon.mainhand stone_axe[!custom_data={special:0b,from:"old_stone_age"}] run loot replace entity @s weapon.mainhand loot age:chopper
 execute as @a[team=old_stone_age] if items entity @s weapon.mainhand stone_sword[!custom_data={special:0b,from:"old_stone_age"}] run loot replace entity @s weapon.mainhand loot age:scraper

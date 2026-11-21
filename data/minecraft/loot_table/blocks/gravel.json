@@ -33,15 +33,9 @@
                         "function": "set_name",
                         "name": {"text":"燧石废料","color":"#424529"},
                         "target":"item_name"
-                    },
-                    {
-                        "function": "set_components",
-                        "components": {
-                            "minecraft:item_model": "age:sheet"
-                        }
                     }
                 ],
-                "name": "minecraft:disc_fragment_5",
+                "name": "minecraft:echo_shard",
                 "conditions": [
                   { "condition": "minecraft:random_chance", "chance": 0.12 }
                 ]

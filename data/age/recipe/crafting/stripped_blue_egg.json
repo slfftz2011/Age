@@ -4,7 +4,7 @@
     "group": "strip_egg",
     "ingredients": ["minecraft:blue_egg"],
     "result": {
-        "id": "minecraft:blue_egg",
+        "id": "minecraft:poisonous_potato",
         "components":{
             "minecraft:item_name": "破壳蓝色鸡蛋",
             "minecraft:custom_data": {

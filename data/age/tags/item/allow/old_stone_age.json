@@ -15,6 +15,7 @@
         "minecraft:glow_berries",
         "minecraft:sweet_berries",
         "minecraft:potato",
+        "minecraft:poisonous_potato",
         "minecraft:carrot",
         "minecraft:beetroot",
         "minecraft:mutton",
@@ -118,10 +119,10 @@
         "#minecraft:wool",
         "minecraft:barrier",
         "minecraft:rooted_dirt",
-        "minecraft:disc_fragment_5",
         "minecraft:pumpkin_seeds",
         "minecraft:melon_seeds",
         "minecraft:potion",
-        "minecraft:carrot_on_a_stick"
+        "minecraft:carrot_on_a_stick",
+        "minecraft:echo_shard"
     ]
 }
