@@ -17,11 +17,11 @@
         "minecraft:lore": [
           {"text":"一块由燧石敲成的球状器","color":"green"},
           ["「通过",{"text":"旧石器时代","color":"#424529"},"途径获取」"]
-        ], 
+        ],
+        "minecraft:item_model": "age:core", 
         "minecraft:potion_contents": {
           "custom_color": 4869966
         },
-        "minecraft:custom_data": {"special": 0, "from": "old_stone_age"}},
-        "minecraft:item_model": "age:core"
+        "minecraft:custom_data": {"special": 0, "from": "old_stone_age"}}
     }
   }
