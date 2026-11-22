@@ -21,7 +21,8 @@
             "minecraft:lore": [
                 {"text":"告别手挖，指甲的福音","color":"green"},
                 ["「通过",{"text":"旧石器时代","color":"#424529"},"途径获取」"]
-            ]
+            ],
+            "minecraft:item_model": "age:sieve"
         }
     }
 }

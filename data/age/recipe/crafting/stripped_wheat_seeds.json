@@ -18,7 +18,8 @@
             "minecraft:consumable": {
                 "animation":"eat",
                 "consume_seconds": 2
-            }
+            },
+            "minecraft:item_model": "age:stripped_wheat_seeds"
         }
     }
 }

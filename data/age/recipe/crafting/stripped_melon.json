@@ -17,7 +17,8 @@
             "minecraft:consumable": {
                 "animation":"eat",
                 "consume_seconds": 6
-            }
+            },
+            "minecraft:item_model": "age:stripped_melon"
         }
     }
 }

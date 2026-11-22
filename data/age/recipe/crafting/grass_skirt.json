@@ -13,7 +13,7 @@
     "result": {
         "id": "minecraft:leather_leggings",
         "components":{
-            "minecraft:custom_name": "草裙",
+            "minecraft:item_name": "草裙",
             "minecraft:custom_data": {
                 "from": "old_stone_age",
                 "special": 0
@@ -26,7 +26,8 @@
             "minecraft:equippable":{
                 "slot":"legs",
                 "asset_id":"age:grass_skirt"
-            }
+            },
+            "minecraft:item_model": "age:grass_skirt"
         }
     }
 }

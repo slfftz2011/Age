@@ -1165,6 +1165,7 @@ recipe take @s minecraft:spruce_trapdoor
 recipe take @s minecraft:spruce_wood
 recipe take @s minecraft:spyglass
 recipe take @s minecraft:stick
+recipe take @s minecraft:stick_from_bamboo_item
 recipe take @s minecraft:sticky_piston
 recipe take @s minecraft:stone
 recipe take @s minecraft:stone_axe

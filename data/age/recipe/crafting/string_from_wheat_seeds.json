@@ -10,7 +10,8 @@
             "minecraft:custom_data": {
                 "from": "old_stone_age",
                 "special": 0
-            }
+            },
+            "minecraft:item_model": "age:grass_string"
         }
     }
 }

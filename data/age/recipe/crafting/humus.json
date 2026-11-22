@@ -18,7 +18,8 @@
             "minecraft:consumable": {
                 "animation":"eat",
                 "consume_seconds": 4
-            }
+            },
+            "minecraft:item_model": "age:humus"
         },
         "count": 1
     }

@@ -3,14 +3,17 @@
     "category": "misc",
     "group": "sticks",
     "key": {
-      "#": "minecraft:sugar_cane"
+      "#": ["minecraft:sugar_cane", "minecraft:bamboo"]
     },
     "pattern": [
       "#",
       "#"
     ],
     "result": {
-      "count": 1,
-      "id": "minecraft:stick"
+      "id": "minecraft:stick",
+      "components":{
+        "minecraft:item_name": "竹棍",
+        "minecraft:item_model": "age:cane_stick"
+    }
     }
   }

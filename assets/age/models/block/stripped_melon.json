@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "age:block/stripped_melon_bottom",
+    "east": "age:block/stripped_melon_side",
+    "north": "age:block/stripped_melon_side",
+    "particle": "age:block/stripped_melon_side",
+    "south": "age:block/stripped_melon_side",
+    "up": "age:block/stripped_melon_top",
+    "west": "age:block/stripped_melon_side"
+  }
+}
