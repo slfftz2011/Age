@@ -137,6 +137,7 @@ scoreboard objectives add qte_elapsed dummy
 scoreboard objectives add qte_combo dummy
 scoreboard objectives add qte_tmp dummy
 scoreboard objectives add qte_rolls dummy
+scoreboard objectives add qte_speed dummy
 
 scoreboard players set #c8 qte_tmp 8
 scoreboard players set #c10 qte_tmp 10
